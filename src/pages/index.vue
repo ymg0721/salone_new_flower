@@ -3,10 +3,9 @@ import { onMounted } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 onMounted(() => {
-  // -------- MVアニメーション --------
+  gsap.registerPlugin(ScrollTrigger);
+
   const mainVisualAnime = gsap.timeline({
     scrollTrigger: {
       trigger: ".js-mvTrigger", // アニメーションが始まるトリガーとなる要素
@@ -14,6 +13,7 @@ onMounted(() => {
       // markers: true, // マーカー表示（開発用）
     },
   });
+
   mainVisualAnime.fromTo(
     ".js-mvLogo",
     {
