@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -10,8 +11,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "gsap": "^3.12.5",
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@unocss/nuxt": "^0.62.4",
+    "prettier": "3.3.3",
+    "sass": "^1.79.3",
+    "sass-embedded": "^1.79.3",
+    "unocss": "^0.62.4"
   }
 }
