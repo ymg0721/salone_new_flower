@@ -128,6 +128,22 @@ onMounted(() => {
       delay: 0.5,
     },
   );
+
+  mainVisualAnime.fromTo(
+    ".js-mvLogo08",
+    {
+      // アニメーション前
+      y: 10, // アニメーション開始前の位置
+      autoAlpha: 0, // アニメーション開始前の状態
+    },
+    {
+      // アニメーション後
+      y: 0, // アニメーション後の位置
+      autoAlpha: 1, // アニメーション後の状態
+      duration: 1, // 1秒かけてアニメーションを実行
+      delay: 0.5,
+    },
+  );
 });
 </script>
 
@@ -259,34 +275,34 @@ onMounted(() => {
     <div style="display: flex; justify-content: space-evenly; align-items: center; margin-top: 5vw; margin-bottom: 5vw;" >
       <NuxtLink to="/about" style="color: #302E2E;">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo07"
           src="@/assets/img/test03.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo06">Venere Emi について</h2>
-        <h3 style="text-align: center;" class="js-mvLogo06">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo06">test description</p>
+        <h2 style="text-align: center;" class="js-mvLogo08">Venere Emi について</h2>
+        <h3 style="text-align: center;" class="js-mvLogo08">this is test</h3>
+        <p style="text-align: center;" class="js-mvLogo08">test description</p>
       </NuxtLink>
       <NuxtLink to="/words" style="color: #302E2E;">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo07"
           src="@/assets/img/test02.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo06">お花の用語</h2>
-        <h3 style="text-align: center;" class="js-mvLogo06">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo06">test description</p>
+        <h2 style="text-align: center;" class="js-mvLogo08">お花の用語</h2>
+        <h3 style="text-align: center;" class="js-mvLogo08">this is test</h3>
+        <p style="text-align: center;" class="js-mvLogo08">test description</p>
       </NuxtLink>
 
       <NuxtLink to="/contact" style="color: #302E2E;">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo07"
           src="@/assets/img/test01.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo06">お問い合わせ</h2>
-        <h3 style="text-align: center;" class="js-mvLogo06">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo06">test description</p>
+        <h2 style="text-align: center;" class="js-mvLogo08">お問い合わせ</h2>
+        <h3 style="text-align: center;" class="js-mvLogo08">this is test</h3>
+        <p style="text-align: center;" class="js-mvLogo08">test description</p>
       </NuxtLink>
     </div>
 
