@@ -106,7 +106,7 @@ onMounted(() => {
       <p
         class="absolute font-serif js-mvLogo top-0 left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[50px] -rotate-15"
       >
-        Square
+        Glass
       </p>
     </div>
     <div class="section-header" />

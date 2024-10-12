@@ -1,7 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="bg-white p-200px w-fill"></div>
+  <div>
+    <h1>Lesson</h1>
+  </div>
 </template>
 
 <style scoped lang="scss"></style>

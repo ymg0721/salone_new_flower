@@ -2,11 +2,13 @@
 
 <template>
   <header class="header">
-    <img
-      src="@/assets/img/venere-emi-title.png"
-      alt="Site Icon"
-      class="site-icon"
-    />
+    <NuxtLink to="/">
+      <img
+        src="@/assets/img/venere-emi-title.png"
+        alt="Site Icon"
+        class="site-icon"
+      />
+    </NuxtLink>
   </header>
 </template>
 

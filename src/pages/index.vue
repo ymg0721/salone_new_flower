@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onMounted, onBeforeUnmount } from "vue";
+
+const router = useRouter();
 
 onMounted(() => {
+  // ローカルストレージを確認して、ブラウザバックが発生したかどうかを確認
+  const isBack = sessionStorage.getItem("isBack") === "true";
+
+  if (isBack) {
+    // ブラウザバック時はアニメーションをスキップ
+    sessionStorage.setItem("isBack", "false");
+    return;
+  }
+
   gsap.registerPlugin(ScrollTrigger);
 
   const mainVisualAnime = gsap.timeline({
@@ -16,134 +27,41 @@ onMounted(() => {
 
   mainVisualAnime.fromTo(
     ".js-mvLogo",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
+    { y: 10, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
   );
 
   mainVisualAnime.fromTo(
     ".js-mvLogo02",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
+    { y: 10, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
   );
-
 
   mainVisualAnime.fromTo(
     ".js-mvLogo03",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
+    { y: 10, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
   );
-
 
   mainVisualAnime.fromTo(
     ".js-mvLogo04",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
+    { y: 10, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
   );
-
 
   mainVisualAnime.fromTo(
     ".js-mvLogo05",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
+    { y: 10, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
   );
+});
 
-  mainVisualAnime.fromTo(
-    ".js-mvLogo06",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo07",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo08",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
+// ブラウザバック時にフラグを設定する
+router.beforeEach((to, from, next) => {
+  if (from.fullPath !== to.fullPath && window.history.state.back) {
+    sessionStorage.setItem("isBack", "true");
+  }
+  next();
 });
 </script>
 
@@ -155,167 +73,175 @@ onMounted(() => {
       alt="heder-01"
       style="margin: 0 auto; display: flex; height: 700px"
     />
-    <h1 class="h1-style js-mvLogo">
-      Venere Emi Flower Salone
-    </h1>
-    <h3  style="justify-content: center; display: flex; font-weight: 500;" class="js-mvLogo">flower studio</h3>
-    <div class="section-header js-mvLogo">STORIES</div>
-
-
-    <div style="display: flex; justify-content: space-evenly; align-items: center;">
-      <NuxtLink to="/preserved" style="color: #302E2E;">
-        <img
-          class="col01 js-mvLogo"
-          src="@/assets/img/Story05.png"
-          alt="heder-01"
-        />
-        <h2 style="text-align: center;" class="js-mvLogo02">Preserved</h2>
-        <h3 style="text-align: center;" class="js-mvLogo02">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo02">test description</p>
-      </NuxtLink>
-
-      <NuxtLink to="/artificial" style="color: #302E2E;">
-        <img
-          class="col01 js-mvLogo"
-          src="@/assets/img/Story02.png"
-          alt="heder-01"
-        />
-        <h2 style="text-align: center;" class="js-mvLogo02">Artificial</h2>
-        <h3 style="text-align: center;" class="js-mvLogo02">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo02">test description</p>
-      </NuxtLink>
-
-      <NuxtLink to="/lesson" style="color: #302E2E;">
-        <img
-          class="col01 js-mvLogo"
-          src="@/assets/img/Story04.png"
-          alt="heder-01"
-        />
-        <h2 style="text-align: center;" class="js-mvLogo02">Lesson</h2>
-        <h3 style="text-align: center;" class="js-mvLogo02">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo02">test description</p>
-      </NuxtLink>
+    <h1 class="h1-style js-mvLogo">Venere Emi Flower Salone</h1>
+    <h3
+      style="justify-content: center; display: flex; font-weight: 500"
+      class="js-mvLogo"
+    >
+      flower studio
+    </h3>
+    <div class="section-header js-mvLogo02">
+      Preserved | プリザーブドフラワー
     </div>
-
-    <div class="section-header js-mvLogo03">PAMPHLET</div>
-
-    <div style="display: flex; justify-content: space-evenly; align-items: center;">
-      <NuxtLink to="/circlebox" style="color: #302E2E;">
+    <!-- Preservedページ ここから↓ -->
+    <div
+      style="display: flex; justify-content: space-evenly; align-items: center"
+    >
+      <NuxtLink to="/circlebox" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo04"
+          class="col02 js-mvLogo02"
           src="@/assets/img/Story01.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo04">CircleBox</h2>
-        <h3 style="text-align: center;" class="js-mvLogo04">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo04">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo02">CircleBox</h2>
+        <h3 style="text-align: center" class="js-mvLogo02">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo02">test description</p>
       </NuxtLink>
 
-      <NuxtLink to="/square" style="color: #302E2E;">
+      <NuxtLink to="/square" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo04"
+          class="col02 js-mvLogo02"
           src="@/assets/img/Story06.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo04">Square</h2>
-        <h3 style="text-align: center;" class="js-mvLogo04">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo04">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo02">Square</h2>
+        <h3 style="text-align: center" class="js-mvLogo02">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo02">test description</p>
       </NuxtLink>
 
-      <NuxtLink to="/ceremony" style="color: #302E2E;">
+      <NuxtLink to="/ceremony" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo04"
+          class="col02 js-mvLogo02"
           src="@/assets/img/Story07.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo04">Ceremony</h2>
-        <h3 style="text-align: center;" class="js-mvLogo04">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo04">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo02">Ceremony</h2>
+        <h3 style="text-align: center" class="js-mvLogo02">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo02">test description</p>
       </NuxtLink>
     </div>
-
-    <div style="display: flex; justify-content: space-evenly; align-items: center; margin-top: 5vw;" >
-      <NuxtLink to="/glass" style="color: #302E2E;">
+    <div
+      style="
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 5vw;
+      "
+    >
+      <NuxtLink to="/glass" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo03"
           src="@/assets/img/Story08.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo06">Glass</h2>
-        <h3 style="text-align: center;" class="js-mvLogo06">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo06">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo03">Glass</h2>
+        <h3 style="text-align: center" class="js-mvLogo03">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo03">test description</p>
       </NuxtLink>
 
-      <NuxtLink to="/funel" style="color: #302E2E;">
+      <NuxtLink to="/funeral" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo03"
           src="@/assets/img/Story09.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo06">Funel</h2>
-        <h3 style="text-align: center;" class="js-mvLogo06">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo06">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo03">Funeral</h2>
+        <h3 style="text-align: center" class="js-mvLogo03">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo03">test description</p>
       </NuxtLink>
 
-      <NuxtLink to="/chrismas" style="color: #302E2E;">
+      <NuxtLink to="/chrismas" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo03"
           src="@/assets/img/Story10.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo06">Chrismas</h2>
-        <h3 style="text-align: center;" class="js-mvLogo06">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo06">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo03">Chrismas</h2>
+        <h3 style="text-align: center" class="js-mvLogo03">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo03">test description</p>
       </NuxtLink>
     </div>
+    <!-- Preservedページ ここまで↑ -->
 
-
-    <div class="section-header js-mvLogo07">ABOUT | CONTACT</div>
-
-    <div style="display: flex; justify-content: space-evenly; align-items: center; margin-top: 5vw; margin-bottom: 5vw;" >
-      <NuxtLink to="/about" style="color: #302E2E;">
+    <div class="section-header js-mvLogo04">Lesson | レッスン</div>
+    <!-- Lessonページ ここから↓ -->
+    <div
+      style="display: flex; justify-content: space-evenly; align-items: center"
+    >
+      <NuxtLink to="/lesson" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo07"
+          class="col02 js-mvLogo04"
+          src="@/assets/img/lesson.png"
+          alt="heder-01"
+        />
+        <h2 style="text-align: center" class="js-mvLogo04">
+          レッスンについてはこちら
+        </h2>
+        <h3 style="text-align: center" class="js-mvLogo04">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo04">test description</p>
+      </NuxtLink>
+    </div>
+    <!-- Lessonページ ここまで↑ -->
+
+    <div class="section-header js-mvLogo05">
+      ABOUT, CONTACT | その他, お問い合わせ
+    </div>
+
+    <div
+      style="
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 5vw;
+        margin-bottom: 5vw;
+      "
+    >
+      <NuxtLink to="/about" style="color: #302e2e">
+        <img
+          class="col02 js-mvLogo05"
           src="@/assets/img/test03.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo08">Venere Emi について</h2>
-        <h3 style="text-align: center;" class="js-mvLogo08">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo08">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo05">
+          Venere Emi について
+        </h2>
+        <h3 style="text-align: center" class="js-mvLogo05">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo05">test description</p>
       </NuxtLink>
-      <NuxtLink to="/words" style="color: #302E2E;">
+      <NuxtLink to="/words" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo07"
+          class="col02 js-mvLogo05"
           src="@/assets/img/test02.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo08">お花の用語</h2>
-        <h3 style="text-align: center;" class="js-mvLogo08">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo08">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo05">お花の用語</h2>
+        <h3 style="text-align: center" class="js-mvLogo05">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo05">test description</p>
       </NuxtLink>
 
-      <NuxtLink to="/contact" style="color: #302E2E;">
+      <NuxtLink to="/contact" style="color: #302e2e">
         <img
-          class="col02 js-mvLogo07"
+          class="col02 js-mvLogo05"
           src="@/assets/img/test01.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center;" class="js-mvLogo08">お問い合わせ</h2>
-        <h3 style="text-align: center;" class="js-mvLogo08">this is test</h3>
-        <p style="text-align: center;" class="js-mvLogo08">test description</p>
+        <h2 style="text-align: center" class="js-mvLogo05">お問い合わせ</h2>
+        <h3 style="text-align: center" class="js-mvLogo05">this is test</h3>
+        <p style="text-align: center" class="js-mvLogo05">test description</p>
       </NuxtLink>
     </div>
-
   </div>
 </template>
 
 <style scoped lang="scss">
 .col01 {
   max-width: 300px; /* 最大幅を設定して、画像が大きくなりすぎないようにする */
-height: 350px;
-transition: transform 0.3s ease, opacity 0.3s ease;
+  height: 350px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 
-&:hover {
+  &:hover {
     transform: scale(1.05); // 1.05倍に拡大
     opacity: 0.8; // 少し透明に
   }
@@ -324,9 +250,24 @@ transition: transform 0.3s ease, opacity 0.3s ease;
 .col02 {
   max-width: 300px; /* 最大幅を設定して、画像が大きくなりすぎないようにする */
   height: 340px; /* 高さは自動で調整 */
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 
-&:hover {
+  &:hover {
+    transform: scale(1.05); // 1.05倍に拡大
+    opacity: 0.8; // 少し透明に
+  }
+}
+
+.col02 {
+  max-width: 1000px; /* 最大幅を設定して、画像が大きくなりすぎないようにする */
+  height: 340px; /* 高さは自動で調整 */
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+
+  &:hover {
     transform: scale(1.05); // 1.05倍に拡大
     opacity: 0.8; // 少し透明に
   }
@@ -340,20 +281,20 @@ transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .section-header {
-    font-size: 18px;
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid #cccccc;
-    border-top: 1px solid #cccccc;
-    margin-bottom: 60px;
-    margin-left: 15vw;
-    margin-right: 15vw;
-    text-align: center;
-    margin-top: 6vw;
-    padding-right: 0px;
-    padding-left: 0px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+  margin-bottom: 60px;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  text-align: center;
+  margin-top: 6vw;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 </style>
