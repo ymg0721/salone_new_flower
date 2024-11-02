@@ -13,7 +13,7 @@ const closeMenu = () => {
 </script>
 
 <template>
-  <div class="hamburger-menu fixed z-10 right-10 cursor-pointer" @click="toggleMenu">
+  <div class="hamburger-menu fixed z-12 right-10 cursor-pointer" @click="toggleMenu">
     <div :class="{ open: isMenuOpen }" class="w-8 right-6 h-5 flex flex-col justify-between">
       <span class="bg-black block h-[2px] rounded transition-all duration-300"></span>
       <span class="bg-black block h-[2px] rounded transition-all duration-300"></span>
@@ -22,8 +22,8 @@ const closeMenu = () => {
   </div>
 
   <transition name="slide">
-    <nav v-if="isMenuOpen" class="menu fixed top-24 w-full h-full bg-white bg-opacity-90 z-5 flex justify-center">
-      <div class="text-center font-sans p-4">
+    <nav v-if="isMenuOpen" class="menu fixed top-0  w-full h-full bg-white bg-opacity-90 z-11 flex justify-center">
+      <div class="text-center font-sans p-4 mt-120px">
         <h2 class="text-2xl mb-4">Venere Emi.</h2>
         <ul class="space-y-4 text-lg">
           <li @click="closeMenu">
