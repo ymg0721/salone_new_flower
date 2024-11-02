@@ -2,7 +2,23 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-onMounted(() => {
+const router = useRouter();
+const start = ref(false)
+
+onMounted(async() => {
+  start.value = true
+
+  await nextTick(); // DOMのレンダリングを待つ
+
+  // ローカルストレージを確認して、ブラウザバックが発生したかどうかを確認
+  const isBack = sessionStorage.getItem("isBack") === "true";
+
+  if (isBack) {
+    // ブラウザバック時はアニメーションをスキップ
+    sessionStorage.setItem("isBack", "false");
+    return;
+  }
+
   gsap.registerPlugin(ScrollTrigger);
 
   const mainVisualAnime = gsap.timeline({
@@ -77,26 +93,34 @@ onMounted(() => {
     },
   );
 });
+
+// ブラウザバック時にフラグを設定する
+router.beforeEach((to, from, next) => {
+  if (from.fullPath !== to.fullPath && window.history.state.back) {
+    sessionStorage.setItem("isBack", "true");
+  }
+  next();
+});
 </script>
 
 <template>
-  <div class="js-mvTrigger">
+  <div class="js-mvTrigger" v-if="start">
     <div class="relative">
       <img
-        class="js-mvLogo flex m-auto"
-        src="@/assets/img/glass-title.png"
+      class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto"
+      src="@/assets/img/glass-title.png"
         alt="header-01"
       />
 
       <!-- テキスト１を右上端に配置 -->
-      <p class="absolute js-mvLogo top-0 p-2 right-20% text-white bg-#9b9b9b6c">
+      <p class="absolute js-mvLogo top-0 text-[11px] md:text-[18px]  p-2 right-[0%] md:right-[20%] text-white bg-[#9b9b9b6c]">
         淡いピンクの花々で写真を優美に彩ります。
         <br />上品なデザインで、 <br />特別な思い出を引き立てるにおすすめです。
       </p>
 
       <!-- テキスト２を右下端に配置 -->
       <p
-        class="absolute js-mvLogo bottom-0 right-20% p-2 text-white bg-#9b9b9b6c"
+      class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
       >
       ■ No.2116<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
 
@@ -104,28 +128,30 @@ onMounted(() => {
 
       <!-- 新しいテキストを左端に配置 -->
       <p
-        class="absolute font-serif js-mvLogo top-0 left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[50px] -rotate-15"
+      class="absolute font-serif js-mvLogo top-0 left-[3%] md:left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[30px] md:text-[50px] -rotate-15"
       >
         Glass
       </p>
     </div>
-    <div class="section-header" />
-    <div class="flex justify-center gap-30">
-      <div class="relative w-[30%]">
+    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300 pb-4 sm:pb-8">
+      Section Header
+    </div>
+    <div style="display: flex;" class="flex-col md:flex-row justify-center gap-30">
+      <div class="relative md:w-[30%]">
         <img
-          class="js-mvLogo02 w-full"
-          src="@/assets/img/glass-body-01.png"
+        class="js-mvLogo02 flex m-auto max-w-full md:max-w-100% h-auto"
+        src="@/assets/img/glass-body-01.png"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
-          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c]"
+        class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
         >
         ■ No.2117<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
         </p>
       </div>
 
-      <div class="relative w-[30%]">
+      <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo02 w-full"
           src="@/assets/img/glass-body-02.png"
@@ -133,7 +159,7 @@ onMounted(() => {
         />
         <!-- テキスト１を右下端に配置 -->
         <p
-          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c]"
+          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
         >
         ■ No.2118<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
         </p>

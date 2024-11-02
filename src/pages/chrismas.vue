@@ -2,7 +2,23 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-onMounted(() => {
+const router = useRouter();
+const start = ref(false)
+
+onMounted(async() => {
+  start.value = true
+
+  await nextTick(); // DOMのレンダリングを待つ
+
+  // ローカルストレージを確認して、ブラウザバックが発生したかどうかを確認
+  const isBack = sessionStorage.getItem("isBack") === "true";
+
+  if (isBack) {
+    // ブラウザバック時はアニメーションをスキップ
+    sessionStorage.setItem("isBack", "false");
+    return;
+  }
+
   gsap.registerPlugin(ScrollTrigger);
 
   const mainVisualAnime = gsap.timeline({
@@ -48,9 +64,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="js-mvTrigger">
-    <div class="flex justify-center gap-30">
-      <div class="relative w-[30%]">
+  <div class="js-mvTrigger" v-if="start">
+    <div style="display: flex;" class="flex-col md:flex-row justify-center gap-30">
+      <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo w-full"
           src="@/assets/img/chrismas-body-01.png"
@@ -64,7 +80,7 @@ onMounted(() => {
         </p>
       </div>
 
-      <div class="relative w-[30%]">
+      <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo w-full"
           src="@/assets/img/chrismas-body-02.png"
@@ -79,8 +95,8 @@ onMounted(() => {
       </div>
     </div>
     <div class="section-header" />
-    <div class="flex justify-center gap-30">
-      <div class="relative w-[30%]">
+    <div style="display: flex;" class="flex-col md:flex-row justify-center gap-30">
+      <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo02 w-full"
           src="@/assets/img/chrismas-body-03.png"
@@ -94,7 +110,7 @@ onMounted(() => {
         </p>
       </div>
 
-      <div class="relative w-[30%]">
+      <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo02 w-full"
           src="@/assets/img/chrismas-body-04.png"

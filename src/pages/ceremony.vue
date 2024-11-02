@@ -2,7 +2,23 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-onMounted(() => {
+const router = useRouter();
+const start = ref(false)
+
+onMounted(async() => {
+  start.value = true
+
+  await nextTick(); // DOMのレンダリングを待つ
+
+  // ローカルストレージを確認して、ブラウザバックが発生したかどうかを確認
+  const isBack = sessionStorage.getItem("isBack") === "true";
+
+  if (isBack) {
+    // ブラウザバック時はアニメーションをスキップ
+    sessionStorage.setItem("isBack", "false");
+    return;
+  }
+
   gsap.registerPlugin(ScrollTrigger);
 
   const mainVisualAnime = gsap.timeline({
@@ -77,26 +93,34 @@ onMounted(() => {
     },
   );
 });
+
+// ブラウザバック時にフラグを設定する
+router.beforeEach((to, from, next) => {
+  if (from.fullPath !== to.fullPath && window.history.state.back) {
+    sessionStorage.setItem("isBack", "true");
+  }
+  next();
+});
 </script>
 
 <template>
-  <div class="js-mvTrigger">
+  <div class="js-mvTrigger" v-if="start">
     <div class="relative">
       <img
-        class="js-mvLogo flex m-auto"
+        class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto"
         src="@/assets/img/ceremony-title.png"
         alt="header-01"
       />
 
       <!-- テキスト１を右上端に配置 -->
-      <p class="absolute js-mvLogo top-0 p-2 right-20% text-white bg-#9b9b9b6c">
+      <p class="absolute js-mvLogo top-0 text-[9px] md:text-[18px]  p-2 right-[0%] md:right-[20%] text-white bg-[#9b9b9b6c]">
         淡いピンクの花々で写真を優美に彩ります。
         <br />上品なデザインで、 <br />特別な思い出を引き立てるにおすすめです。
       </p>
 
       <!-- テキスト２を右下端に配置 -->
       <p
-        class="absolute js-mvLogo bottom-0 right-20% p-2 text-white bg-#9b9b9b6c"
+      class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
       >
         ■ No.2113<br />グロリアス M （ブライトレッド）<br />税込 11,000円<br />W15.5
         x D15.5 x H9
@@ -104,14 +128,16 @@ onMounted(() => {
 
       <!-- 新しいテキストを左端に配置 -->
       <p
-        class="absolute font-serif js-mvLogo top-0 left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[50px] -rotate-15"
+      class="absolute font-serif js-mvLogo top-0 left-[3%] md:left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[25px] md:text-[50px] -rotate-15"
       >
         Ceremony
       </p>
     </div>
-    <div class="section-header" />
-    <div class="flex justify-center gap-30">
-      <div class="relative w-[30%]">
+    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300 pb-4 sm:pb-8">
+      Section Header
+    </div>
+    <div style="display: flex;" class="flex-col md:flex-row justify-center gap-30">
+      <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo02 w-full"
           src="@/assets/img/ceremony-body-01.png"
@@ -119,7 +145,7 @@ onMounted(() => {
         />
         <!-- テキスト１を右下端に配置 -->
         <p
-          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c]"
+        class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
         >
           ■ No.2114<br />
           グロリアス M （ブライトレッド）<br />
@@ -127,7 +153,7 @@ onMounted(() => {
         </p>
       </div>
 
-      <div class="relative w-[30%]">
+      <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo02 w-full"
           src="@/assets/img/ceremony-body-02.png"
@@ -135,7 +161,7 @@ onMounted(() => {
         />
         <!-- テキスト１を右下端に配置 -->
         <p
-          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c]"
+        class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
         >
         ■ No.2115<br>グロリアス M （ブライトレッド）<br>税込 16,500円<br>W15.5 x D15.5 x H9
         </p>
@@ -146,17 +172,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .section-header {
-  font-size: 18px;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.1em;
-  border-bottom: 2px solid #cccccc;
-
-  margin-bottom: 60px;
-  margin-left: 15vw;
-  margin-right: 15vw;
-  text-align: center;
-  margin-top: 30px;
-  padding-bottom: 30px;
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
 }
 </style>
