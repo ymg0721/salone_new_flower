@@ -71,6 +71,7 @@ router.beforeEach((to, from, next) => {
 
 <template>
   <div class="js-mvTrigger" v-if="start">
+    <AtomsTopSlider />
     <img
       class="js-mvLogo mx-auto flex max-w-full md:max-w-100% h-auto object-cover"
       src="@/assets/img/test.jpg"
