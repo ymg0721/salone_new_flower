@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { onMounted, onBeforeUnmount } from "vue";
+import { onMounted } from "vue";
 
 const router = useRouter();
+const start = ref(false)
 
-onMounted(() => {
+onMounted(async() => {
+  start.value = true
+
+  await nextTick(); // DOMのレンダリングを待つ
+
   // ローカルストレージを確認して、ブラウザバックが発生したかどうかを確認
   const isBack = sessionStorage.getItem("isBack") === "true";
 
@@ -66,7 +71,7 @@ router.beforeEach((to, from, next) => {
 </script>
 
 <template>
-  <div class="js-mvTrigger">
+  <div class="js-mvTrigger" v-if="start">
     <img
       class="js-mvLogo mx-auto flex max-w-full md:max-w-100% h-auto object-cover"
       src="@/assets/img/test.jpg"
