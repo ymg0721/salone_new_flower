@@ -68,10 +68,9 @@ router.beforeEach((to, from, next) => {
 <template>
   <div class="js-mvTrigger">
     <img
-      class="js-mvLogo"
+      class="js-mvLogo mx-auto flex max-w-full md:max-w-100% h-auto object-cover"
       src="@/assets/img/test.jpg"
       alt="heder-01"
-      style="margin: 0 auto; display: flex; height: 700px"
     />
     <h1 class="h1-style js-mvLogo">Venere Emi Flower Salone</h1>
     <h3
@@ -80,14 +79,19 @@ router.beforeEach((to, from, next) => {
     >
       flower studio
     </h3>
-    <div class="section-header js-mvLogo02">
+    <div
+      class="section-header js-mvLogo02 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+    >
       Preserved | プリザーブドフラワー
     </div>
+
+
     <!-- Preservedページ ここから↓ -->
     <div
-      style="display: flex; justify-content: space-evenly; align-items: center"
+      style="display: flex;"
+      class="flex-col md:flex-row justify-evenly items-center"
     >
-      <NuxtLink to="/circlebox" style="color: #302e2e">
+      <NuxtLink to="/circlebox" class="flex-col justify-centers" style="color: #302e2e">
         <img
           class="col02 js-mvLogo02"
           src="@/assets/img/Story01.png"
@@ -121,12 +125,8 @@ router.beforeEach((to, from, next) => {
       </NuxtLink>
     </div>
     <div
-      style="
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        margin-top: 5vw;
-      "
+      style="display: flex;"
+      class="flex-col md:flex-row justify-evenly items-center mt-5vw"
     >
       <NuxtLink to="/glass" style="color: #302e2e">
         <img
@@ -139,7 +139,7 @@ router.beforeEach((to, from, next) => {
         <p style="text-align: center" class="js-mvLogo03">test description</p>
       </NuxtLink>
 
-      <NuxtLink to="/funeral" style="color: #302e2e">
+      <NuxtLink to="/funeral" class="flex-col justify-centers" style="display: flex; color: #302e2e">
         <img
           class="col02 js-mvLogo03"
           src="@/assets/img/Story09.png"
@@ -163,10 +163,15 @@ router.beforeEach((to, from, next) => {
     </div>
     <!-- Preservedページ ここまで↑ -->
 
-    <div class="section-header js-mvLogo04">Lesson | レッスン</div>
+    <div       
+      class="section-header js-mvLogo04 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+    >
+      Lesson | レッスン
+    </div>
     <!-- Lessonページ ここから↓ -->
     <div
-      style="display: flex; justify-content: space-evenly; align-items: center"
+        style="display: flex;"
+      class="flex-col md:flex-row justify-evenly items-center"
     >
       <NuxtLink to="/lesson" style="color: #302e2e">
         <img
@@ -183,18 +188,15 @@ router.beforeEach((to, from, next) => {
     </div>
     <!-- Lessonページ ここまで↑ -->
 
-    <div class="section-header js-mvLogo05">
+    <div       
+      class="section-header js-mvLogo05 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+    >
       ABOUT, CONTACT | その他, お問い合わせ
     </div>
 
     <div
-      style="
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        margin-top: 5vw;
-        margin-bottom: 5vw;
-      "
+        style="display: flex;"
+      class="flex-col md:flex-row justify-evenly items-center my-5vw"
     >
       <NuxtLink to="/about" style="color: #302e2e">
         <img
@@ -281,20 +283,7 @@ router.beforeEach((to, from, next) => {
 }
 
 .section-header {
-  font-size: 18px;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.1em;
   border-bottom: 1px solid #cccccc;
   border-top: 1px solid #cccccc;
-  margin-bottom: 60px;
-  margin-left: 15vw;
-  margin-right: 15vw;
-  text-align: center;
-  margin-top: 6vw;
-  padding-right: 0px;
-  padding-left: 0px;
-  padding-top: 30px;
-  padding-bottom: 30px;
 }
 </style>

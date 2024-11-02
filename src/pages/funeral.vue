@@ -53,30 +53,28 @@ onMounted(() => {
       <div class="relative w-[30%]">
         <img
           class="js-mvLogo w-full"
-          src="@/assets/img/square-body-01.png"
+          src="@/assets/img/funeral-body-01.png"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
           class="absolute js-mvLogo bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c]"
         >
-          ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x H20,5cm
+        ■ No.2120<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
         </p>
       </div>
 
       <div class="relative w-[30%]">
         <img
           class="js-mvLogo w-full"
-          src="@/assets/img/square-body-02.png"
+          src="@/assets/img/funeral-body-02.png"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
           class="absolute js-mvLogo bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c]"
         >
-          ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x H20,5cm
+        ■ No.2121<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
         </p>
       </div>
     </div>
@@ -85,30 +83,28 @@ onMounted(() => {
       <div class="relative w-[30%]">
         <img
           class="js-mvLogo02 w-full"
-          src="@/assets/img/square-body-01.png"
+          src="@/assets/img/funeral-body-03.png"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
           class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c]"
         >
-          ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x H20,5cm
+        ■ No.2122<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
         </p>
       </div>
 
       <div class="relative w-[30%]">
         <img
           class="js-mvLogo02 w-full"
-          src="@/assets/img/square-body-02.png"
+          src="@/assets/img/funeral-body-04.png"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
           class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c]"
         >
-          ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x H20,5cm
+        ■ No.2123<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
         </p>
       </div>
     </div>

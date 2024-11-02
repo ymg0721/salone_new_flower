@@ -1,29 +1,13 @@
-<script setup lang="ts"></script>
-
 <template>
-  <header class="header">
-    <NuxtLink to="/">
+  <header
+    class="flex justify-between items-center p-4 bg-white relative z-10 md:p-6 lg:p-8"
+  >
+    <NuxtLink to="/" class="flex-shrink-0">
       <img
         src="@/assets/img/venere-emi-title.png"
         alt="Site Icon"
-        class="site-icon"
+        class="h-12 md:h-16 lg:h-20 z-6"
       />
     </NuxtLink>
   </header>
 </template>
-
-<style scoped lang="scss">
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #fff;
-  position: relative;
-  z-index: 10;
-}
-
-.site-icon {
-  z-index: 6;
-}
-</style>
