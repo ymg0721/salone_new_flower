@@ -104,23 +104,23 @@ router.beforeEach((to, from, next) => {
 </script>
 
 <template>
-  <div class="js-mvTrigger" v-if="start">
+  <div class="js-mvTrigger mx-30px" v-if="start">
     <div class="relative">
       <img
-        class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto"
+        class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto rounded-5px"
         src="@/assets/img/square-title.png"
         alt="header-01"
       />
 
       <!-- テキスト１を右上端に配置 -->
-      <p class="absolute js-mvLogo top-0 text-[11px] md:text-[18px]  p-2 right-[0%] md:right-[20%] text-white bg-[#9b9b9b6c]">
+      <p class="absolute js-mvLogo top-0 text-[9px] md:text-[18px]  p-2 right-[0%] md:right-[20%] text-white bg-[#9b9b9b6c]">
         淡いピンクの花々で写真を優美に彩ります。
         <br />上品なデザインで、 <br />特別な思い出を引き立てるにおすすめです。
       </p>
 
       <!-- テキスト２を右下端に配置 -->
       <p
-      class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
+      class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[9px] md:text-[18px]"
       >
         ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
         <br />100,000円 <br />W20 x D15.5 x H20,5cm
@@ -128,25 +128,24 @@ router.beforeEach((to, from, next) => {
 
       <!-- 新しいテキストを左端に配置 -->
       <p
-      class="absolute font-serif js-mvLogo top-0 left-[3%] md:left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[30px] md:text-[50px] -rotate-15"
+      class="absolute font-serif js-mvLogo top-0 left-[3%] md:left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[25px] md:text-[50px] -rotate-15"
       >
         Square
       </p>
     </div>
-    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300 pb-4 sm:pb-8">
+    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300 py-[20px] md:py-[30px]">
       Section Header
     </div>
-    <div style="display: flex;" class="flex-col md:flex-row justify-center gap-30">
+    <div style="display: flex;" class="flex-row justify-center gap-5 md:gap-30 mb-40px">
       <div class="relative md:w-[30%]">
         <img
-          class="js-mvLogo02 w-full"
+          class="js-mvLogo02 w-150px md:w-full rounded-5px"
           src="@/assets/img/square-body-01.png"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
-          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
-        >
+          class="relative md:absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
         >
           ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
           <br />100,000円 <br />W20 x D15.5 x H20,5cm
@@ -155,13 +154,13 @@ router.beforeEach((to, from, next) => {
 
       <div class="relative md:w-[30%]">
         <img
-          class="js-mvLogo02 w-full"
+          class="js-mvLogo02 w-150px md:w-full rounded-5px"
           src="@/assets/img/square-body-02.png"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
-          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
+          class="relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
         >
           ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
           <br />100,000円 <br />W20 x D15.5 x H20,5cm

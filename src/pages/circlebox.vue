@@ -104,23 +104,23 @@ router.beforeEach((to, from, next) => {
 </script>
 
 <template>
-  <div class="js-mvTrigger" v-if="start">
+  <div class="js-mvTrigger mx-30px" v-if="start">
     <div class="relative">
       <img
-        class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto"
+        class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto rounded-5px"
         src="@/assets/img/circle-title.png"
         alt="header-01"
       />
 
       <!-- Text 1 positioned at the top-right -->
-      <p class="absolute js-mvLogo top-0 text-[11px] md:text-[18px]  p-2 right-[0%] md:right-[20%] text-white bg-[#9b9b9b6c]">
+      <p class="absolute js-mvLogo top-0 text-[9px] md:text-[18px]  p-2 right-[0%] md:right-[20%] text-white bg-[#9b9b9b6c] rounded-3px">
         クラシックとモダンが融合した<br />豪華な薔薇のアレンジメント<br />大切な場面を<br />
         忘れられない思い出に
       </p>
 
       <!-- Text 2 positioned at the bottom-right -->
       <p
-        class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
+        class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[9px] md:text-[18px] rounded-3px"
       >
         ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
         <br />100,000円 <br />W20 x D15.5 x H20,5cm
@@ -128,42 +128,42 @@ router.beforeEach((to, from, next) => {
 
       <!-- New text positioned on the left -->
       <p
-        class="absolute font-serif js-mvLogo top-0 left-[3%] md:left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[30px] md:text-[50px] -rotate-15"
+        class="absolute font-serif js-mvLogo top-0 left-[3%] md:left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[25px] md:text-[50px] -rotate-15 rounded-3px"
       >
         CircleBox
       </p>
     </div>
 
     <!-- Section Header -->
-    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300 pb-4 sm:pb-8">
+    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300 py-[20px] md:py-[30px]">
       Section Header
     </div>
 
-    <div style="display: flex;" class="flex-col md:flex-row justify-center gap-8">
-      <div class="relative">
+    <div style="display: flex;" class="flex-row justify-center gap-5 md:gap-8">
+      <div class="relative flex flex-col justify-center">
         <img
-          class="js-mvLogo02 flex m-auto max-w-full md:max-w-100% h-auto"
+          class="js-mvLogo02 flex m-auto max-w-full md:max-w-100% h-auto rounded-5px"
           src="@/assets/img/circle-body-1.png"
           alt="header-01"
         />
         <!-- Text positioned at the bottom-right -->
         <p
-          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
+          class="relative md:absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
         >
           ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x H20,5cm
+          <br />100,000円 <br />W20 x D15.5 x<br > H20,5cm
         </p>
       </div>
 
       <div class="relative md:w-[30%]">
         <img
-          class="js-mvLogo02 w-full"
+          class="js-mvLogo02 w-full rounded-5px"
           src="@/assets/img/circle-body-2.png"
           alt="header-01"
         />
         <!-- Text positioned at the bottom-right -->
         <p
-          class="absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
+          class="relative md:absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
         >
           ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
           <br />100,000円 <br />W20 x D15.5 x H20,5cm
@@ -171,20 +171,20 @@ router.beforeEach((to, from, next) => {
       </div>
     </div>
 
-    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300 pb-4 sm:pb-8">
+    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300 py-[20px] md:py-[30px]">
       Section Header
     </div>
 
-    <div style="display: flex;" class="flex-col md:flex-row justify-center gap-8">
+    <div class="flex flex-row justify-center gap-8 mb-40px">
       <div class="relative md:w-[30%]">
         <img
-          class="js-mvLogo03 w-full"
+          class="js-mvLogo03 w-full rounded-5px"
           src="@/assets/img/circle-body-4.png"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
-          class="absolute js-mvLogo03 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
+          class="relative md:absolute js-mvLogo03 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
         >
           ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
           <br />100,000円 <br />W20 x D15.5 x H20,5cm
@@ -192,13 +192,13 @@ router.beforeEach((to, from, next) => {
       </div>
       <div class="relative md:w-[30%]">
         <img
-          class="js-mvLogo03 w-full"
+          class="js-mvLogo03 w-full rounded-5px"
           src="@/assets/img/circle-body-5.png"
           alt="header-01"
         />
         <!-- Text positioned at the bottom-right -->
         <p
-          class="absolute js-mvLogo03 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px]"
+          class="relative md:absolute js-mvLogo03 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
         >
           ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
           <br />100,000円 <br />W20 x D15.5 x H20,5cm

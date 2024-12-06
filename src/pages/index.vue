@@ -71,23 +71,24 @@ router.beforeEach((to, from, next) => {
 
 <template>
   <div class="js-mvTrigger" v-if="start">
-    <div class="flex flex-row flex-wrap justify-center gap-4">
+    <div class="flex flex-row md:flex-wrap justify-center gap-4 overflow-x-auto">
   <img
-    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px]"
+    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
     src="@/assets/img/chrismas01.png"
     alt="header-01"
   />
   <img
-    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px]"
+    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
     src="@/assets/img/chrismas02.png"
     alt="header-02"
   />
   <img
-    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px]"
+    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
     src="@/assets/img/chrismas03.png"
     alt="header-03"
   />
 </div>
+
 
     <h1 class="h1-style js-mvLogo">Venere Emi Flower Salone</h1>
     <h3
@@ -97,7 +98,7 @@ router.beforeEach((to, from, next) => {
       flower studio
     </h3>
     <div
-      class="section-header js-mvLogo02 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+      class="section-header js-mvLogo02 text-[14px] md:text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[20px] md:py-[30px]"
     >
       Preserved | <br class="md:hidden">プリザーブドフラワー
     </div>
@@ -108,7 +109,7 @@ router.beforeEach((to, from, next) => {
       style="display: flex;"
       class="flex-row justify-evenly items-center"
     >
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/circlebox" class="text-[#302e2e] no-underline hover:underline">
         <img
           class="col02 js-mvLogo02 h-100px md:h-340px"
           src="@/assets/img/Story01.png"
@@ -117,7 +118,7 @@ router.beforeEach((to, from, next) => {
         <p  style="text-align: center" class="js-mvLogo02 italic text-12px" font-normal>CircleBox</p>
       </NuxtLink>
 
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/square" class="text-[#302e2e] no-underline hover:underline">
         <img
           class="col02 js-mvLogo02 h-100px md:h-340px"
           src="@/assets/img/Story06.png"
@@ -126,7 +127,7 @@ router.beforeEach((to, from, next) => {
         <p style="text-align: center" class="js-mvLogo02 italic text-12px">Square</p>
       </NuxtLink>
 
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/ceremony" class="text-[#302e2e] no-underline hover:underline">
         <img
           class="col02 js-mvLogo02 h-100px md:h-340px"
           src="@/assets/img/Story07.png"
@@ -139,7 +140,7 @@ router.beforeEach((to, from, next) => {
       style="display: flex;"
       class="flex-row justify-evenly items-center mt-5vw"
     >
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/glass" class="text-[#302e2e] no-underline hover:underline">
         <img
           class="col02 js-mvLogo03 h-100px md:h-340px"
           src="@/assets/img/Story08.png"
@@ -148,7 +149,7 @@ router.beforeEach((to, from, next) => {
         <p style="text-align: center" class="js-mvLogo03 italic text-12px">Glass</p>
       </NuxtLink>
 
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/funeral" class="text-[#302e2e] no-underline hover:underline">
         <img
           class="col02 js-mvLogo03 h-100px md:h-340px"
           src="@/assets/img/Story09.png"
@@ -157,7 +158,7 @@ router.beforeEach((to, from, next) => {
         <p style="text-align: center" class="js-mvLogo03 italic text-12px">Funeral</p>
       </NuxtLink>
 
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/chrismas" class="text-[#302e2e] no-underline hover:underline">
         <img
           class="col02 js-mvLogo03 h-100px md:h-340px"
           src="@/assets/img/Story10.png"
@@ -169,7 +170,7 @@ router.beforeEach((to, from, next) => {
     <!-- Preservedページ ここまで↑ -->
 
     <div       
-      class="section-header js-mvLogo04 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+      class="section-header js-mvLogo04 text-[14px] md:text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[20px] md:py-[30px]"
     >
       Lesson | レッスン
     </div>
@@ -178,7 +179,7 @@ router.beforeEach((to, from, next) => {
       style="display: flex;"
       class="flex-row justify-evenly items-center"
     >
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline flex flex-col items-center">
+      <NuxtLink to="/lesson" class="text-[#302e2e] no-underline hover:underline flex flex-col items-center">
         <img
           class="col02 js-mvLogo04 h-100px md:h-340px"
           src="@/assets/img/lesson.png"
@@ -192,16 +193,16 @@ router.beforeEach((to, from, next) => {
     <!-- Lessonページ ここまで↑ -->
 
     <div       
-      class="section-header js-mvLogo05 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+      class="section-header js-mvLogo05 text-[14px] md:text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[20px] md:py-[30px]"
     >
       ABOUT, CONTACT | <br class="md:hidden">その他, お問い合わせ
     </div>
 
     <div
       style="display: flex;"
-      class="flex-row justify-evenly items-center my-5vw"
+      class="flex-row justify-evenly items-center my-5vw mb-50px"
     >
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline flex flex-col items-center">
+      <NuxtLink to="/about" class="text-[#302e2e] no-underline hover:underline flex flex-col items-center">
         <img
           class="col02 js-mvLogo05 h-100px md:h-340px"
           src="@/assets/img/test03.png"
@@ -219,7 +220,7 @@ router.beforeEach((to, from, next) => {
         />
         <p class="js-mvLogo05 text-center italic text-12px">お花の用語</p>
       </NuxtLink>
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/contact" class="text-[#302e2e] no-underline hover:underline">
         <img
           class="col02 js-mvLogo05 h-100px md:h-340px"
           src="@/assets/img/test01.png"
