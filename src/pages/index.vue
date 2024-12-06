@@ -71,11 +71,24 @@ router.beforeEach((to, from, next) => {
 
 <template>
   <div class="js-mvTrigger" v-if="start">
-    <img
-      class="js-mvLogo mx-auto flex max-w-full md:max-w-100% h-auto object-cover"
-      src="@/assets/img/test.jpg"
-      alt="heder-01"
-    />
+    <div class="flex flex-row flex-wrap justify-center gap-4">
+  <img
+    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px]"
+    src="@/assets/img/chrismas01.png"
+    alt="header-01"
+  />
+  <img
+    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px]"
+    src="@/assets/img/chrismas02.png"
+    alt="header-02"
+  />
+  <img
+    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px]"
+    src="@/assets/img/chrismas03.png"
+    alt="header-03"
+  />
+</div>
+
     <h1 class="h1-style js-mvLogo">Venere Emi Flower Salone</h1>
     <h3
       style="justify-content: center; display: flex; font-weight: 500"
@@ -84,156 +97,135 @@ router.beforeEach((to, from, next) => {
       flower studio
     </h3>
     <div
-      class="section-header js-mvLogo02 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+      class="section-header js-mvLogo02 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
     >
-      Preserved | プリザーブドフラワー
+      Preserved | <br class="md:hidden">プリザーブドフラワー
     </div>
 
 
     <!-- Preservedページ ここから↓ -->
     <div
       style="display: flex;"
-      class="flex-col md:flex-row justify-evenly items-center"
+      class="flex-row justify-evenly items-center"
     >
-      <NuxtLink to="/circlebox" class="flex-col justify-centers" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
         <img
-          class="col02 js-mvLogo02"
+          class="col02 js-mvLogo02 h-100px md:h-340px"
           src="@/assets/img/Story01.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo02">CircleBox</h2>
-        <h3 style="text-align: center" class="js-mvLogo02">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo02">test description</p>
+        <p  style="text-align: center" class="js-mvLogo02 italic text-12px" font-normal>CircleBox</p>
       </NuxtLink>
 
-      <NuxtLink to="/square" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
         <img
-          class="col02 js-mvLogo02"
+          class="col02 js-mvLogo02 h-100px md:h-340px"
           src="@/assets/img/Story06.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo02">Square</h2>
-        <h3 style="text-align: center" class="js-mvLogo02">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo02">test description</p>
+        <p style="text-align: center" class="js-mvLogo02 italic text-12px">Square</p>
       </NuxtLink>
 
-      <NuxtLink to="/ceremony" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
         <img
-          class="col02 js-mvLogo02"
+          class="col02 js-mvLogo02 h-100px md:h-340px"
           src="@/assets/img/Story07.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo02">Ceremony</h2>
-        <h3 style="text-align: center" class="js-mvLogo02">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo02">test description</p>
+        <p style="text-align: center" class="js-mvLogo02 italic text-12px">Ceremony</p>
       </NuxtLink>
     </div>
     <div
       style="display: flex;"
-      class="flex-col md:flex-row justify-evenly items-center mt-5vw"
+      class="flex-row justify-evenly items-center mt-5vw"
     >
-      <NuxtLink to="/glass" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
         <img
-          class="col02 js-mvLogo03"
+          class="col02 js-mvLogo03 h-100px md:h-340px"
           src="@/assets/img/Story08.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo03">Glass</h2>
-        <h3 style="text-align: center" class="js-mvLogo03">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo03">test description</p>
+        <p style="text-align: center" class="js-mvLogo03 italic text-12px">Glass</p>
       </NuxtLink>
 
-      <NuxtLink to="/funeral" class="flex-col justify-centers" style="display: flex; color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
         <img
-          class="col02 js-mvLogo03"
+          class="col02 js-mvLogo03 h-100px md:h-340px"
           src="@/assets/img/Story09.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo03">Funeral</h2>
-        <h3 style="text-align: center" class="js-mvLogo03">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo03">test description</p>
+        <p style="text-align: center" class="js-mvLogo03 italic text-12px">Funeral</p>
       </NuxtLink>
 
-      <NuxtLink to="/chrismas" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
         <img
-          class="col02 js-mvLogo03"
+          class="col02 js-mvLogo03 h-100px md:h-340px"
           src="@/assets/img/Story10.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo03">Chrismas</h2>
-        <h3 style="text-align: center" class="js-mvLogo03">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo03">test description</p>
+        <p style="text-align: center" class="js-mvLogo03 italic text-12px">Chrismas</p>
       </NuxtLink>
     </div>
     <!-- Preservedページ ここまで↑ -->
 
     <div       
-      class="section-header js-mvLogo04 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+      class="section-header js-mvLogo04 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
     >
       Lesson | レッスン
     </div>
     <!-- Lessonページ ここから↓ -->
     <div
-        style="display: flex;"
-      class="flex-col md:flex-row justify-evenly items-center"
+      style="display: flex;"
+      class="flex-row justify-evenly items-center"
     >
-      <NuxtLink to="/lesson" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline flex flex-col items-center">
         <img
-          class="col02 js-mvLogo04"
+          class="col02 js-mvLogo04 h-100px md:h-340px"
           src="@/assets/img/lesson.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo04">
+        <p style="text-align: center" class="js-mvLogo04 italic text-12px">
           レッスンについてはこちら
-        </h2>
-        <h3 style="text-align: center" class="js-mvLogo04">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo04">test description</p>
+        </p>
       </NuxtLink>
     </div>
     <!-- Lessonページ ここまで↑ -->
 
     <div       
-      class="section-header js-mvLogo05 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
+      class="section-header js-mvLogo05 text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[30px]"
     >
-      ABOUT, CONTACT | その他, お問い合わせ
+      ABOUT, CONTACT | <br class="md:hidden">その他, お問い合わせ
     </div>
 
     <div
-        style="display: flex;"
-      class="flex-col md:flex-row justify-evenly items-center my-5vw"
+      style="display: flex;"
+      class="flex-row justify-evenly items-center my-5vw"
     >
-      <NuxtLink to="/about" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline flex flex-col items-center">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo05 h-100px md:h-340px"
           src="@/assets/img/test03.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo05">
-          Venere Emi について
-        </h2>
-        <h3 style="text-align: center" class="js-mvLogo05">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo05">test description</p>
+        <p style="text-align: center" class="js-mvLogo05 italic text-12px">
+          Venere Emi とは
+        </p>
       </NuxtLink>
-      <NuxtLink to="/words" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo05 h-100px md:h-340px"
           src="@/assets/img/test02.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo05">お花の用語</h2>
-        <h3 style="text-align: center" class="js-mvLogo05">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo05">test description</p>
+        <p class="js-mvLogo05 text-center italic text-12px">お花の用語</p>
       </NuxtLink>
-
-      <NuxtLink to="/contact" style="color: #302e2e">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
         <img
-          class="col02 js-mvLogo05"
+          class="col02 js-mvLogo05 h-100px md:h-340px"
           src="@/assets/img/test01.png"
           alt="heder-01"
         />
-        <h2 style="text-align: center" class="js-mvLogo05">お問い合わせ</h2>
-        <h3 style="text-align: center" class="js-mvLogo05">this is test</h3>
-        <p style="text-align: center" class="js-mvLogo05">test description</p>
+        <p style="text-align: center" class="js-mvLogo05 italic text-12px">お問い合わせ</p>
       </NuxtLink>
     </div>
   </div>
@@ -241,6 +233,7 @@ router.beforeEach((to, from, next) => {
 
 <style scoped lang="scss">
 .col01 {
+  border-radius: 3px;
   max-width: 300px; /* 最大幅を設定して、画像が大きくなりすぎないようにする */
   height: 350px;
   transition:
@@ -253,22 +246,10 @@ router.beforeEach((to, from, next) => {
   }
 }
 
-.col02 {
-  max-width: 300px; /* 最大幅を設定して、画像が大きくなりすぎないようにする */
-  height: 340px; /* 高さは自動で調整 */
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05); // 1.05倍に拡大
-    opacity: 0.8; // 少し透明に
-  }
-}
 
 .col02 {
+  border-radius: 8px;
   max-width: 1000px; /* 最大幅を設定して、画像が大きくなりすぎないようにする */
-  height: 340px; /* 高さは自動で調整 */
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
