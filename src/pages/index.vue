@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import gsap from "gsap";
+import { NImage } from "naive-ui";
+import Chrismas01 from '@/assets/img/chrismas01.png'
+import Chrismas02 from '@/assets/img/chrismas02.png'
+import Chrismas03 from '@/assets/img/chrismas03.png'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const router = useRouter();
 const start = ref(false)
+
+const Chrismas01Src = Chrismas01
+const Chrismas02Src = Chrismas02
+const Chrismas03Src = Chrismas03
 
 onMounted(async() => {
   start.value = true
@@ -72,19 +80,19 @@ router.beforeEach((to, from, next) => {
 <template>
   <div class="js-mvTrigger" v-if="start">
     <div class="flex flex-row md:flex-wrap justify-center gap-4 overflow-x-auto">
-  <img
+  <NImage
     class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-    src="@/assets/img/chrismas01.png"
+    :src="Chrismas01Src"
     alt="header-01"
   />
-  <img
+  <NImage
     class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-    src="@/assets/img/chrismas02.png"
+    :src="Chrismas02Src"
     alt="header-02"
   />
-  <img
+  <NImage
     class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-    src="@/assets/img/chrismas03.png"
+    :src="Chrismas03Src"
     alt="header-03"
   />
 </div>
@@ -112,7 +120,7 @@ router.beforeEach((to, from, next) => {
       <NuxtLink to="/circlebox" class="text-[#302e2e] no-underline hover:underline">
         <img
           class="col02 js-mvLogo02 h-100px md:h-340px"
-          src="@/assets/img/Story01.png"
+          src="@/assets/img/Story01.svg"
           alt="heder-01"
         />
         <p  style="text-align: center" class="js-mvLogo02 italic text-12px" font-normal>CircleBox</p>
