@@ -98,7 +98,7 @@ router.beforeEach((to, from, next) => {
 </div>
 
 
-    <h1 class="h1-style js-mvLogo">Venere Emi Flower Salone</h1>
+    <h1 class="h1-style js-mvLogo mt-60px">Venere Emi Flower Salone</h1>
     <h3
       style="justify-content: center; display: flex; font-weight: 500"
       class="js-mvLogo"
