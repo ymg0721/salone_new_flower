@@ -4,6 +4,12 @@ import { NImage } from "naive-ui";
 import Chrismas01 from '@/assets/img/chrismas01.png'
 import Chrismas02 from '@/assets/img/chrismas02.png'
 import Chrismas03 from '@/assets/img/chrismas03.png'
+import Story01 from '@/assets/img/Story01.png'
+import Story06 from '@/assets/img/Story06.png'
+import Story07 from '@/assets/img/Story07.png'
+import Story08 from '@/assets/img/Story08.png'
+import Story09 from '@/assets/img/Story09.png'
+import Story10 from '@/assets/img/Story10.png'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const router = useRouter();
@@ -12,6 +18,12 @@ const start = ref(false)
 const Chrismas01Src = Chrismas01
 const Chrismas02Src = Chrismas02
 const Chrismas03Src = Chrismas03
+const Story01Src = Story01
+const Story06Src = Story06
+const Story07Src = Story07
+const Story08Src = Story08
+const Story09Src = Story09
+const Story10Src = Story10
 
 onMounted(async() => {
   start.value = true
@@ -98,7 +110,7 @@ router.beforeEach((to, from, next) => {
 </div>
 
 
-    <h1 class="h1-style js-mvLogo mt-60px">Venere Emi Flower Salone</h1>
+    <h1 class="h1-style js-mvLogo mt-30px md:mt-60px">Venere Emi Flower Salone</h1>
     <h3
       style="justify-content: center; display: flex; font-weight: 500"
       class="js-mvLogo"
@@ -118,30 +130,30 @@ router.beforeEach((to, from, next) => {
       class="flex-row justify-evenly items-center"
     >
       <NuxtLink to="/circlebox" class="text-[#302e2e] no-underline hover:underline">
-        <img
+        <NImage
           class="col02 js-mvLogo02 h-100px md:h-340px"
-          src="@/assets/img/Story01.svg"
+          :src="Story01Src"
           alt="heder-01"
         />
-        <p  style="text-align: center" class="js-mvLogo02 italic text-12px" font-normal>CircleBox</p>
+        <p  style="text-align: center" class="js-mvLogo02 italic text-12px mt-20px" font-normal>CircleBox</p>
       </NuxtLink>
 
       <NuxtLink to="/square" class="text-[#302e2e] no-underline hover:underline">
-        <img
+        <NImage
           class="col02 js-mvLogo02 h-100px md:h-340px"
-          src="@/assets/img/Story06.png"
+          :src="Story06Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo02 italic text-12px">Square</p>
+        <p style="text-align: center" class="js-mvLogo02 italic text-12px mt-20px">Square</p>
       </NuxtLink>
 
       <NuxtLink to="/ceremony" class="text-[#302e2e] no-underline hover:underline">
-        <img
+        <NImage
           class="col02 js-mvLogo02 h-100px md:h-340px"
-          src="@/assets/img/Story07.png"
+          :src="Story07Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo02 italic text-12px">Ceremony</p>
+        <p style="text-align: center" class="js-mvLogo02 italic text-12px mt-20px">Ceremony</p>
       </NuxtLink>
     </div>
     <div
@@ -149,30 +161,30 @@ router.beforeEach((to, from, next) => {
       class="flex-row justify-evenly items-center mt-5vw"
     >
       <NuxtLink to="/glass" class="text-[#302e2e] no-underline hover:underline">
-        <img
+        <NImage
           class="col02 js-mvLogo03 h-100px md:h-340px"
-          src="@/assets/img/Story08.png"
+          :src="Story08Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo03 italic text-12px">Glass</p>
+        <p style="text-align: center" class="js-mvLogo03 italic text-12px mt-20px">Glass</p>
       </NuxtLink>
 
       <NuxtLink to="/funeral" class="text-[#302e2e] no-underline hover:underline">
-        <img
+        <NImage
           class="col02 js-mvLogo03 h-100px md:h-340px"
-          src="@/assets/img/Story09.png"
+          :src="Story09Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo03 italic text-12px">Funeral</p>
+        <p style="text-align: center" class="js-mvLogo03 italic text-12px mt-20px">Funeral</p>
       </NuxtLink>
 
       <NuxtLink to="/chrismas" class="text-[#302e2e] no-underline hover:underline">
-        <img
+        <NImage
           class="col02 js-mvLogo03 h-100px md:h-340px"
-          src="@/assets/img/Story10.png"
+          :src="Story10Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo03 italic text-12px">Chrismas</p>
+        <p style="text-align: center" class="js-mvLogo03 italic text-12px mt-20px">Chrismas</p>
       </NuxtLink>
     </div>
     <!-- Preservedページ ここまで↑ -->
@@ -193,7 +205,7 @@ router.beforeEach((to, from, next) => {
           src="@/assets/img/lesson.png"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo04 italic text-12px">
+        <p style="text-align: center" class="js-mvLogo04 italic text-12px mt-20px">
           レッスンについてはこちら
         </p>
       </NuxtLink>
@@ -216,7 +228,7 @@ router.beforeEach((to, from, next) => {
           src="@/assets/img/test03.png"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo05 italic text-12px">
+        <p style="text-align: center" class="js-mvLogo05 italic text-12px mt-20px">
           Venere Emi とは
         </p>
       </NuxtLink>
@@ -226,7 +238,7 @@ router.beforeEach((to, from, next) => {
           src="@/assets/img/test02.png"
           alt="heder-01"
         />
-        <p class="js-mvLogo05 text-center italic text-12px">お花の用語</p>
+        <p class="js-mvLogo05 text-center italic text-12px mt-20px">お花の用語</p>
       </NuxtLink>
       <NuxtLink to="/contact" class="text-[#302e2e] no-underline hover:underline">
         <img
@@ -234,7 +246,7 @@ router.beforeEach((to, from, next) => {
           src="@/assets/img/test01.png"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo05 italic text-12px">お問い合わせ</p>
+        <p style="text-align: center" class="js-mvLogo05 italic text-12px mt-20px">お問い合わせ</p>
       </NuxtLink>
     </div>
   </div>
