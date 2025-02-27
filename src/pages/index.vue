@@ -92,24 +92,22 @@ router.beforeEach((to, from, next) => {
 <template>
   <div class="js-mvTrigger" v-if="start">
     <div class="flex flex-row md:flex-wrap justify-center gap-4 overflow-x-auto">
-  <NImage
-    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-    :src="Chrismas01Src"
-    alt="header-01"
-  />
-  <NImage
-    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-    :src="Chrismas02Src"
-    alt="header-02"
-  />
-  <NImage
-    class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-    :src="Chrismas03Src"
-    alt="header-03"
-  />
-</div>
-
-
+      <NImage
+        class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
+        :src="Chrismas01Src"
+        alt="header-01"
+      />
+      <NImage
+        class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
+        :src="Chrismas02Src"
+        alt="header-02"
+      />
+      <NImage
+        class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
+        :src="Chrismas03Src"
+        alt="header-03"
+      />
+    </div>
     <h1 class="h1-style js-mvLogo mt-30px md:mt-60px">Venere Emi Flower Salone</h1>
     <h3
       style="justify-content: center; display: flex; font-weight: 500"
