@@ -1,106 +1,14 @@
 <script setup lang="ts">
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePagesData } from '~/composables/usePagesData'
+import { useScrollAnimation } from '@/composables/useScrollAnimation'
 
-const router = useRouter();
-const start = ref(false)
+const { getProductText, getImagePath } = usePagesData()
 
-onMounted(async() => {
-  start.value = true
 
-  await nextTick(); // DOMのレンダリングを待つ
-
-  // ローカルストレージを確認して、ブラウザバックが発生したかどうかを確認
-  const isBack = sessionStorage.getItem("isBack") === "true";
-
-  if (isBack) {
-    // ブラウザバック時はアニメーションをスキップ
-    sessionStorage.setItem("isBack", "false");
-    return;
-  }
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const mainVisualAnime = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".js-mvTrigger", // アニメーションが始まるトリガーとなる要素
-      start: "top 80%", // アニメーションが始まる位置を指定
-      // markers: true, // マーカー表示（開発用）
-    },
-  });
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo02",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo03",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo04",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-});
-
-// ブラウザバック時にフラグを設定する
-router.beforeEach((to, from, next) => {
-  if (from.fullPath !== to.fullPath && window.history.state.back) {
-    sessionStorage.setItem("isBack", "true");
-  }
-  next();
-});
+const { start } = useScrollAnimation([
+  { className: '.js-mvLogo' },
+  { className: '.js-mvLogo02' },
+])
 </script>
 
 <template>
@@ -108,7 +16,7 @@ router.beforeEach((to, from, next) => {
     <div class="relative">
       <img
       class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto rounded-5px"
-      src="@/assets/img/glass-title.png"
+      :src="getImagePath('2116')"
         alt="header-01"
       />
 
@@ -121,10 +29,8 @@ router.beforeEach((to, from, next) => {
       <!-- テキスト２を右下端に配置 -->
       <p
       class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-      >
-      ■ No.2116<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
-
-      </p>
+      v-html="getProductText('2116')"
+      />
 
       <!-- 新しいテキストを左端に配置 -->
       <p
@@ -140,29 +46,27 @@ router.beforeEach((to, from, next) => {
       <div class="relative md:w-[30%]">
         <img
         class="js-mvLogo02 flex m-auto max-w-full md:max-w-100% h-auto rounded-5px"
-        src="@/assets/img/glass-body-01.png"
+        :src="getImagePath('2117')"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
         class="relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-        >
-        ■ No.2117<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
-        </p>
+        v-html="getProductText('2117')"
+        />
       </div>
 
       <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo02 w-full rounded-5px"
-          src="@/assets/img/glass-body-02.png"
+          :src="getImagePath('2118')"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
           class="relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-        >
-        ■ No.2118<br>グロリアス M （ブライトレッド）<br>税込 11,000円<br>W15.5 x D15.5 x H9
-        </p>
+        v-html="getProductText('2118')"
+        />
       </div>
     </div>
   </div>

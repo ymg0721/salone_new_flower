@@ -1,106 +1,14 @@
 <script setup lang="ts">
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePagesData } from '~/composables/usePagesData'
+import { useScrollAnimation } from '@/composables/useScrollAnimation'
 
-const router = useRouter();
-const start = ref(false)
+const { getProductText, getImagePath } = usePagesData()
 
-onMounted(async() => {
-  start.value = true
-
-  await nextTick(); // DOMのレンダリングを待つ
-
-  // ローカルストレージを確認して、ブラウザバックが発生したかどうかを確認
-  const isBack = sessionStorage.getItem("isBack") === "true";
-
-  if (isBack) {
-    // ブラウザバック時はアニメーションをスキップ
-    sessionStorage.setItem("isBack", "false");
-    return;
-  }
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const mainVisualAnime = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".js-mvTrigger", // アニメーションが始まるトリガーとなる要素
-      start: "top 80%", // アニメーションが始まる位置を指定
-      // markers: true, // マーカー表示（開発用）
-    },
-  });
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo02",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo03",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo04",
-    {
-      // アニメーション前
-      y: 10, // アニメーション開始前の位置
-      autoAlpha: 0, // アニメーション開始前の状態
-    },
-    {
-      // アニメーション後
-      y: 0, // アニメーション後の位置
-      autoAlpha: 1, // アニメーション後の状態
-      duration: 1, // 1秒かけてアニメーションを実行
-      delay: 0.5,
-    },
-  );
-});
-
-// ブラウザバック時にフラグを設定する
-router.beforeEach((to, from, next) => {
-  if (from.fullPath !== to.fullPath && window.history.state.back) {
-    sessionStorage.setItem("isBack", "true");
-  }
-  next();
-});
+const { start } = useScrollAnimation([
+  { className: '.js-mvLogo' },
+  { className: '.js-mvLogo02' },
+  { className: '.js-mvLogo03' }
+])
 </script>
 
 <template>
@@ -108,7 +16,7 @@ router.beforeEach((to, from, next) => {
     <div class="relative">
       <img
         class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto rounded-5px"
-        src="@/assets/img/circle-title.png"
+        :src="getImagePath('2101')"
         alt="header-01"
       />
 
@@ -121,10 +29,8 @@ router.beforeEach((to, from, next) => {
       <!-- Text 2 positioned at the bottom-right -->
       <p
         class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[9px] md:text-[18px] rounded-3px"
-      >
-        ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-        <br />100,000円 <br />W20 x D15.5 x H20,5cm
-      </p>
+        v-html="getProductText('2101')"
+      />
 
       <!-- New text positioned on the left -->
       <p
@@ -143,31 +49,27 @@ router.beforeEach((to, from, next) => {
       <div class="relative flex flex-col justify-center">
         <img
           class="js-mvLogo02 flex m-auto max-w-full md:max-w-100% h-auto rounded-5px"
-          src="@/assets/img/circle-body-1.png"
+          :src="getImagePath('2102')"
           alt="header-01"
         />
         <!-- Text positioned at the bottom-right -->
         <p
           class="relative md:absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-        >
-          ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x<br > H20,5cm
-        </p>
+          v-html="getProductText('2102')"
+        />
       </div>
 
       <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo02 w-full rounded-5px"
-          src="@/assets/img/circle-body-2.png"
+          :src="getImagePath('2103')"
           alt="header-01"
         />
         <!-- Text positioned at the bottom-right -->
         <p
           class="relative md:absolute js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-        >
-          ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x H20,5cm
-        </p>
+          v-html="getProductText('2103')"
+        />
       </div>
     </div>
 
@@ -179,30 +81,26 @@ router.beforeEach((to, from, next) => {
       <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo03 w-full rounded-5px"
-          src="@/assets/img/circle-body-4.png"
+          :src="getImagePath('2104')"
           alt="header-01"
         />
         <!-- テキスト１を右下端に配置 -->
         <p
           class="relative md:absolute js-mvLogo03 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-        >
-          ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x H20,5cm
-        </p>
+          v-html="getProductText('2104')"
+        />
       </div>
       <div class="relative md:w-[30%]">
         <img
           class="js-mvLogo03 w-full rounded-5px"
-          src="@/assets/img/circle-body-5.png"
+          :src="getImagePath('2105')"
           alt="header-01"
         />
         <!-- Text positioned at the bottom-right -->
         <p
           class="relative md:absolute js-mvLogo03 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-        >
-          ■ No.2101 <br />グロリアス <br />M （アクアブルー） <br />税込
-          <br />100,000円 <br />W20 x D15.5 x H20,5cm
-        </p>
+          v-html="getProductText('2105')"
+        />
       </div>
     </div>
   </div>
