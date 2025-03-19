@@ -14,11 +14,13 @@ const { start } = useScrollAnimation([
   <div class="js-mvTrigger mx-30px" v-if="start">
     <div class="flex flex-row justify-center gap-5 md:gap-30">
       <div class="relative md:w-[30%]">
-        <img
-          class="js-mvLogo w-full rounded-6px"
-          :src="getImagePath('2120')"
-          alt="header-01"
-        />
+        <NuxtLink to="/work/2120">
+          <img
+            class="js-mvLogo w-full rounded-6px"
+            :src="getImagePath('2120')"
+            alt="header-01"
+          />
+        </NuxtLink>
         <!-- テキスト１を右下端に配置 -->
         <p
           class="text-[11px] md:text-[18px] relative md:absolute  js-mvLogo bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] rounded-3px"
@@ -28,11 +30,13 @@ const { start } = useScrollAnimation([
       </div>
 
       <div class="relative md:w-[30%]">
-        <img
-          class="js-mvLogo w-full rounded-6px"
-          :src="getImagePath('2121')"
-          alt="header-01"
-        />
+        <NuxtLink to="/work/2121">
+          <img
+            class="js-mvLogo w-full rounded-6px"
+            :src="getImagePath('2121')"
+            alt="header-01"
+          />
+        </NuxtLink>
         <!-- テキスト１を右下端に配置 -->
         <p
           class="text-[11px] md:text-[18px] relative md:absolute  js-mvLogo bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] rounded-3px"
@@ -45,11 +49,13 @@ const { start } = useScrollAnimation([
     </div>
     <div style="display: flex;" class="flex flex-row justify-center gap-5 md:gap-30 mb-40px">
       <div class="relative md:w-[30%]">
-        <img
-          class="js-mvLogo02 w-full rounded-6px"
-          :src="getImagePath('2122')"
-          alt="header-01"
-        />
+        <NuxtLink to="/work/2122">
+          <img
+            class="js-mvLogo02 w-full rounded-6px"
+            :src="getImagePath('2122')"
+            alt="header-01"
+          />
+        </NuxtLink>
         <!-- テキスト１を右下端に配置 -->
         <p
           class="text-[11px] md:text-[18px] relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] rounded-3px"
@@ -58,11 +64,13 @@ const { start } = useScrollAnimation([
       </div>
 
       <div class="relative md:w-[30%]">
-        <img
-          class="js-mvLogo02 w-full rounded-6px"
-          :src="getImagePath('2123')"
-          alt="header-01"
-        />
+        <NuxtLink to="/work/2123">
+          <img
+            class="js-mvLogo02 w-full rounded-6px"
+            :src="getImagePath('2123')"
+            alt="header-01"
+          />
+        </NuxtLink>
         <!-- テキスト１を右下端に配置 -->
         <p
           class="text-[11px] md:text-[18px] relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] rounded-3px"
