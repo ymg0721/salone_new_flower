@@ -16,8 +16,9 @@ const productId = route.params.detail as string
 
 const submitReservation = async () => {
     // POST APIを実行するロジックをここに追加
+    const config = useRuntimeConfig()
     try {
-    const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL}/send-email`, {
+    const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL || 'https://node-server2-rosy.vercel.app'}/send-reservation`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
