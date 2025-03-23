@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
 const name = ref('');
 const email = ref('');
 const message = ref('');
@@ -13,7 +11,8 @@ const sendEmail = async () => {
   const config = useRuntimeConfig()
 
   try {
-    const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL || 'https://node-server2-rosy.vercel.app'}/send-email`, {
+    console.log('API: ', config.public.NUXT_PUBLIC_API_URL)
+    const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL}/send-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name.value, email: email.value, message: message.value }),
