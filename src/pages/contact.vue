@@ -12,6 +12,7 @@ const sendEmail = async () => {
   errorMessage.value = '';
 
   try {
+    console.log('API URL:', import.meta.env.VITE_API_URL); // デバッグ用
     const response = await fetch(`${import.meta.env.VITE_API_URL}/send-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
