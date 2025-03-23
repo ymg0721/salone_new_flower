@@ -48,7 +48,15 @@ const closeMenu = () => {
 </template>
 
 <style scoped>
-/* Styles for hamburger menu animation */
+/* モダンなハンバーガーメニューのスタイル */
+.hamburger-menu {
+  transition: background-color 0.3s ease;
+}
+
+.hamburger-menu div.open span {
+  background-color: #4A90E2; /* モダンな色 */
+}
+
 .hamburger-menu div.open span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -59,13 +67,25 @@ const closeMenu = () => {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Slide transition */
+/* スライドトランジション */
 .slide-enter-active,
 .slide-leave-active {
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease; /* フェード効果を追加 */
 }
 .slide-enter-from,
 .slide-leave-to {
   transform: translateX(100%);
+  opacity: 0; /* フェード効果を追加 */
+}
+
+/* メニューのスタイル */
+.menu {
+  background-color: rgba(255, 255, 255, 0.95); /* 半透明の背景 */
+  border-radius: 10px; /* 角を丸くする */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* シャドウを追加 */
+}
+
+.text-center {
+  font-family: 'Arial', sans-serif; /* モダンなフォント */
 }
 </style>
