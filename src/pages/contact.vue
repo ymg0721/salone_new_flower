@@ -10,10 +10,10 @@ const errorMessage = ref('');
 const sendEmail = async () => {
   successMessage.value = '';
   errorMessage.value = '';
+  const config = useRuntimeConfig()
 
   try {
-    console.log('API URL:', import.meta.env.VITE_API_URL); // デバッグ用
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/send-email`, {
+    const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL}/send-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name.value, email: email.value, message: message.value }),

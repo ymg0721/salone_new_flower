@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "build": "nuxt build --dotenv .env.develop",
+    "dev": "nuxt dev --dotenv .env.local",
+    "generate": "nuxt generate --dotenv .env.develop",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },

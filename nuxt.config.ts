@@ -10,6 +10,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    public: {
+      NUXT_PUBLIC_API_URL: process.env.NUXT_PUBLIC_API_URL,
+    }
+  },
   ssr: false,
   vite: {
     plugins: [Components({ resolvers: [NaiveUiResolver()] })],
