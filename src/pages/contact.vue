@@ -12,7 +12,7 @@ const sendEmail = async () => {
   errorMessage.value = '';
 
   try {
-    const response = await fetch('http://localhost:3001/send-email', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/send-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name.value, email: email.value, message: message.value }),
@@ -21,62 +21,112 @@ const sendEmail = async () => {
     const data = await response.json();
 
     if (data.success) {
-      successMessage.value = 'メールが送信されました。';
+      successMessage.value = 'メッセージを送信しました。お問い合わせありがとうございます。';
       name.value = '';
       email.value = '';
       message.value = '';
     } else {
-      errorMessage.value = 'メール送信に失敗しました。';
+      errorMessage.value = 'メッセージの送信に失敗しました。時間をおいて再度お試しください。';
     }
   } catch (error) {
-    errorMessage.value = 'エラーが発生しました。';
+    errorMessage.value = 'エラーが発生しました。時間をおいて再度お試しください。';
   }
 };
 </script>
 
 <template>
-  <div>
-    <h1>お問い合わせ</h1>
-    <form @submit.prevent="sendEmail">
-      <div>
-        <label>名前：</label>
-        <input v-model="name" type="text" required />
+  <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-8">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">お問い合わせ</h1>
+        <p class="text-gray-600">ご質問・ご要望などお気軽にお問い合わせください</p>
       </div>
-      <div>
-        <label>メール：</label>
-        <input v-model="email" type="email" required />
-      </div>
-      <div>
-        <label>メッセージ：</label>
-        <textarea v-model="message" required></textarea>
-      </div>
-      <button type="submit">送信</button>
-    </form>
 
-    <p v-if="successMessage" style="color: green;">{{ successMessage }}</p>
-    <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+      <form @submit.prevent="sendEmail" class="space-y-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">お名前</label>
+          <div class="mt-1">
+            <input
+              id="name"
+              v-model="name"
+              type="text"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="山田 太郎"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
+          <div class="mt-1">
+            <input
+              id="email"
+              v-model="email"
+              type="email"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="example@email.com"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium text-gray-700">メッセージ</label>
+          <div class="mt-1">
+            <textarea
+              id="message"
+              v-model="message"
+              rows="4"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="お問い合わせ内容をご記入ください"
+            ></textarea>
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+          >
+            送信する
+          </button>
+        </div>
+      </form>
+
+      <!-- アラートメッセージ -->
+      <div class="mt-4">
+        <div v-if="successMessage" class="rounded-md bg-green-50 p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-green-800">{{ successMessage }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="errorMessage" class="rounded-md bg-red-50 p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-red-800">{{ errorMessage }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-}
-input, textarea {
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ccc;
-}
-button {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #218838;
-}
+/* Tailwindクラスを使用しているため、追加のスタイルは不要です */
 </style>
