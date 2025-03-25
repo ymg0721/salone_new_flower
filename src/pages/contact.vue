@@ -11,7 +11,6 @@ const sendEmail = async () => {
   const config = useRuntimeConfig()
 
   try {
-    console.log('API: ', config.public.NUXT_PUBLIC_API_URL)
     const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL}/send-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
