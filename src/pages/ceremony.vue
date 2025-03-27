@@ -19,81 +19,245 @@ useHead({
       content: '',
     },
   ],
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&display=swap'
+    }
+  ]
 });
 </script>
 
 <template>
-  <div class="js-mvTrigger mx-30px" v-if="start">
-    <NuxtLink to="/work/2113">
-      <div class="relative">
-
-          <img
-            class="js-mvLogo flex m-auto max-w-full md:max-w-100% h-auto rounded-5px"
-            :src="getImagePath('2113')"
-            alt="header-01"
-          />
-
-
-        <!-- テキスト１を右上端に配置 -->
-        <p class="absolute js-mvLogo top-0 text-[8px] md:text-[18px]  p-2 right-[0%] md:right-[20%] text-white bg-[#9b9b9b6c] rounded-3px">
-          淡いピンクの花々で写真を優美に彩ります。
-          <br />上品なデザインで、 <br />特別な思い出を引き立てるにおすすめです。
-        </p>
-
-        <!-- テキスト２を右下端に配置 -->
-        <p
-        class="absolute js-mvLogo bottom-0 right-[0%] md:right-[20%] p-2 text-white bg-[#9b9b9b6c] text-[9px] md:text-[18px] rounded-3px"
-        v-html="getProductText('2113')"
+  <div class="product-container js-mvTrigger" v-if="start">
+    <!-- メイン商品セクション -->
+    <NuxtLink to="/work/2113" class="main-product">
+      <div class="relative overflow-hidden">
+        <img
+          class="js-mvLogo main-image"
+          :src="getImagePath('2113')"
+          alt="header-01"
         />
 
-        <!-- 新しいテキストを左端に配置 -->
-        <p
-        class="absolute font-serif js-mvLogo top-0 left-[3%] md:left-[20%] p-2 text-white bg-[#9b9b9b6c] text-[20px] md:text-[50px] -rotate-15 rounded-3px"
-        >
-          Ceremony
-        </p>
+        <div class="product-title js-mvLogo">
+          <span class="en">Ceremony</span>
+          <span class="jp">セレモニー</span>
+        </div>
+
+        <div class="product-description js-mvLogo">
+          淡いピンクの花々で写真を優美に彩ります。<br />
+          上品なデザインで、<br />
+          特別な思い出を引き立てるにおすすめです。
+        </div>
+
+        <div class="product-price js-mvLogo" v-html="getProductText('2113')" />
       </div>
     </NuxtLink>
-    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300  py-[20px] md:py-[30px]">
-      Section Header
-    </div>
-    <div style="display: flex;" class="flex-row justify-center gap-5 md:gap-30 mb-40px">
-      <div class="relative md:w-[30%]">
-        <NuxtLink to="/work/2114">
-          <img
-            class="js-mvLogo02 w-full rounded-5px"
-            :src="getImagePath('2114')"
-            alt="header-01"
-          />
-        </NuxtLink>
-        <!-- テキスト１を右下端に配置 -->
-        <p
-        class="relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-        v-html="getProductText('2114')"
-        />
-      </div>
 
-      <div class="relative md:w-[30%]">
-        <NuxtLink to="/work/2115">
-          <img
-            class="js-mvLogo02 w-full rounded-5px"
-            :src="getImagePath('2115')"
-            alt="header-01"
-          />
+    <!-- セクションヘッダー -->
+    <div class="section-header">
+      <span class="en">Collection</span>
+      <span class="jp">コレクション</span>
+    </div>
+
+    <!-- 商品グリッド -->
+    <div class="product-grid">
+      <div class="product-item" v-for="id in ['2114', '2115']" :key="id">
+        <NuxtLink :to="`/work/${id}`">
+          <div class="relative overflow-hidden image-wrapper">
+            <img
+              class="js-mvLogo02 product-image"
+              :src="getImagePath(id)"
+              :alt="`product-${id}`"
+            />
+            <div class="product-info js-mvLogo02" v-html="getProductText(id)" />
+          </div>
         </NuxtLink>
-        <!-- テキスト１を右下端に配置 -->
-        <p
-        class="relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] text-[11px] md:text-[18px] rounded-3px"
-        v-html="getProductText('2115')"
-        />
       </div>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+.product-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fdfbf9;
+}
+
+.main-product {
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+  
+  .main-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: transform 0.8s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.product-title {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem 2rem;
+  border-radius: 4px;
+
+  .en {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: #2c2c2c;
+  }
+
+  .jp {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+}
+
+.product-description, .product-price {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 4px;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #2c2c2c;
+}
+
+.product-description {
+  right: 2rem;
+  top: 2rem;
+}
+
+.product-price {
+  right: 2rem;
+  bottom: 2rem;
+}
+
 .section-header {
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
+  text-align: center;
+  margin: 6rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+
+  .en {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: #2c2c2c;
+  }
+
+  .jp {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 200;
+    margin-top: 0.5rem;
+    color: #666;
+  }
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.product-item {
+  flex: 0 0 auto;
+  width: 400px;
+
+  .image-wrapper {
+    aspect-ratio: 3/4;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.6s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+    }
+  }
+
+  .product-info {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    color: #2c2c2c;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-title {
+    .en {
+      font-size: 1.8rem;
+    }
+  }
+
+  .product-description, .product-price {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+
+  .section-header {
+    margin: 3rem 0;
+    
+    .en {
+      font-size: 1.5rem;
+    }
+  }
+
+  .product-grid {
+    flex-direction: column;
+  }
+
+  .product-item {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 </style>

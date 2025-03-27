@@ -37,41 +37,38 @@ useHead({
       content: '',
     },
   ],
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap'
+    }
+  ]
 });
 </script>
 
 <template>
-  <div class="js-mvTrigger" v-if="start">
-    <div class="flex flex-row md:flex-wrap justify-center gap-4 overflow-x-auto">
+  <div class="js-mvTrigger elegant-container" v-if="start">
+    <!-- ヘッダー画像セクション -->
+    <div class="header-images">
       <NImage
-        class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-        :src="Chrismas01Src"
-        alt="header-01"
+        v-for="(src, index) in [Chrismas01Src, Chrismas02Src, Chrismas03Src]"
+        :key="index"
+        class="js-mvLogo header-image"
+        :src="src"
+        :alt="`header-${index + 1}`"
       />
-      <NImage
-        class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-        :src="Chrismas02Src"
-        alt="header-02"
-      />
-      <NImage
-        class="js-mvLogo max-w-[40%] md:max-w-[30%] h-auto object-cover rounded-[3px] shrink-0"
-        :src="Chrismas03Src"
-        alt="header-03"
-      />
-    </div>
-    <h1 class="h1-style js-mvLogo mt-30px md:mt-60px">Venere Emi Flower Salone</h1>
-    <h3
-      style="justify-content: center; display: flex; font-weight: 500"
-      class="js-mvLogo"
-    >
-      flower studio
-    </h3>
-    <div
-      class="section-header js-mvLogo02 text-[14px] md:text-[18px] font-normal italic tracking-[0.1em] border-t border-b border-[#cccccc] mb-[40px] md:mb-[60px] mx-[15vw] text-center mt-[6vw] py-[20px] md:py-[30px]"
-    >
-      Preserved | <br class="md:hidden">プリザーブドフラワー
     </div>
 
+    <!-- タイトルセクション -->
+    <div class="title-section">
+      <h1 class="main-title js-mvLogo">Venere Emi Flower Salone</h1>
+      <p class="subtitle js-mvLogo">flower studio</p>
+    </div>
+
+    <!-- セクションヘッダー -->
+    <div class="section-header js-mvLogo02">
+      Preserved | <br class="md:hidden">プリザーブドフラワー
+    </div>
 
     <!-- Preservedページ ここから↓ -->
     <div
@@ -202,43 +199,87 @@ useHead({
 </template>
 
 <style scoped lang="scss">
-.col01 {
-  border-radius: 3px;
-  max-width: 300px; /* 最大幅を設定して、画像が大きくなりすぎないようにする */
-  height: 350px;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+.elegant-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fdfbf9;
+}
 
-  &:hover {
-    transform: scale(1.05); // 1.05倍に拡大
-    opacity: 0.8; // 少し透明に
+.header-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+
+  .header-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.6s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+    }
   }
 }
 
+.title-section {
+  text-align: center;
+  margin: 4rem 0;
 
-.col02 {
-  border-radius: 8px;
-  max-width: 1000px; /* 最大幅を設定して、画像が大きくなりすぎないようにする */
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05); // 1.05倍に拡大
-    opacity: 0.8; // 少し透明に
+  .main-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
   }
-}
 
-.h1-style {
-  font-family: serif;
-  justify-content: center;
-  display: flex;
-  font-size: 4.5vw;
+  .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: #666;
+  }
 }
 
 .section-header {
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.2em;
+  color: #2c2c2c;
+  padding: 2rem 0;
+  margin: 4rem 15vw;
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+  text-align: center;
+}
+
+// 商品カードのスタイル
+.col02 {
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.6s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    opacity: 0.95;
+  }
+}
+
+// レスポンシブデザイン
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  .header-images {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 </style>

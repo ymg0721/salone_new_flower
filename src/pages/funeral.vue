@@ -17,83 +17,166 @@ useHead({
       content: '',
     },
   ],
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&display=swap'
+    }
+  ]
 });
 </script>
 
 <template>
-  <div class="js-mvTrigger mx-30px" v-if="start">
-    <div class="flex flex-row justify-center gap-5 md:gap-30">
-      <div class="relative md:w-[30%]">
-        <NuxtLink to="/work/2120">
-          <img
-            class="js-mvLogo w-full rounded-6px"
-            :src="getImagePath('2120')"
-            alt="header-01"
-          />
+  <div class="product-container js-mvTrigger" v-if="start">
+    <!-- 上部の商品グリッド（配置はそのまま） -->
+    <div class="product-grid">
+      <div class="product-item" v-for="id in ['2120', '2121']" :key="id">
+        <NuxtLink :to="`/work/${id}`">
+          <div class="relative overflow-hidden image-wrapper">
+            <img
+              class="js-mvLogo product-image"
+              :src="getImagePath(id)"
+              alt="header-01"
+            />
+            <div class="product-info js-mvLogo" v-html="getProductText(id)" />
+          </div>
         </NuxtLink>
-        <!-- テキスト１を右下端に配置 -->
-        <p
-          class="text-[11px] md:text-[18px] relative md:absolute  js-mvLogo bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] rounded-3px"
-          v-html="getProductText('2120')"
-        />
-
-      </div>
-
-      <div class="relative md:w-[30%]">
-        <NuxtLink to="/work/2121">
-          <img
-            class="js-mvLogo w-full rounded-6px"
-            :src="getImagePath('2121')"
-            alt="header-01"
-          />
-        </NuxtLink>
-        <!-- テキスト１を右下端に配置 -->
-        <p
-          class="text-[11px] md:text-[18px] relative md:absolute  js-mvLogo bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] rounded-3px"
-        v-html="getProductText('2121')"
-        />
       </div>
     </div>
-    <div class="section-header mx-auto text-center mt-8 mb-8 sm:mb-16 sm:mt-16 text-lg italic font-normal tracking-widest border-b-2 border-gray-300  py-[20px] md:py-[30px]">
-      Section Header
-    </div>
-    <div style="display: flex;" class="flex flex-row justify-center gap-5 md:gap-30 mb-40px">
-      <div class="relative md:w-[30%]">
-        <NuxtLink to="/work/2122">
-          <img
-            class="js-mvLogo02 w-full rounded-6px"
-            :src="getImagePath('2122')"
-            alt="header-01"
-          />
-        </NuxtLink>
-        <!-- テキスト１を右下端に配置 -->
-        <p
-          class="text-[11px] md:text-[18px] relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] rounded-3px"
-        v-html="getProductText('2122')"
-        />
-      </div>
 
-      <div class="relative md:w-[30%]">
-        <NuxtLink to="/work/2123">
-          <img
-            class="js-mvLogo02 w-full rounded-6px"
-            :src="getImagePath('2123')"
-            alt="header-01"
-          />
+    <!-- セクションヘッダー -->
+    <div class="section-header">
+      <span class="en">Collection</span>
+      <span class="jp">コレクション</span>
+    </div>
+
+    <!-- 下部の商品グリッド（配置はそのまま） -->
+    <div class="product-grid">
+      <div class="product-item" v-for="id in ['2122', '2123']" :key="id">
+        <NuxtLink :to="`/work/${id}`">
+          <div class="relative overflow-hidden image-wrapper">
+            <img
+              class="js-mvLogo02 product-image"
+              :src="getImagePath(id)"
+              alt="header-01"
+            />
+            <div class="product-info js-mvLogo02" v-html="getProductText(id)" />
+          </div>
         </NuxtLink>
-        <!-- テキスト１を右下端に配置 -->
-        <p
-          class="text-[11px] md:text-[18px] relative md:absolute  js-mvLogo02 bottom-0 right-5 p-2 text-white bg-[#9b9b9b6c] rounded-3px"
-        v-html="getProductText('2123')"
-        />
       </div>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+.product-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fdfbf9;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.product-item {
+  flex: 0 0 auto;
+  width: 400px;
+
+  .image-wrapper {
+    aspect-ratio: 3/4;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.6s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+    }
+  }
+
+  .product-info {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #2c2c2c;
+    line-height: 1.6;
+  }
+}
+
 .section-header {
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
+  text-align: center;
+  margin: 6rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+
+  .en {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: #2c2c2c;
+  }
+
+  .jp {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 200;
+    margin-top: 0.5rem;
+    color: #666;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    flex-direction: column;
+  }
+
+  .product-item {
+    width: 100%;
+    max-width: 300px;
+
+    .product-info {
+      font-size: 0.8rem;
+      padding: 0.8rem;
+    }
+  }
+
+  .section-header {
+    margin: 3rem 0;
+    
+    .en {
+      font-size: 1.5rem;
+    }
+  }
 }
 </style>
