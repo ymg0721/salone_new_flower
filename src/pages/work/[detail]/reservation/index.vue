@@ -66,8 +66,8 @@ const submitReservation = async () => {
     }
 };
 
-const cancel = (url: string) => {
-    router.push(url) // 遷移先のURL
+const cancel = () => {
+    router.back() // 1つ前のページに戻る
 }
 </script>
 
@@ -80,7 +80,7 @@ const cancel = (url: string) => {
             <input v-model="phone" placeholder="電話番号" class="input-field" />
             <input type="date" v-model="selectedDate" class="input-field" />
             <button @click="showConfirmation = true" class="button">確認画面へ</button>
-            <button @click="cancel(`/work/${productId}`)" class="button-cancel">キャンセルする</button>
+            <button @click="cancel()" class="button-cancel">キャンセルする</button>
             <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
         </div>
 
@@ -101,71 +101,103 @@ const cancel = (url: string) => {
 .container {
     max-width: 600px;
     margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    padding: 40px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
 }
 
 .input-field {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+.input-field:focus {
+    border-color: #d4b5b5;
+    box-shadow: 0 0 5px rgba(212, 181, 181, 0.2);
+    outline: none;
 }
 
 .button {
-    background-color: #007bff;
+    background-color: #d4b5b5;
     color: white;
     border: none;
-    padding: 10px 15px;
-    margin: 10px 5px;
-    border-radius: 4px;
+    padding: 12px 30px;
+    margin: 15px 10px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
 }
 
 .button-cancel {
-    background-color: #ccc;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 10px 5px;
-    border-radius: 4px;
+    background-color: transparent;
+    color: #888;
+    border: 1px solid #e0e0e0;
+    padding: 12px 30px;
+    margin: 15px 10px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: #c5a0a0;
+    transform: translateY(-1px);
+}
+
+.button-cancel:hover {
+    background-color: #f5f5f5;
 }
 
 .confirmation {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #007bff;
-    border-radius: 4px;
-    background-color: #e7f3ff;
+    margin-top: 30px;
+    padding: 25px;
+    border: 1px solid #e9e1e1;
+    border-radius: 8px;
+    background-color: #fdfafa;
 }
 
 h1 {
-  font-family: serif;
-  font-weight: 500; /* 太さを設定 */
-  color: #333; /* フォントカラーを設定 */
-  font-size: 1.25rem; /* フォントサイズを調整 */
-  line-height: 1.2; /* 行間を調整 */
+    font-family: "Yu Mincho", "游明朝", YuMincho, serif;
+    font-weight: 400;
+    color: #4a4a4a;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-bottom: 25px;
+    text-align: center;
+    letter-spacing: 2px;
 }
 
 .error-message {
-    color: red;
-    margin-top: 10px;
+    color: #d68f8f;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 .success-message {
-    color: green;
-    margin-top: 10px;
+    color: #8fb3d6;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.confirmation p {
+    color: #666;
+    margin: 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0e6e6;
+    font-size: 0.95rem;
 }
 </style>
