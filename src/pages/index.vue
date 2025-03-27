@@ -282,4 +282,157 @@ useHead({
     gap: 1rem;
   }
 }
+
+// 商品アイテムのスタイリングを改善
+.product-item {
+  flex: 0 0 auto;
+  width: 400px;
+  perspective: 1000px; // 3D効果のための視点設定
+
+  .image-wrapper {
+    aspect-ratio: 3/4;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transform-style: preserve-3d; // 3D変換を子要素に適用
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+      transform: translateY(-16px) rotateX(2deg); // 上に浮かび上がりながら少し傾く
+
+      .product-image {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                   0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-info {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0); // 3D空間での配置
+    backface-visibility: hidden; // 裏面を非表示
+    
+    // 微妙なグラデーションオーバーレイ
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+      );
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+
+  .product-info {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.2rem;
+    border-radius: 8px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #2c2c2c;
+    line-height: 1.6;
+    backdrop-filter: blur(8px); // ガラス効果
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(10px);
+    opacity: 0.95;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+// コンテナ全体に奥行きのある背景を追加
+.product-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: #fdfbf9;
+  background-image: 
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.3)
+    );
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+}
+
+// セクションヘッダーもより洗練された見た目に
+.section-header {
+  text-align: center;
+  margin: 6rem 0;
+  padding: 2rem 0;
+  position: relative;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #d4d4d4 15%,
+      #d4d4d4 85%,
+      transparent
+    );
+  }
+  
+  &::before { top: 0; }
+  &::after { bottom: 0; }
+
+  .en {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: #2c2c2c;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .jp {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 200;
+    margin-top: 0.5rem;
+    color: #666;
+    letter-spacing: 0.2em;
+  }
+}
 </style>

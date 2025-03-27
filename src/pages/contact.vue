@@ -40,21 +40,29 @@ useHead({
       content: '',
     },
   ],
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&display=swap'
+    }
+  ]
 });
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-b from-rose-50 to-white py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md mx-auto bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden md:max-w-2xl p-12">
-      <div class="text-center mb-12">
-        <h1 class="font-serif text-3xl text-gray-800 mb-4">お問い合わせ</h1>
-        <p class="text-gray-600 font-light">ご質問・ご要望などお気軽にお問い合わせください</p>
-        <div class="mt-4 w-20 h-1 bg-gradient-to-r from-rose-200 to-rose-300 mx-auto rounded-full"></div>
+  <div class="contact-container">
+    <div class="form-wrapper">
+      <div class="form-header">
+        <h1 class="title">
+          <span class="en">Contact</span>
+          <span class="jp">お問い合わせ</span>
+        </h1>
+        <p class="subtitle">ご質問・ご要望などお気軽にお問い合わせください</p>
       </div>
 
-      <form @submit.prevent="sendEmail" class="space-y-8">
+      <form @submit.prevent="sendEmail" class="contact-form">
         <div class="form-group">
-          <label for="name" class="block text-sm font-medium text-gray-700 mb-2">お名前</label>
+          <label for="name">お名前</label>
           <input
             id="name"
             v-model="name"
@@ -66,7 +74,7 @@ useHead({
         </div>
 
         <div class="form-group">
-          <label for="email" class="block text-sm font-medium text-gray-700 mb-2">メールアドレス</label>
+          <label for="email">メールアドレス</label>
           <input
             id="email"
             v-model="email"
@@ -78,7 +86,7 @@ useHead({
         </div>
 
         <div class="form-group">
-          <label for="message" class="block text-sm font-medium text-gray-700 mb-2">メッセージ</label>
+          <label for="message">メッセージ</label>
           <textarea
             id="message"
             v-model="message"
@@ -89,41 +97,30 @@ useHead({
           ></textarea>
         </div>
 
-        <div class="mt-10">
-          <button
-            type="submit"
-            class="w-full py-3 px-6 border border-transparent rounded-full text-base font-medium text-white bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-          >
+        <div class="button-wrapper">
+          <button type="submit" class="submit-button">
             送信する
           </button>
         </div>
       </form>
 
       <!-- アラートメッセージ -->
-      <div class="mt-6">
-        <div v-if="successMessage" class="rounded-2xl bg-emerald-50 p-4 border border-emerald-100">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-              <svg class="h-5 w-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium text-emerald-800">{{ successMessage }}</p>
-            </div>
+      <div class="alert-container">
+        <div v-if="successMessage" class="alert success">
+          <div class="alert-content">
+            <svg class="alert-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <p>{{ successMessage }}</p>
           </div>
         </div>
 
-        <div v-if="errorMessage" class="rounded-2xl bg-rose-50 p-4 border border-rose-100">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-              <svg class="h-5 w-5 text-rose-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium text-rose-800">{{ errorMessage }}</p>
-            </div>
+        <div v-if="errorMessage" class="alert error">
+          <div class="alert-content">
+            <svg class="alert-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+            </svg>
+            <p>{{ errorMessage }}</p>
           </div>
         </div>
       </div>
@@ -131,28 +128,184 @@ useHead({
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.contact-container {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background-color: #fdfbf9;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+.form-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .title {
+    margin-bottom: 1rem;
+
+    .en {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: #2c2c2c;
+    }
+
+    .jp {
+      display: block;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .subtitle {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #666;
+    letter-spacing: 0.05em;
+  }
+}
+
+.contact-form {
+  .form-group {
+    margin-bottom: 2rem;
+
+    label {
+      display: block;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #2c2c2c;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
 .form-input {
-  @apply appearance-none block w-full px-4 py-3 border border-gray-200 rounded-xl shadow-sm 
-  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-rose-200 focus:border-rose-300 
-  transition-all duration-200 bg-white/70 backdrop-blur-sm text-gray-700;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.9rem;
+  color: #2c2c2c;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #2c2c2c;
+    box-shadow: 0 0 0 2px rgba(44, 44, 44, 0.1);
+  }
+
+  &::placeholder {
+    color: #999;
+    font-weight: 200;
+  }
 }
 
-.form-group {
-  @apply relative;
+.button-wrapper {
+  margin-top: 3rem;
+  text-align: center;
 }
 
-.form-group label {
-  @apply font-serif text-gray-700;
+.submit-button {
+  padding: 1rem 4rem;
+  background-color: #2c2c2c;
+  color: #fff;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1a1a1a;
+    transform: translateY(-2px);
+  }
 }
 
-/* アニメーション効果 */
-.form-input:focus {
-  @apply transform scale-[1.01];
+.alert-container {
+  margin-top: 2rem;
 }
 
-/* プレースホルダーのスタイル */
-.form-input::placeholder {
-  @apply text-gray-300 font-light;
+.alert {
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+
+  &.success {
+    background-color: rgba(236, 253, 245, 0.8);
+    border: 1px solid #d1fae5;
+    color: #065f46;
+  }
+
+  &.error {
+    background-color: rgba(254, 242, 242, 0.8);
+    border: 1px solid #fee2e2;
+    color: #991b1b;
+  }
+
+  .alert-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .alert-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 2rem 1rem;
+  }
+
+  .form-wrapper {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-header {
+    .title {
+      .en {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
 }
 </style>
