@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import gsap from "gsap";
+import { useScrollAnimation } from '@/composables/useScrollAnimation'
 import { NImage } from "naive-ui";
 import Chrismas01 from '@/assets/img/chrismas01.png'
 import Chrismas02 from '@/assets/img/chrismas02.png'
@@ -10,10 +10,6 @@ import Story07 from '@/assets/img/Story07.png'
 import Story08 from '@/assets/img/Story08.png'
 import Story09 from '@/assets/img/Story09.png'
 import Story10 from '@/assets/img/Story10.png'
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-const router = useRouter();
-const start = ref(false)
 
 const Chrismas01Src = Chrismas01
 const Chrismas02Src = Chrismas02
@@ -25,67 +21,22 @@ const Story08Src = Story08
 const Story09Src = Story09
 const Story10Src = Story10
 
-onMounted(async() => {
-  start.value = true
+const { start } = useScrollAnimation([
+  { className: '.js-mvLogo' },
+  { className: '.js-mvLogo02' },
+  { className: '.js-mvLogo03' },
+  { className: '.js-mvLogo04' },
+  { className: '.js-mvLogo05' },
+])
 
-  await nextTick(); // DOMのレンダリングを待つ
-
-  // ローカルストレージを確認して、ブラウザバックが発生したかどうかを確認
-  const isBack = sessionStorage.getItem("isBack") === "true";
-
-  if (isBack) {
-    // ブラウザバック時はアニメーションをスキップ
-    sessionStorage.setItem("isBack", "false");
-    return;
-  }
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const mainVisualAnime = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".js-mvTrigger", // アニメーションが始まるトリガーとなる要素
-      start: "top 80%", // アニメーションが始まる位置を指定
-      // markers: true, // マーカー表示（開発用）
+useHead({
+  title: 'ホーム',
+  meta: [
+    {
+      name: 'description',
+      content: '',
     },
-  });
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo",
-    { y: 10, autoAlpha: 0 },
-    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo02",
-    { y: 10, autoAlpha: 0 },
-    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo03",
-    { y: 10, autoAlpha: 0 },
-    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo04",
-    { y: 10, autoAlpha: 0 },
-    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
-  );
-
-  mainVisualAnime.fromTo(
-    ".js-mvLogo05",
-    { y: 10, autoAlpha: 0 },
-    { y: 0, autoAlpha: 1, duration: 1, delay: 0.5 },
-  );
-});
-
-// ブラウザバック時にフラグを設定する
-router.beforeEach((to, from, next) => {
-  if (from.fullPath !== to.fullPath && window.history.state.back) {
-    sessionStorage.setItem("isBack", "true");
-  }
-  next();
+  ],
 });
 </script>
 

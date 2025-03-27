@@ -9,6 +9,16 @@ const { start } = useScrollAnimation([
   { className: '.js-mvLogo02' },
   { className: '.js-mvLogo03' }
 ])
+
+useHead({
+  title: 'Circlebox',
+  meta: [
+    {
+      name: 'description',
+      content: '',
+    },
+  ],
+});
 </script>
 
 <template>

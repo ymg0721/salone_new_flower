@@ -8,6 +8,16 @@ const { start } = useScrollAnimation([
   { className: '.js-mvLogo' },
   { className: '.js-mvLogo02' },
 ])
+
+useHead({
+  title: 'Funeral',
+  meta: [
+    {
+      name: 'description',
+      content: '',
+    },
+  ],
+});
 </script>
 
 <template>

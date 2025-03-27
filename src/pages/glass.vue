@@ -9,6 +9,16 @@ const { start } = useScrollAnimation([
   { className: '.js-mvLogo' },
   { className: '.js-mvLogo02' },
 ])
+
+useHead({
+  title: 'Glass',
+  meta: [
+    {
+      name: 'description',
+      content: '',
+    },
+  ],
+});
 </script>
 
 <template>

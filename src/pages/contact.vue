@@ -31,6 +31,16 @@ const sendEmail = async () => {
     errorMessage.value = 'エラーが発生しました。時間をおいて再度お試しください。';
   }
 };
+
+useHead({
+  title: 'Contact',
+  meta: [
+    {
+      name: 'description',
+      content: '',
+    },
+  ],
+});
 </script>
 
 <template>
