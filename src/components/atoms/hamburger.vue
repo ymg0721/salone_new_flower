@@ -13,33 +13,43 @@ const closeMenu = () => {
 </script>
 
 <template>
-  <div class="hamburger-menu fixed z-12 right-10 cursor-pointer" @click="toggleMenu">
-    <div :class="{ open: isMenuOpen }" class="w-8 right-6 h-5 flex flex-col justify-between">
-      <span class="bg-black block h-[2px] rounded transition-all duration-300"></span>
-      <span class="bg-black block h-[2px] rounded transition-all duration-300"></span>
-      <span class="bg-black block h-[2px] rounded transition-all duration-300"></span>
+  <div class="hamburger-menu fixed z-12 right-10 cursor-pointer p-4" @click="toggleMenu">
+    <div :class="{ open: isMenuOpen }" class="w-8 right-6 h-5 flex flex-col justify-between relative">
+      <span class="bg-gray-800 block h-[2px] rounded-full transition-all duration-300 w-full"></span>
+      <span class="bg-gray-800 block h-[2px] rounded-full transition-all duration-300 w-3/4"></span>
+      <span class="bg-gray-800 block h-[2px] rounded-full transition-all duration-300 w-1/2"></span>
     </div>
   </div>
 
-  <transition name="slide">
-    <nav v-if="isMenuOpen" class="menu fixed top-0  w-full h-full bg-white bg-opacity-90 z-11 flex justify-center">
-      <div class="text-center font-sans p-4 mt-120px">
-        <h2 class="text-2xl mb-4">Venere Emi.</h2>
-        <ul class="space-y-4 text-lg">
-          <li @click="closeMenu">
-            <NuxtLink to="/" class="text-black hover:underline">Home | ホーム</NuxtLink>
+  <transition name="fade-slide">
+    <nav v-if="isMenuOpen" class="menu fixed top-0 w-full h-full bg-white/95 z-11">
+      <div class="container mx-auto px-4 h-full flex flex-col justify-center items-center">
+        <h2 class="text-3xl font-light mb-12 tracking-wider">Venere Emi.</h2>
+        <ul class="space-y-8 text-lg">
+          <li @click="closeMenu" class="menu-item">
+            <NuxtLink to="/" class="menu-link">
+              <span class="text-gray-800 hover:text-gray-600">Home</span>
+              <span class="text-gray-500 text-sm ml-2">ホーム</span>
+            </NuxtLink>
           </li>
-          <li @click="closeMenu">
-            <NuxtLink to="/preserved" class="text-black hover:underline">Preserved</NuxtLink>
+          <li @click="closeMenu" class="menu-item">
+            <!-- TODO: ページ作成 -->
+            <NuxtLink to="/preserved" class="menu-link">
+              <span class="text-gray-800 hover:text-gray-600">Interior</span>
+              <span class="text-gray-500 text-sm ml-2">インテリア</span>
+            </NuxtLink> 
           </li>
-          <li @click="closeMenu">
-            <NuxtLink to="/artificial" class="text-black hover:underline">Artificial</NuxtLink>
+          <li @click="closeMenu" class="menu-item">
+            <NuxtLink to="/lesson" class="menu-link">
+              <span class="text-gray-800 hover:text-gray-600">Lesson</span>
+              <span class="text-gray-500 text-sm ml-2">レッスンを予約</span>
+            </NuxtLink>
           </li>
-          <li @click="closeMenu">
-            <NuxtLink to="/lesson" class="text-black hover:underline">Lesson</NuxtLink>
-          </li>
-          <li @click="closeMenu">
-            <NuxtLink to="/contact" class="text-black hover:underline">Contact</NuxtLink>
+          <li @click="closeMenu" class="menu-item">
+            <NuxtLink to="/contact" class="menu-link">
+              <span class="text-gray-800 hover:text-gray-600">Contact</span>
+              <span class="text-gray-500 text-sm ml-2">お問い合わせ</span>
+            </NuxtLink>
           </li>
         </ul>
       </div>
@@ -48,44 +58,60 @@ const closeMenu = () => {
 </template>
 
 <style scoped>
-/* モダンなハンバーガーメニューのスタイル */
 .hamburger-menu {
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .hamburger-menu div.open span {
-  background-color: #4A90E2; /* モダンな色 */
+  @apply bg-gray-600;
 }
 
 .hamburger-menu div.open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(10px) rotate(45deg);
+  width: 100%;
 }
+
 .hamburger-menu div.open span:nth-child(2) {
   opacity: 0;
+  transform: translateX(-20px);
 }
+
 .hamburger-menu div.open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-10px) rotate(-45deg);
+  width: 100%;
 }
 
-/* スライドトランジション */
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.5s ease, opacity 0.5s ease; /* フェード効果を追加 */
-}
-.slide-enter-from,
-.slide-leave-to {
-  transform: translateX(100%);
-  opacity: 0; /* フェード効果を追加 */
+.menu-link {
+  @apply flex items-center transition-all duration-300 hover:translate-x-2;
 }
 
-/* メニューのスタイル */
+/* トランジションアニメーション */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
 .menu {
-  background-color: rgba(255, 255, 255, 0.95); /* 半透明の背景 */
-  border-radius: 10px; /* 角を丸くする */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* シャドウを追加 */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-.text-center {
-  font-family: 'Arial', sans-serif; /* モダンなフォント */
+.menu-item {
+  @apply relative overflow-hidden;
+}
+
+.menu-item::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-[1px] bg-gray-800 transition-all duration-300;
+}
+
+.menu-item:hover::after {
+  @apply w-full;
 }
 </style>
