@@ -34,7 +34,7 @@ const closeMenu = () => {
           </li>
           <li @click="closeMenu" class="menu-item">
             <!-- TODO: ページ作成 -->
-            <NuxtLink to="/preserved" class="menu-link">
+            <NuxtLink to="/interior" class="menu-link">
               <span class="text-gray-800 hover:text-gray-600">Interior</span>
               <span class="text-gray-500 text-sm ml-2">インテリア</span>
             </NuxtLink> 

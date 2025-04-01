@@ -207,17 +207,42 @@ useHead({
 }
 
 .header-images {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 2rem;
   margin-bottom: 4rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+  }
 
   .header-image {
-    width: 100%;
+    min-width: 280px;
+    width: 85vw;
+    max-width: 400px;
     height: auto;
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.6s ease;
+    scroll-snap-align: center;
+
+    @media (min-width: 768px) {
+      min-width: auto;
+      width: calc((100% - 4rem) / 3);
+    }
 
     &:hover {
       transform: translateY(-8px);
@@ -227,23 +252,35 @@ useHead({
 
 .title-section {
   text-align: center;
-  margin: 4rem 0;
+  margin: 2rem 0;
 
   .main-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 300;
     letter-spacing: 0.15em;
     color: #2c2c2c;
     margin-bottom: 1rem;
+    line-height: 1.2;
+    padding: 0 1rem;
+    
+    @media (max-width: 768px) {
+      letter-spacing: 0.1em;
+      word-break: break-word;
+      hyphens: auto;
+    }
   }
 
   .subtitle {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     font-weight: 300;
     letter-spacing: 0.2em;
     color: #666;
+    
+    @media (max-width: 768px) {
+      letter-spacing: 0.15em;
+    }
   }
 }
 
@@ -273,13 +310,26 @@ useHead({
 
 // レスポンシブデザイン
 @media (max-width: 768px) {
-  .main-title {
-    font-size: 2.5rem;
+  .elegant-container {
+    padding: 1rem;
   }
 
   .header-images {
-    grid-template-columns: 1fr;
     gap: 1rem;
+    margin: 0 -1rem 2rem;
+    padding: 1rem;
+  }
+}
+
+// タブレット用の調整
+@media (min-width: 769px) and (max-width: 1024px) {
+  .elegant-container {
+    padding: 1.5rem;
+  }
+
+  .header-images {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 }
 
