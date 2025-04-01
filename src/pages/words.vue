@@ -1,17 +1,24 @@
+<script setup lang="ts"></script>
+
 <template>
   <div class="preserved-flower-guide">
-    <section class="hero">
-      <h1 class="elegant-title">about Preserved Flower</h1>
-      <h2 class="japanese-title">プリザーブドフラワーとは</h2>
-    </section>
 
     <section class="description">
       <div class="content-wrapper">
-        <p class="main-text">
-          「プリザーブド」とは「保存」という意味です。<br>
-          プリザーブドフラワーは生花の繊細な美しさを保ちながら、<br>
-          特殊な加工法によって、永遠の輝きを纏った特別なお花です。
-        </p>
+        <div class="text-content">
+            <div class="hero-content">
+        <h1 class="elegant-title">about Preserved Flower</h1>
+        <h2 class="japanese-title">プリザーブドフラワーとは</h2>
+      </div>
+          <p class="main-text">
+            「プリザーブド」とは「保存」という意味です。<br>
+            プリザーブドフラワーは生花の繊細な美しさを保ちながら、<br>
+            特殊な加工法によって、永遠の輝きを纏った特別なお花です。
+          </p>
+        </div>
+        <div class="description-image">
+          <img src="@/assets/img/Story01.png" alt="プリザーブドフラワーの青いバラ" />
+        </div>
       </div>
     </section>
 
@@ -78,9 +85,55 @@
   color: #666;
 }
 
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-image {
+  flex: 1;
+  max-width: 500px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .description {
   margin: 3rem 0;
   line-height: 2;
+}
+
+.description .content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.text-content {
+  flex: 1;
+}
+
+.description-image {
+  flex: 1;
+  max-width: 500px;
+}
+
+.description-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .features-grid {
@@ -117,17 +170,16 @@
   color: #555;
 }
 
-@media (max-width: 768px) {
-  .elegant-title {
-    font-size: 2rem;
+@media (max-width: 968px) {
+  .hero,
+  .description .content-wrapper {
+    flex-direction: column;
+    gap: 2rem;
   }
-  
-  .japanese-title {
-    font-size: 1.5rem;
-  }
-  
-  .features-grid {
-    grid-template-columns: 1fr;
+
+  .hero-image,
+  .description-image {
+    max-width: 100%;
   }
 }
 </style>
