@@ -122,6 +122,16 @@
 
 .text-content {
   flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-content .main-text {
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .description-image {
