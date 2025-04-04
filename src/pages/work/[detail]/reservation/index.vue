@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 import dayjs from 'dayjs' 
+import { usePagesData } from '~/composables/usePagesData'
 
 // このページで予約日時選択と確認・送信まで
 
@@ -12,8 +13,38 @@ const showConfirmation = ref(false);
 const route = useRoute()
 const router = useRouter() // ルーターをインポート
 const productId = route.params.detail as string
+const { products, getProductText } = usePagesData()
 const successMessage = ref('');
 const errorMessage = ref('');
+
+// 選択された商品情報を保持
+interface PagesProduct {
+  id: string
+  name: string
+  type: string
+  price: number
+  size: string
+}
+
+const selectedProduct = ref<PagesProduct | null>(null)
+const isLesson = computed(() => productId === 'lesson')
+
+// 商品情報の初期設定
+onMounted(() => {
+  if (!isLesson.value) {
+    selectedProduct.value = products.value.find(p => p.id === productId) || null
+  }
+})
+
+// レッスン用の商品リスト
+const lessonProducts = computed(() => 
+  products.value.filter(p => p.price <= 20000) // 例：2万円以下の商品をレッスン対象とする
+)
+
+// レッスン商品選択時の処理
+const handleProductSelect = (productId: string) => {
+  selectedProduct.value = products.value.find(p => p.id === productId) || null
+}
 
 // バリデーション関数
 const validateFields = () => {
@@ -37,6 +68,11 @@ const submitReservation = async () => {
         return; // バリデーションに失敗した場合は処理を中止
     }
 
+    if (!selectedProduct.value) {
+        errorMessage.value = '商品が選択されていません。';
+        return;
+    }
+
     // POST APIを実行するロジックをここに追加
     const config = useRuntimeConfig();
     try {
@@ -47,7 +83,15 @@ const submitReservation = async () => {
                 name: name.value, 
                 email: email.value,
                 phone: phone.value, 
-                date: selectedDate.value
+                date: selectedDate.value,
+                product: {
+                    id: selectedProduct.value.id,
+                    name: selectedProduct.value.name,
+                    type: selectedProduct.value.type,
+                    price: selectedProduct.value.price,
+                    size: selectedProduct.value.size
+                },
+                isLesson: isLesson.value
             }),
         });
         const data = await response.json();
@@ -58,6 +102,7 @@ const submitReservation = async () => {
             email.value = '';
             phone.value = '';
             selectedDate.value = '';
+            selectedProduct.value = null;
         } else {
             errorMessage.value = '予約の送信に失敗しました。';
         }
@@ -72,32 +117,171 @@ const cancel = () => {
 </script>
 
 <template>
-    <div class="container my-10%">
-        <div v-if="!showConfirmation">
-            <h1>予約日時選択</h1>
-            <input v-model="name" placeholder="氏名" class="input-field" />
-            <input v-model="email" placeholder="メールアドレス" class="input-field" />
-            <input v-model="phone" placeholder="電話番号" class="input-field" />
-            <input type="date" v-model="selectedDate" class="input-field" />
-            <button @click="showConfirmation = true" class="button">確認画面へ</button>
-            <button @click="cancel()" class="button-cancel">キャンセルする</button>
-            <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div class="reservation-container">
+        <!-- 商品情報表示エリア -->
+        <div class="product-info">
+            <div v-if="isLesson" class="lesson-selection">
+                <h2>レッスン商品選択</h2>
+                <p class="lesson-description">
+                    お好みの作品をお選びください。<br>
+                    熟練の講師がていねいにご指導いたします。
+                </p>
+                <select 
+                    v-model="selectedProduct" 
+                    @change="(e) => handleProductSelect((e.target as HTMLSelectElement).value)"
+                    class="product-select"
+                >
+                    <option value="">作品をお選びください</option>
+                    <option v-for="product in lessonProducts" 
+                            :key="product.id" 
+                            :value="product.id">
+                        {{ product.name }} ({{ product.type }})
+                    </option>
+                </select>
+            </div>
+
+            <div v-if="selectedProduct" class="selected-product">
+                <h3>{{ selectedProduct.name }}</h3>
+                <div class="product-details">
+                    <p class="type">{{ selectedProduct.type }}</p>
+                    <p class="price">¥{{ selectedProduct.price.toLocaleString() }}</p>
+                    <p class="size">{{ selectedProduct.size }}</p>
+                </div>
+            </div>
         </div>
 
-        <div v-if="showConfirmation" class="confirmation">
-            <h1>確認画面</h1>
-            <p>氏名: {{ name }}</p>
-            <p>メールアドレス: {{ email }}</p>
-            <p>電話番号: {{ phone }}</p>
-            <p>予約日: {{ dayjs(selectedDate).format('YYYY年MM月DD日') }}</p>
-            <button @click="submitReservation" class="button">予約を確定する</button>
-            <button @click="showConfirmation = false" class="button-cancel">戻る</button>
-            <div v-if="successMessage" class="success-message">{{ successMessage }}</div>
+        <!-- 予約フォーム -->
+        <div class="reservation-form">
+            <div v-if="!showConfirmation">
+                <h1>予約日時選択</h1>
+                <input v-model="name" placeholder="氏名" class="input-field" />
+                <input v-model="email" placeholder="メールアドレス" class="input-field" />
+                <input v-model="phone" placeholder="電話番号" class="input-field" />
+                <input type="date" v-model="selectedDate" class="input-field" />
+                <button @click="showConfirmation = true" class="button">確認画面へ</button>
+                <button @click="cancel()" class="button-cancel">キャンセルする</button>
+                <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+            </div>
+
+            <div v-if="showConfirmation" class="confirmation">
+                <h1>確認画面</h1>
+                <p>氏名: {{ name }}</p>
+                <p>メールアドレス: {{ email }}</p>
+                <p>電話番号: {{ phone }}</p>
+                <p>予約日: {{ dayjs(selectedDate).format('YYYY年MM月DD日') }}</p>
+                <button @click="submitReservation" class="button">予約を確定する</button>
+                <button @click="showConfirmation = false" class="button-cancel">戻る</button>
+                <div v-if="successMessage" class="success-message">{{ successMessage }}</div>
+            </div>
         </div>
     </div>
 </template>
 
 <style scoped>
+.reservation-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 5% auto;
+    padding: 0 20px;
+}
+
+.product-info {
+    background: linear-gradient(to bottom, #fff, #faf7f7);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.lesson-selection {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-family: "Yu Mincho", "游明朝", YuMincho, serif;
+    font-size: 1.8rem;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.lesson-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.product-select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #4a4a4a;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.selected-product {
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #e9e1e1;
+    border-radius: 8px;
+}
+
+.selected-product h3 {
+    font-family: "Yu Mincho", "游明朝", YuMincho, serif;
+    font-size: 1.4rem;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-details {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.product-details p {
+    margin: 15px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0e6e6;
+}
+
+.type {
+    color: #8f7676;
+    font-weight: 500;
+}
+
+.price {
+    font-size: 1.3rem;
+    color: #d4b5b5;
+}
+
+@media (max-width: 768px) {
+    .reservation-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 20px auto;
+    }
+
+    .product-info {
+        padding: 30px 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .selected-product h3 {
+        font-size: 1.2rem;
+    }
+}
+
 .container {
     max-width: 600px;
     margin: 10% auto;
