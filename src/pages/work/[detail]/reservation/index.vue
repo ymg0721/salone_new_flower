@@ -96,13 +96,18 @@ const submitReservation = async () => {
         });
         const data = await response.json();
         if (data.success) {
-            successMessage.value = '予約が完了しました。';
-            // フォームをリセット
-            name.value = '';
-            email.value = '';
-            phone.value = '';
-            selectedDate.value = '';
-            selectedProduct.value = null;
+            // 予約情報をセッションストレージに保存
+            sessionStorage.setItem('reservationData', JSON.stringify({
+                name: name.value,
+                email: email.value,
+                phone: phone.value,
+                date: selectedDate.value,
+                product: selectedProduct.value,
+                isLesson: isLesson.value
+            }));
+            
+            // 完了画面に遷移
+            router.push(`/work/${productId}/reservation/complete`);
         } else {
             errorMessage.value = '予約の送信に失敗しました。';
         }
