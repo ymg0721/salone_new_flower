@@ -72,65 +72,60 @@ useHead({
 
     <!-- Preservedページ ここから↓ -->
     <div
-      style="display: flex;"
-      class="flex-row justify-evenly items-center"
+      class="grid grid-cols-2 md:grid md:grid-cols-3 gap-4 md:gap-8 justify-evenly items-center px-4 md:px-0"
     >
-      <NuxtLink to="/circlebox" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/circlebox" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo02 h-100px md:h-340px"
+          class="col02 js-mvLogo02 h-[200px] w-full object-cover object-center md:h-340px"
           :src="Story01Src"
           alt="heder-01"
         />
-        <p  style="text-align: center" class="js-mvLogo02 italic text-12px mt-20px" font-normal>CircleBox</p>
+        <p class="js-mvLogo02 italic text-12px mt-2 md:mt-20px text-center" font-normal>CircleBox</p>
       </NuxtLink>
 
-      <NuxtLink to="/square" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/square" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo02 h-100px md:h-340px"
+          class="col02 js-mvLogo02 h-[200px] w-full object-cover object-center md:h-340px"
           :src="Story06Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo02 italic text-12px mt-20px">Square</p>
+        <p class="js-mvLogo02 italic text-12px mt-2 md:mt-20px text-center">Square</p>
       </NuxtLink>
 
-      <NuxtLink to="/ceremony" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/ceremony" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo02 h-100px md:h-340px"
+          class="col02 js-mvLogo02 h-[200px] w-full object-cover object-center md:h-340px"
           :src="Story07Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo02 italic text-12px mt-20px">Ceremony</p>
+        <p class="js-mvLogo02 italic text-12px mt-2 md:mt-20px text-center">Ceremony</p>
       </NuxtLink>
-    </div>
-    <div
-      style="display: flex;"
-      class="flex-row justify-evenly items-center mt-5vw"
-    >
-      <NuxtLink to="/glass" class="text-[#302e2e] no-underline hover:underline">
+
+      <NuxtLink to="/glass" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo03 h-100px md:h-340px"
+          class="col02 js-mvLogo03 h-[200px] w-full object-cover object-center md:h-340px"
           :src="Story08Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo03 italic text-12px mt-20px">Glass</p>
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Glass</p>
       </NuxtLink>
 
-      <NuxtLink to="/funeral" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/funeral" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo03 h-100px md:h-340px"
+          class="col02 js-mvLogo03 h-[200px] w-full object-cover object-center md:h-340px"
           :src="Story09Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo03 italic text-12px mt-20px">Funeral</p>
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Funeral</p>
       </NuxtLink>
 
-      <NuxtLink to="/chrismas" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/chrismas" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo03 h-100px md:h-340px"
+          class="col02 js-mvLogo03 h-[200px] w-full object-cover object-center md:h-340px"
           :src="Story10Src"
           alt="heder-01"
         />
-        <p style="text-align: center" class="js-mvLogo03 italic text-12px mt-20px">Chrismas</p>
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Chrismas</p>
       </NuxtLink>
     </div>
     <!-- Preservedページ ここまで↑ -->
@@ -141,17 +136,14 @@ useHead({
       Lesson | レッスン
     </div>
     <!-- Lessonページ ここから↓ -->
-    <div
-      style="display: flex;"
-      class="flex-row justify-evenly items-center"
-    >
-      <NuxtLink to="/lesson" class="text-[#302e2e] no-underline hover:underline flex flex-col items-center">
+    <div class="px-4 md:px-0">
+      <NuxtLink to="/lesson" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline flex flex-col items-center">
         <img
-          class="col02 js-mvLogo04 h-100px md:h-340px"
+          class="col02 js-mvLogo04 h-[200px] w-full object-cover object-center md:h-340px max-w-[500px]"
           src="@/assets/img/lesson.png"
-          alt="heder-01"
+          alt="lesson-image"
         />
-        <p style="text-align: center" class="js-mvLogo04 italic text-12px mt-20px">
+        <p class="js-mvLogo04 italic text-[14px] md:text-[16px] mt-4 md:mt-6">
           レッスンについてはこちら
         </p>
       </NuxtLink>
@@ -165,34 +157,33 @@ useHead({
     </div>
 
     <div
-      style="display: flex;"
-      class="flex-row justify-evenly items-center my-5vw mb-50px"
+      class="grid grid-cols-2 md:flex md:flex-row gap-4 md:gap-8 justify-evenly items-center px-4 md:px-0 my-5vw mb-50px"
     >
-      <NuxtLink to="/about" class="text-[#302e2e] no-underline hover:underline flex flex-col items-center">
+      <NuxtLink to="/about" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline flex flex-col items-center">
         <img
-          class="col02 js-mvLogo05 h-100px md:h-340px"
+          class="col02 js-mvLogo05 h-[200px] w-full object-cover object-center md:h-340px"
           src="@/assets/img/test03.png"
-          alt="heder-01"
+          alt="about-image"
         />
-        <p style="text-align: center" class="js-mvLogo05 italic text-12px mt-20px">
+        <p class="js-mvLogo05 italic text-[14px] md:text-[16px] mt-4 md:mt-6 text-center">
           Venere Emi とは
         </p>
       </NuxtLink>
-      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline flex flex-col items-center">
         <img
-          class="col02 js-mvLogo05 h-100px md:h-340px"
+          class="col02 js-mvLogo05 h-[200px] w-full object-cover object-center md:h-340px"
           src="@/assets/img/test02.png"
-          alt="heder-01"
+          alt="words-image"
         />
-        <p class="js-mvLogo05 text-center italic text-12px mt-20px">お花の用語</p>
+        <p class="js-mvLogo05 italic text-[14px] md:text-[16px] mt-4 md:mt-6 text-center">お花の用語</p>
       </NuxtLink>
-      <NuxtLink to="/contact" class="text-[#302e2e] no-underline hover:underline">
+      <NuxtLink to="/contact" class="col-span-2 md:col-span-1 text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline flex flex-col items-center">
         <img
-          class="col02 js-mvLogo05 h-100px md:h-340px"
+          class="col02 js-mvLogo05 h-[200px] w-full max-w-[500px] object-cover object-center md:h-340px"
           src="@/assets/img/test01.png"
-          alt="heder-01"
+          alt="contact-image"
         />
-        <p style="text-align: center" class="js-mvLogo05 italic text-12px mt-20px">お問い合わせ</p>
+        <p class="js-mvLogo05 italic text-[14px] md:text-[16px] mt-4 md:mt-6 text-center">お問い合わせ</p>
       </NuxtLink>
     </div>
   </div>
@@ -285,15 +276,57 @@ useHead({
 }
 
 .section-header {
+  text-align: center;
+  margin: 4rem 0;
+  padding: 2rem 0;
+  position: relative;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   letter-spacing: 0.2em;
   color: #2c2c2c;
-  padding: 2rem 0;
-  margin: 4rem 15vw;
-  border-top: 1px solid #d4d4d4;
-  border-bottom: 1px solid #d4d4d4;
-  text-align: center;
+  
+  @media (min-width: 768px) {
+    font-size: 1.4rem;
+  }
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #d4d4d4 15%,
+      #d4d4d4 85%,
+      transparent
+    );
+  }
+  
+  &::before { top: 0; }
+  &::after { bottom: 0; }
+
+  .en {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: #2c2c2c;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .jp {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 200;
+    margin-top: 0.5rem;
+    color: #666;
+    letter-spacing: 0.2em;
+  }
 }
 
 // 商品カードのスタイル
@@ -437,52 +470,5 @@ useHead({
     );
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.02);
   border-radius: 12px;
-}
-
-// セクションヘッダーもより洗練された見た目に
-.section-header {
-  text-align: center;
-  margin: 6rem 0;
-  padding: 2rem 0;
-  position: relative;
-  
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      #d4d4d4 15%,
-      #d4d4d4 85%,
-      transparent
-    );
-  }
-  
-  &::before { top: 0; }
-  &::after { bottom: 0; }
-
-  .en {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    letter-spacing: 0.3em;
-    color: #2c2c2c;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
-  }
-
-  .jp {
-    display: block;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 0.9rem;
-    font-weight: 200;
-    margin-top: 0.5rem;
-    color: #666;
-    letter-spacing: 0.2em;
-  }
 }
 </style>

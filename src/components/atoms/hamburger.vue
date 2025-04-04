@@ -14,7 +14,7 @@ const closeMenu = () => {
 
 <template>
   <div class="hamburger-menu fixed z-12 right-10 cursor-pointer p-4" @click="toggleMenu">
-    <div :class="{ open: isMenuOpen }" class="w-8 right-6 h-5 flex flex-col justify-between relative">
+    <div :class="{ open: isMenuOpen }" class="w-8 h-5 flex flex-col justify-between relative ">
       <span class="bg-gray-800 block h-[2px] rounded-full transition-all duration-300 w-full"></span>
       <span class="bg-gray-800 block h-[2px] rounded-full transition-all duration-300 w-3/4"></span>
       <span class="bg-gray-800 block h-[2px] rounded-full transition-all duration-300 w-1/2"></span>
