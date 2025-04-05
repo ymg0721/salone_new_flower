@@ -1,5 +1,11 @@
 <script setup>
 import { useHead } from '#imports';
+import { useRoute } from 'vue-router';
+import BackToTop from '@/components/atoms/BackToTop.vue';
+import { computed } from 'vue';
+
+const route = useRoute();
+const showBackToTop = computed(() => route.path !== '/');
 
 useHead({
   titleTemplate: (title) => (title ? `${title} | Venere Emi` : 'Venere Emi'),
@@ -17,5 +23,6 @@ useHead({
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <BackToTop v-if="showBackToTop" />
   </div>
 </template>

@@ -49,6 +49,7 @@ useHead({
   padding: 120px 0;
   background-color: #fdfbf9;
   display: flex;
+  flex-direction: column;
 }
 
 .introduce-section {
@@ -158,25 +159,48 @@ useHead({
 
 @media (max-width: 768px) {
   .about-container {
-    padding: 80px 0;
+    padding: 60px 0;
   }
 
   .introduce-section {
+    margin-bottom: 100px;
+    
     .content-wrapper {
-      padding: 0 24px;
+      padding: 0 20px;
     }
   }
 
   .designer-section {
-    padding: 0 24px;
+    padding: 0 20px;
   }
 
   .main-title {
-    font-size: 48px;
+    font-size: 42px;
+    margin-bottom: 24px;
   }
 
   .sub-title {
-    font-size: 28px;
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 60px;
+  }
+
+  .designer-image {
+    max-width: 100%;
+  }
+
+  .designer-name {
+    font-size: 16px;
+    margin-top: 24px;
   }
 }
 </style>

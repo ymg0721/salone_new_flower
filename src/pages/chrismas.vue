@@ -127,6 +127,9 @@ useHead({
     font-weight: 300;
     color: #2c2c2c;
     line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
   }
 }
 
@@ -157,17 +160,35 @@ useHead({
 }
 
 @media (max-width: 768px) {
+  .product-container {
+    padding: 1rem;
+  }
+
   .product-grid {
     flex-direction: column;
+    gap: 2rem;
   }
 
   .product-item {
     width: 100%;
     max-width: 300px;
 
+    .image-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
     .product-info {
-      font-size: 0.8rem;
-      padding: 0.8rem;
+      position: static;
+      width: 100%;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      white-space: normal;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
   }
 

@@ -43,7 +43,7 @@ useHead({
           <span class="jp">スクエア</span>
         </div>
 
-        <div class="product-description js-mvLogo">
+        <div class="product-description js-mvLogo hidden md:block">
           淡いピンクの花々で写真を優美に彩ります。<br />
           上品なデザインで、<br />
           特別な思い出を引き立てるにおすすめです。
@@ -231,14 +231,51 @@ useHead({
 }
 
 @media (max-width: 768px) {
+  .product-container {
+    padding: 1rem;
+  }
+
+  .main-product {
+    margin-bottom: 2rem;
+  }
+
   .product-title {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    width: 100%;
+
     .en {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
+    }
+
+    .jp {
+      font-size: 0.9rem;
     }
   }
 
-  .product-description, .product-price {
-    font-size: 0.9rem;
+  .product-description {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 1rem;
+  }
+
+  .product-price {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    font-size: 0.85rem;
     padding: 1rem;
   }
 
@@ -257,6 +294,25 @@ useHead({
   .product-item {
     width: 100%;
     max-width: 300px;
+
+    .image-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    .product-info {
+      position: static;
+      width: 100%;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  .main-product {
+    .main-image {
+      max-width: 100%;
+    }
   }
 }
 </style>
