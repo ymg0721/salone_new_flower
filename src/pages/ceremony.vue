@@ -44,12 +44,6 @@ useHead({
           <span class="jp">セレモニー</span>
         </div>
 
-        <div class="product-description js-mvLogo hidden md:block">
-          淡いピンクの花々で写真を優美に彩ります。<br />
-          上品なデザインで、<br />
-          特別な思い出を引き立てるにおすすめです。
-        </div>
-
         <div class="product-price js-mvLogo" v-html="getProductText('2113')" />
       </div>
     </NuxtLink>
