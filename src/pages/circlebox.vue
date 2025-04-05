@@ -38,12 +38,12 @@ useHead({
           alt="header-01"
         />
 
-        <div class="product-title js-mvLogo">
+        <div class="product-title js-mvLogo ">
           <span class="en">CircleBox</span>
           <span class="jp">サークルボックス</span>
         </div>
 
-        <div class="product-description js-mvLogo">
+        <div class="product-description js-mvLogo hidden md:block">
           クラシックとモダンが融合した<br />
           豪華な薔薇のアレンジメント<br />
           大切な場面を<br />
@@ -194,15 +194,27 @@ useHead({
   flex: 0 0 auto;
   width: 400px;
 
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 300px;
+    
+    .image-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+  }
+
   .image-wrapper {
     aspect-ratio: 3/4;
     height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     
     @media (max-width: 768px) {
-      height: 300px;
+      aspect-ratio: auto;
     }
   }
 
@@ -215,6 +227,11 @@ useHead({
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: transform 0.6s ease;
 
+    @media (max-width: 768px) {
+      height: 300px;
+      margin-bottom: 1rem;
+    }
+
     &:hover {
       transform: translateY(-8px);
     }
@@ -224,24 +241,69 @@ useHead({
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 1rem;
     border-radius: 4px;
     font-family: 'Noto Serif JP', serif;
     font-size: 0.9rem;
     color: #2c2c2c;
+
+    @media (max-width: 768px) {
+      position: static;
+      width: 100%;
+      margin-top: 0;
+      font-size: 0.85rem;
+      order: 2;
+    }
   }
 }
 
 @media (max-width: 768px) {
+  .product-container {
+    padding: 1rem;
+  }
+
+  .main-product {
+    margin-bottom: 2rem;
+  }
+
   .product-title {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    width: 100%;
+
     .en {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
+    }
+
+    .jp {
+      font-size: 0.9rem;
     }
   }
 
-  .product-description, .product-price {
-    font-size: 0.9rem;
+  .product-description {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 1rem;
+  }
+
+  .product-price {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    font-size: 0.85rem;
     padding: 1rem;
   }
 
@@ -255,11 +317,6 @@ useHead({
 
   .product-grid {
     flex-direction: column;
-  }
-
-  .product-item {
-    width: 100%;
-    max-width: 300px;
   }
 
   .main-product {

@@ -57,7 +57,7 @@ useHead({
           <span class="en">Contact</span>
           <span class="jp">お問い合わせ</span>
         </h1>
-        <p class="subtitle">ご質問・ご要望などお気軽にお問い合わせください</p>
+        <p class="subtitle">ご質問・ご要望など<br class="md:hidden">お気軽にお問い合わせください</p>
       </div>
 
       <form @submit.prevent="sendEmail" class="contact-form">
@@ -292,20 +292,70 @@ useHead({
   }
 
   .form-wrapper {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
+    margin: 0 0.5rem;
   }
 
   .form-header {
+    margin-bottom: 2rem;
+
     .title {
       .en {
         font-size: 2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .jp {
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+      }
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+  }
+
+  .contact-form {
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      label {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
       }
     }
   }
 
+  .form-input {
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .button-wrapper {
+    margin-top: 2rem;
+  }
+
   .submit-button {
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 0.8rem 2rem;
+    font-size: 0.85rem;
+  }
+
+  .alert {
+    padding: 0.8rem;
+    
+    p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .alert-icon {
+      width: 1rem;
+      height: 1rem;
+    }
   }
 }
 </style>

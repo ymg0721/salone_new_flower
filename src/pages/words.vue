@@ -7,7 +7,7 @@
       <div class="content-wrapper">
         <div class="text-content">
             <div class="hero-content">
-        <h1 class="elegant-title">about Preserved Flower</h1>
+        <h1 class="elegant-title">About Preserved Flower</h1>
         <h2 class="japanese-title">プリザーブドフラワーとは</h2>
       </div>
           <p class="main-text">

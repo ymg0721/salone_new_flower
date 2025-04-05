@@ -1,23 +1,23 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="footer-container bg-gradient-to-r from-rose-50 to-pink-50 py-16 w-full" 
-       style="border-top: 1px solid rgba(219, 166, 166, 0.3);">
+  <div class="footer-container bg-gradient-to-r from-gray-900 to-black py-16 w-full" 
+       style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
     <div class="container mx-auto px-4 flex flex-col items-center">
       <NuxtLink to="https://www.instagram.com/venere_emi/" 
                 class="transition-transform hover:scale-105">
         <img src="@/assets/img/venere-emi-title-touka.png" 
-             class="w-140px md:w-200px filter drop-shadow-sm" 
+             class="w-140px md:w-200px filter brightness-110" 
              alt="Venere Emi">
       </NuxtLink>
       
-      <div class="mt-6 flex gap-4">
-        <a href="#" class="text-rose-800 hover:text-rose-600 transition-colors">
-          <span class="text-sm">About</span>
-        </a>
-        <a href="#" class="text-rose-800 hover:text-rose-600 transition-colors">
-          <span class="text-sm">Contact</span>
-        </a>
+      <div class="mt-6 flex gap-6">
+        <NuxtLink to="/about" class="text-gray-400 hover:text-white transition-colors">
+          <span class="text-sm font-light tracking-wider">About</span>
+        </NuxtLink>
+        <NuxtLink to="/contact" class="text-gray-400 hover:text-white transition-colors">
+          <span class="text-sm font-light tracking-wider">Contact</span>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -25,6 +25,6 @@
 
 <style scoped lang="scss">
 .footer-container {
-  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -10px 20px -5px rgba(0, 0, 0, 0.2);
 }
 </style>
