@@ -43,12 +43,6 @@ useHead({
           <span class="jp">スクエア</span>
         </div>
 
-        <div class="product-description js-mvLogo hidden md:block">
-          淡いピンクの花々で写真を優美に彩ります。<br />
-          上品なデザインで、<br />
-          特別な思い出を引き立てるにおすすめです。
-        </div>
-
         <div class="product-price js-mvLogo" v-html="getProductText('2106')" />
       </div>
     </NuxtLink>
@@ -302,9 +296,9 @@ useHead({
     }
 
     .product-info {
-      position: static;
+      position: sticky;
       width: 100%;
-      margin-top: 1rem;
+      margin-top: 10rem;
       font-size: 0.85rem;
     }
   }

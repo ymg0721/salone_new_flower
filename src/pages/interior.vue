@@ -1,5 +1,5 @@
 <template>
-  <div class="interior-page">
+  <div class="interior-page width: fit-content;">
     <!-- ヒーローセクション -->
     <section class="hero">
       <div class="hero-content">
@@ -163,5 +163,85 @@
 .contact-button:hover {
   background-color: #555;
   transform: translateY(-2px);
+}
+
+/* スマートフォン向けのメディアクエリ */
+@media screen and (max-width: 768px) {
+  .interior-page {
+    padding: 1rem;
+  }
+
+  .hero {
+    height: 70vh;
+  }
+
+  .hero-content {
+    padding: 0 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+  }
+
+  .concept {
+    padding: 2rem 0;
+  }
+
+  .concept-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    padding: 0 1rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .gallery-grid img {
+    height: 200px;
+  }
+
+  .contact-section {
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+  }
+
+  .contact-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-button {
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* さらに小さい画面向けの調整 */
+@media screen and (max-width: 375px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
 }
 </style>

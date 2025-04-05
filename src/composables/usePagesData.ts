@@ -46,14 +46,14 @@ export const usePagesData = () => {
       size: 'W15.5 x D15.5 x H9cm'
     },
     {
-      id: '2106',
+      id: '2107',
       name: 'BOX FLOWER サークル',
       type: '青BOX',
       price: 25000,
       size: 'W15.5 x D15.5 x H9cm'
     },
     {
-      id: '2107',
+      id: '2106',
       name: 'ローズスクエアL',
       type: 'ルージュ',
       price: 55000,
@@ -389,8 +389,8 @@ export const usePagesData = () => {
     '2103': new URL('../assets/img/circle-body-2.png', import.meta.url).href,
     '2104': new URL('../assets/img/2104.png', import.meta.url).href,
     '2105': new URL('../assets/img/2105.png', import.meta.url).href,
-    '2106': new URL('../assets/img/2106.png', import.meta.url).href,
-    '2107': new URL('../assets/img/2107.png', import.meta.url).href,
+    '2106': new URL('../assets/img/2107.png', import.meta.url).href,
+    '2107': new URL('../assets/img/2106.png', import.meta.url).href,
     '2108': new URL('../assets/img/2108.png', import.meta.url).href,
     '2109': new URL('../assets/img/2109.png', import.meta.url).href,
     '2110': new URL('../assets/img/2110.png', import.meta.url).href,
