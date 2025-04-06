@@ -10,6 +10,8 @@ const email = ref('');
 const phone = ref('');
 const selectedDate = ref('');
 const showConfirmation = ref(false);
+const showDatePicker = ref(false);
+const tempDate = ref('');
 const route = useRoute()
 const router = useRouter() // ルーターをインポート
 const productId = route.params.detail as string
@@ -119,6 +121,22 @@ const submitReservation = async () => {
 const cancel = () => {
     router.back() // 1つ前のページに戻る
 }
+
+// 日付選択の処理を追加
+const openDatePicker = () => {
+    showDatePicker.value = true;
+    tempDate.value = selectedDate.value;
+};
+
+const confirmDate = () => {
+    selectedDate.value = tempDate.value;
+    showDatePicker.value = false;
+};
+
+const cancelDate = () => {
+    showDatePicker.value = false;
+    tempDate.value = selectedDate.value;
+};
 </script>
 
 <template>
@@ -162,7 +180,12 @@ const cancel = () => {
                 <input v-model="name" placeholder="氏名" class="input-field" />
                 <input v-model="email" placeholder="メールアドレス" class="input-field" />
                 <input v-model="phone" placeholder="電話番号" class="input-field" />
-                <input type="date" v-model="selectedDate" class="input-field" />
+                <div class="date-picker-container">
+                    <div class="date-input" @click="openDatePicker">
+                        <span v-if="selectedDate">{{ dayjs(selectedDate).format('YYYY年MM月DD日') }}</span>
+                        <span v-else class="placeholder">日付を選択してください</span>
+                    </div>
+                </div>
                 <button @click="showConfirmation = true" class="button">確認画面へ</button>
                 <button @click="cancel()" class="button-cancel">キャンセルする</button>
                 <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
@@ -177,6 +200,23 @@ const cancel = () => {
                 <button @click="submitReservation" class="button">予約を確定する</button>
                 <button @click="showConfirmation = false" class="button-cancel">戻る</button>
                 <div v-if="successMessage" class="success-message">{{ successMessage }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 日付選択モーダル -->
+    <div v-if="showDatePicker" class="date-picker-modal">
+        <div class="date-picker-content">
+            <h3>日付を選択</h3>
+            <input 
+                type="date" 
+                v-model="tempDate" 
+                class="date-picker-input"
+                :min="dayjs().format('YYYY-MM-DD')"
+            />
+            <div class="date-picker-buttons">
+                <button @click="cancelDate" class="button-cancel">キャンセル</button>
+                <button @click="confirmDate" class="button">確定</button>
             </div>
         </div>
     </div>
@@ -388,5 +428,79 @@ h1 {
     padding: 8px 0;
     border-bottom: 1px solid #f0e6e6;
     font-size: 0.95rem;
+}
+
+.date-picker-container {
+    margin: 15px 0;
+}
+
+.date-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #fafafa;
+    cursor: pointer;
+    color: #4a4a4a;
+}
+
+.date-input .placeholder {
+    color: #999;
+}
+
+.date-picker-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.date-picker-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.date-picker-content h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4a4a4a;
+}
+
+.date-picker-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.date-picker-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.date-picker-buttons button {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .date-picker-content {
+        width: 95%;
+        margin: 20px;
+    }
 }
 </style>
