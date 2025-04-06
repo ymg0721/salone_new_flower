@@ -20,7 +20,7 @@ const successMessage = ref('');
 const errorMessage = ref('');
 
 // Stripe設定
-const stripePublicKey = 'pk_test_51RAnCtJITRXES6s8XtPDTXkDy1pLz4UVT7dohclS2g5fZgVpLwAyOBRlVwgpfHa3V9A1hpYRG7A3pXvis6c50Ymt00jQlrEiup';
+const stripePublicKey = 'pk_test_51RAnD5QxwF5vz9ajkRilxDJoqekzJQF3JaxzXL28pc72NmxRYDQqnUEb2vKvIhYtQ00ThPLsIPhrwtGbJxM5e0hA009L6dKiEN';
 let stripe: any = null;
 
 // 選択された商品情報を保持
