@@ -96,24 +96,16 @@ const submitPurchase = async () => {
         {
           price: selectedProduct.value.id, // Stripeの価格IDを使用
           quantity: 1,
+          description: `${selectedProduct.value.name} (${selectedProduct.value.type}) - ${selectedProduct.value.size}`,
         },
       ],
       mode: 'payment',
-      successUrl: `${window.location.origin}/work/${productId}/ec/complete`,
+      successUrl: `${window.location.origin}/work/${productId}/ec/complete?name=${encodeURIComponent(name.value)}&email=${encodeURIComponent(email.value)}&phone=${encodeURIComponent(phone.value)}&address=${encodeURIComponent(`${city.value} ${address.value}`)}&postalCode=${encodeURIComponent(postalCode.value)}&productName=${encodeURIComponent(selectedProduct.value.name)}&productType=${encodeURIComponent(selectedProduct.value.type)}&productSize=${encodeURIComponent(selectedProduct.value.size)}`,
       cancelUrl: `${window.location.origin}/work/${productId}/ec`,
       customerEmail: email.value,
       billingAddressCollection: 'required',
       shippingAddressCollection: {
         allowedCountries: ['JP'],
-      },
-      metadata: {
-        customerName: name.value,
-        customerPhone: phone.value,
-        customerAddress: `${city.value} ${address.value}`,
-        customerPostalCode: postalCode.value,
-        productName: selectedProduct.value.name,
-        productType: selectedProduct.value.type,
-        productSize: selectedProduct.value.size,
       },
     });
 
