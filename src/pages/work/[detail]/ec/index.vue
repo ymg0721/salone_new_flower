@@ -79,7 +79,7 @@ const validateFields = () => {
 const getStripePriceId = (productId: string): string => {
   // 商品IDとStripeの価格IDのマッピング
   const priceIdMap: Record<string, string> = {
-    '2106': 'price_1RAp0qQxwF5vz9sjxl6OJZmF', // 実際のStripe価格ID
+    '2106': 'price_1RAp0qQxwF5vz9ajx6iOJZmF', // 実際のStripe価格ID
     // 他の商品IDとStripeの価格IDのマッピングを追加
   };
   
