@@ -94,6 +94,7 @@ const submitPurchase = async () => {
     // Stripeセッションの作成
     const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL || 'https://node-server2-rosy.vercel.app'}/create-checkout-session`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: name.value,
