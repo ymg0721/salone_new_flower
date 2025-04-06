@@ -75,6 +75,17 @@ const validateFields = () => {
   return true;
 };
 
+// 商品IDからStripeの価格IDを取得する関数
+const getStripePriceId = (productId: string): string => {
+  // 商品IDとStripeの価格IDのマッピング
+  const priceIdMap: Record<string, string> = {
+    '2106': 'price_1RAp0qQxwF5vz9sjxl6OJZmF', // 実際のStripe価格ID
+    // 他の商品IDとStripeの価格IDのマッピングを追加
+  };
+  
+  return priceIdMap[productId] || '';
+};
+
 // 購入処理
 const submitPurchase = async () => {
   successMessage.value = '';
@@ -94,7 +105,6 @@ const submitPurchase = async () => {
     const { error } = await stripe.redirectToCheckout({
       lineItems: [
         {
-          // 商品IDに基づいてStripeの価格IDを設定
           price: getStripePriceId(selectedProduct.value.id),
           quantity: 1,
         },
@@ -117,17 +127,6 @@ const submitPurchase = async () => {
     errorMessage.value = 'エラーが発生しました。時間をおいて再度お試しください。';
     console.error('Error:', error);
   }
-};
-
-// 商品IDからStripeの価格IDを取得する関数
-const getStripePriceId = (productId: string): string => {
-  // 商品IDとStripeの価格IDのマッピング
-  const priceIdMap: Record<string, string> = {
-    '2106': 'price_1RAnCtJITRXES6s8XtPDTXkDy1pLz4UVT7dohclS2g5fZgVpLwAyOBRlVwgpfHa3V9A1hpYRG7A3pXvis6c50Ymt00jQlrEiup',
-    // 他の商品IDとStripeの価格IDのマッピングを追加
-  };
-  
-  return priceIdMap[productId] || '';
 };
 
 // キャンセル処理
