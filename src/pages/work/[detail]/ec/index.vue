@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 import { usePagesData } from '~/composables/usePagesData'
+import { loadStripe } from '@stripe/stripe-js'
 
 // 購入情報入力フォームの状態管理
 const name = ref('');
@@ -18,16 +19,9 @@ const { products, getProductText, getImagePath } = usePagesData()
 const successMessage = ref('');
 const errorMessage = ref('');
 
-// クレジットカード情報
-const cardNumber = ref('');
-const cardName = ref('');
-const cardExpiry = ref('');
-const cardCvv = ref('');
-
-// 銀行振込情報
-const bankName = ref('');
-const accountHolder = ref('');
-const accountNumber = ref('');
+// Stripe設定
+const stripePublicKey = 'pk_test_51RAnCtJITRXES6s8XtPDTXkDy1pLz4UVT7dohclS2g5fZgVpLwAyOBRlVwgpfHa3V9A1hpYRG7A3pXvis6c50Ymt00jQlrEiup';
+let stripe: any = null;
 
 // 選択された商品情報を保持
 interface PagesProduct {
@@ -41,8 +35,9 @@ interface PagesProduct {
 const selectedProduct = ref<PagesProduct | null>(null)
 const productImage = ref('')
 
-// 商品情報の初期設定
-onMounted(() => {
+onMounted(async () => {
+  stripe = await loadStripe(stripePublicKey);
+  
   // URLのパラメータに商品IDがある場合
   if (productId && productId !== 'select') {
     selectedProduct.value = products.value.find(p => p.id === productId) || null
@@ -50,7 +45,7 @@ onMounted(() => {
       productImage.value = getImagePath(selectedProduct.value.id)
     }
   }
-})
+});
 
 // 商品選択時の処理
 const handleProductSelect = (productId: string) => {
@@ -77,34 +72,6 @@ const validateFields = () => {
     return false;
   }
   
-  // 支払い方法に応じたバリデーション
-  if (paymentMethod.value === 'credit') {
-    if (!cardNumber.value || !cardName.value || !cardExpiry.value || !cardCvv.value) {
-      errorMessage.value = 'クレジットカード情報をすべて入力してください。';
-      return false;
-    }
-    const cardNumberPattern = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
-    if (!cardNumberPattern.test(cardNumber.value)) {
-      errorMessage.value = 'カード番号は「0000 0000 0000 0000」の形式で入力してください。';
-      return false;
-    }
-    const cardExpiryPattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
-    if (!cardExpiryPattern.test(cardExpiry.value)) {
-      errorMessage.value = '有効期限は「MM/YY」の形式で入力してください。';
-      return false;
-    }
-    const cardCvvPattern = /^\d{3,4}$/;
-    if (!cardCvvPattern.test(cardCvv.value)) {
-      errorMessage.value = 'セキュリティコードは3桁または4桁の数字で入力してください。';
-      return false;
-    }
-  } else if (paymentMethod.value === 'bank') {
-    if (!bankName.value || !accountHolder.value || !accountNumber.value) {
-      errorMessage.value = '銀行振込情報をすべて入力してください。';
-      return false;
-    }
-  }
-  
   return true;
 };
 
@@ -114,7 +81,7 @@ const submitPurchase = async () => {
   errorMessage.value = '';
   
   if (!validateFields()) {
-    return; // バリデーションに失敗した場合は処理を中止
+    return;
   }
 
   if (!selectedProduct.value) {
@@ -122,30 +89,19 @@ const submitPurchase = async () => {
     return;
   }
 
-  // POST APIを実行するロジック
   const config = useRuntimeConfig();
   try {
-    const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL || 'https://node-server2-rosy.vercel.app'}/send-purchase`, {
+    // Stripeセッションの作成
+    const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL || 'https://node-server2-rosy.vercel.app'}/create-checkout-session`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        name: name.value, 
+      body: JSON.stringify({
+        name: name.value,
         email: email.value,
         phone: phone.value,
         address: address.value,
         postalCode: postalCode.value,
         city: city.value,
-        paymentMethod: paymentMethod.value,
-        paymentDetails: paymentMethod.value === 'credit' ? {
-          cardNumber: cardNumber.value,
-          cardName: cardName.value,
-          cardExpiry: cardExpiry.value,
-          cardCvv: cardCvv.value
-        } : paymentMethod.value === 'bank' ? {
-          bankName: bankName.value,
-          accountHolder: accountHolder.value,
-          accountNumber: accountNumber.value
-        } : null,
         product: {
           id: selectedProduct.value.id,
           name: selectedProduct.value.name,
@@ -155,42 +111,30 @@ const submitPurchase = async () => {
         }
       }),
     });
-    const data = await response.json();
-    if (data.success) {
-      // 購入情報をセッションストレージに保存
-      sessionStorage.setItem('purchaseData', JSON.stringify({
-        name: name.value,
-        email: email.value,
-        phone: phone.value,
-        address: address.value,
-        postalCode: postalCode.value,
-        city: city.value,
-        paymentMethod: paymentMethod.value,
-        paymentDetails: paymentMethod.value === 'credit' ? {
-          cardNumber: cardNumber.value,
-          cardName: cardName.value,
-          cardExpiry: cardExpiry.value
-        } : paymentMethod.value === 'bank' ? {
-          bankName: bankName.value,
-          accountHolder: accountHolder.value,
-          accountNumber: accountNumber.value
-        } : null,
-        product: selectedProduct.value
-      }));
-      
-      // 完了画面に遷移
-      router.push(`/work/${productId}/ec/complete`);
+
+    const session = await response.json();
+    
+    if (session.sessionId) {
+      // Stripeのチェックアウトページにリダイレクト
+      const result = await stripe?.redirectToCheckout({
+        sessionId: session.sessionId
+      });
+
+      if (result?.error) {
+        errorMessage.value = '決済ページへの遷移に失敗しました。';
+      }
     } else {
-      errorMessage.value = '購入処理に失敗しました。';
+      errorMessage.value = '決済セッションの作成に失敗しました。';
     }
   } catch (error) {
     errorMessage.value = 'エラーが発生しました。時間をおいて再度お試しください。';
+    console.error('Error:', error);
   }
 };
 
 // キャンセル処理
 const cancel = () => {
-  router.back() // 1つ前のページに戻る
+  router.back()
 }
 </script>
 
@@ -259,54 +203,6 @@ const cancel = () => {
           <label>住所</label>
           <input v-model="address" placeholder="代々木1-2-3" class="input-field" />
         </div>
-        <div class="form-group">
-          <label>お支払い方法</label>
-          <select v-model="paymentMethod" class="input-field">
-            <option value="credit">クレジットカード</option>
-            <option value="bank">銀行振込</option>
-            <option value="cod">代金引換</option>
-          </select>
-        </div>
-        
-        <!-- クレジットカード情報 -->
-        <div v-if="paymentMethod === 'credit'" class="payment-details">
-          <h3>クレジットカード情報</h3>
-          <div class="form-group">
-            <label>カード番号</label>
-            <input v-model="cardNumber" placeholder="0000 0000 0000 0000" class="input-field" />
-          </div>
-          <div class="form-group">
-            <label>カード名義人</label>
-            <input v-model="cardName" placeholder="TARO YAMADA" class="input-field" />
-          </div>
-          <div class="form-row">
-            <div class="form-group half">
-              <label>有効期限</label>
-              <input v-model="cardExpiry" placeholder="MM/YY" class="input-field" />
-            </div>
-            <div class="form-group half">
-              <label>セキュリティコード</label>
-              <input v-model="cardCvv" placeholder="123" class="input-field" />
-            </div>
-          </div>
-        </div>
-        
-        <!-- 銀行振込情報 -->
-        <div v-if="paymentMethod === 'bank'" class="payment-details">
-          <h3>銀行振込情報</h3>
-          <div class="form-group">
-            <label>銀行名</label>
-            <input v-model="bankName" placeholder="○○銀行" class="input-field" />
-          </div>
-          <div class="form-group">
-            <label>口座名義</label>
-            <input v-model="accountHolder" placeholder="ヤマダ タロウ" class="input-field" />
-          </div>
-          <div class="form-group">
-            <label>口座番号</label>
-            <input v-model="accountNumber" placeholder="1234567" class="input-field" />
-          </div>
-        </div>
         
         <div class="button-group">
           <button @click="showConfirmation = true" class="button">確認画面へ</button>
@@ -329,33 +225,13 @@ const cancel = () => {
           <p>電話番号: {{ phone }}</p>
           <p>郵便番号: {{ postalCode }}</p>
           <p>住所: {{ city }} {{ address }}</p>
-          <p>お支払い方法: 
-            <span v-if="paymentMethod === 'credit'">クレジットカード</span>
-            <span v-else-if="paymentMethod === 'bank'">銀行振込</span>
-            <span v-else>代金引換</span>
-          </p>
-          
-          <!-- クレジットカード情報の確認 -->
-          <div v-if="paymentMethod === 'credit'" class="payment-confirmation">
-            <h3>クレジットカード情報</h3>
-            <p>カード番号: {{ cardNumber }}</p>
-            <p>カード名義人: {{ cardName }}</p>
-            <p>有効期限: {{ cardExpiry }}</p>
-          </div>
-          
-          <!-- 銀行振込情報の確認 -->
-          <div v-if="paymentMethod === 'bank'" class="payment-confirmation">
-            <h3>銀行振込情報</h3>
-            <p>銀行名: {{ bankName }}</p>
-            <p>口座名義: {{ accountHolder }}</p>
-            <p>口座番号: {{ accountNumber }}</p>
-          </div>
         </div>
         <div class="button-group">
-          <button @click="submitPurchase" class="button">ご注文を確定する</button>
+          <button @click="submitPurchase" class="button">Stripeで決済する</button>
           <button @click="showConfirmation = false" class="button-cancel">戻る</button>
         </div>
         <div v-if="successMessage" class="success-message">{{ successMessage }}</div>
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
       </div>
     </div>
   </div>
@@ -494,32 +370,6 @@ h2 {
   outline: none;
 }
 
-.payment-details {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #fdfafa;
-  border: 1px solid #e9e1e1;
-  border-radius: 8px;
-}
-
-.payment-details h3 {
-  font-family: "Yu Mincho", "游明朝", YuMincho, serif;
-  font-size: 1.2rem;
-  color: #4a4a4a;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e9e1e1;
-}
-
-.form-row {
-  display: flex;
-  gap: 20px;
-}
-
-.form-group.half {
-  flex: 1;
-}
-
 .button-group {
   display: flex;
   justify-content: center;
@@ -593,14 +443,6 @@ h3 {
   margin-bottom: 20px;
 }
 
-.payment-confirmation {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #e9e1e1;
-  border-radius: 8px;
-}
-
 .error-message {
   color: #d68f8f;
   margin-top: 15px;
@@ -640,11 +482,6 @@ h3 {
 
   .selected-product h3 {
     font-size: 1.2rem;
-  }
-
-  .form-row {
-    flex-direction: column;
-    gap: 0;
   }
 
   .button-group {

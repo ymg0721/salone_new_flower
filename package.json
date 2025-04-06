@@ -11,6 +11,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^7.0.0",
     "dayjs": "^1.11.13",
     "gsap": "^3.12.5",
     "naive-ui": "^2.40.3",
