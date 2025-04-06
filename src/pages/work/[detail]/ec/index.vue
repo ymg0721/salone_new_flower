@@ -82,8 +82,8 @@ const getStripePriceId = (productId: string): string => {
   
   // 商品IDとStripeの価格IDのマッピング
   const priceIdMap: Record<string, string> = {
-    // 一時的にStripeの商品IDを使用（価格IDを作成後に更新する必要があります）
-    '2106': 'prod_S4yy9L4qcZxday',
+    // Stripeダッシュボードで作成した価格IDを使用
+    '2106': 'price_1RAp0qQxwF5vz9ajx6iOJZmF', // ここに新しい価格IDを設定してください
   };
   
   const priceId = priceIdMap[productId] || '';
