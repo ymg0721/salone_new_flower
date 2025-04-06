@@ -77,14 +77,18 @@ const validateFields = () => {
 
 // 商品IDからStripeの価格IDを取得する関数
 const getStripePriceId = (productId: string): string => {
+  // デバッグ用のログ
+  console.log('アプリケーション商品ID: ', productId);
+  
   // 商品IDとStripeの価格IDのマッピング
-  console.log('productId: ', productId)
   const priceIdMap: Record<string, string> = {
-    '2106': 'price_1RAp0qQxwF5vz9ajx6iOJZmF', // 実際のStripe価格ID
-    // 他の商品IDとStripeの価格IDのマッピングを追加
+    // 一時的にStripeの商品IDを使用（価格IDを作成後に更新する必要があります）
+    '2106': 'prod_S4yy9L4qcZxday',
   };
   
-  return priceIdMap[productId] || '';
+  const priceId = priceIdMap[productId] || '';
+  console.log('Stripe価格ID: ', priceId);
+  return priceId;
 };
 
 // 購入処理
