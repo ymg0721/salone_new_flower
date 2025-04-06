@@ -89,43 +89,37 @@ const submitPurchase = async () => {
     return;
   }
 
-  const config = useRuntimeConfig();
   try {
-    // Stripeセッションの作成
-    const response = await fetch(`${config.public.NUXT_PUBLIC_API_URL || 'https://node-server2-rosy.vercel.app'}/create-checkout-session`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: name.value,
-        email: email.value,
-        phone: phone.value,
-        address: address.value,
-        postalCode: postalCode.value,
-        city: city.value,
-        product: {
-          id: selectedProduct.value.id,
-          name: selectedProduct.value.name,
-          type: selectedProduct.value.type,
-          price: selectedProduct.value.price,
-          size: selectedProduct.value.size
-        }
-      }),
+    // Stripeの決済フローを開始
+    const { error } = await stripe.redirectToCheckout({
+      lineItems: [
+        {
+          price: selectedProduct.value.id, // Stripeの価格IDを使用
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      successUrl: `${window.location.origin}/work/${productId}/ec/complete`,
+      cancelUrl: `${window.location.origin}/work/${productId}/ec`,
+      customerEmail: email.value,
+      billingAddressCollection: 'required',
+      shippingAddressCollection: {
+        allowedCountries: ['JP'],
+      },
+      metadata: {
+        customerName: name.value,
+        customerPhone: phone.value,
+        customerAddress: `${city.value} ${address.value}`,
+        customerPostalCode: postalCode.value,
+        productName: selectedProduct.value.name,
+        productType: selectedProduct.value.type,
+        productSize: selectedProduct.value.size,
+      },
     });
 
-    const session = await response.json();
-    
-    if (session.sessionId) {
-      // Stripeのチェックアウトページにリダイレクト
-      const result = await stripe?.redirectToCheckout({
-        sessionId: session.sessionId
-      });
-
-      if (result?.error) {
-        errorMessage.value = '決済ページへの遷移に失敗しました。';
-      }
-    } else {
-      errorMessage.value = '決済セッションの作成に失敗しました。';
+    if (error) {
+      errorMessage.value = '決済ページへの遷移に失敗しました。';
+      console.error('Stripe error:', error);
     }
   } catch (error) {
     errorMessage.value = 'エラーが発生しました。時間をおいて再度お試しください。';
