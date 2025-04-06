@@ -96,7 +96,6 @@ const submitPurchase = async () => {
         {
           price: selectedProduct.value.id, // Stripeの価格IDを使用
           quantity: 1,
-          description: `${selectedProduct.value.name} (${selectedProduct.value.type}) - ${selectedProduct.value.size}`,
         },
       ],
       mode: 'payment',
