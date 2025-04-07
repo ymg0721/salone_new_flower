@@ -55,7 +55,11 @@ useHead({
           </button>
           <button @click="navigateToPricing(`/work/${productId}/reservation`)" 
             class="btn-secondary">
-            レッスンのご予約
+            レッスンの予約
+          </button>
+          <button @click="navigateToPricing(`/work/${productId}/ec`)" 
+            class="btn-purchase">
+            この商品を購入
           </button>
         </div>
       </div>
@@ -172,6 +176,7 @@ useHead({
   display: flex;
   gap: 1.5rem;
   margin-top: 2rem;
+  align-items: stretch;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -179,7 +184,7 @@ useHead({
   }
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary, .btn-secondary, .btn-purchase {
   padding: 1rem 2rem;
   font-family: 'Noto Serif JP', serif;
   font-size: 0.9rem;
@@ -191,6 +196,10 @@ useHead({
   text-align: center;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
   
   &::before {
     content: '';
@@ -225,6 +234,18 @@ useHead({
   
   &:hover {
     background-color: #fff;
+  }
+}
+
+.btn-purchase {
+  background: linear-gradient(135deg, #8B4513, #654321);
+  color: #fff;
+  border: 1px solid #8B4513;
+  
+  &:hover {
+    background: linear-gradient(135deg, #9B5523, #755331);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
   }
 }
 

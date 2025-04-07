@@ -77,17 +77,69 @@ const validateFields = () => {
 
 // 商品IDからStripeの価格IDを取得する関数
 const getStripePriceId = (productId: string): string => {
-  // デバッグ用のログ
-  console.log('アプリケーション商品ID: ', productId);
-  
   // 商品IDとStripeの価格IDのマッピング
   const priceIdMap: Record<string, string> = {
-    // Stripeダッシュボードで作成した価格IDを使用
-    '2106': 'price_1RAp0qQxwF5vz9ajx6iOJZmF', // ここに新しい価格IDを設定してください
+    // 2101-2110
+    '2101': 'price_1RB4rqQxwF5vz9aj7PwboYyE',
+    '2102': 'price_1RB4sMQxwF5vz9ajmDvwcdD2',
+    '2103': 'price_1RB4t0QxwF5vz9ajZ14rXgaT',
+    '2104': 'price_1RB4tNQxwF5vz9ajC9u1yIdt',
+    '2105': 'price_1RB4tjQxwF5vz9ajiQ4tTg81',
+    '2106': 'price_1RAp0qQxwF5vz9ajx6iOJZmF',
+    '2107': 'price_1RB4utQxwF5vz9ajccnKvhBO',
+    '2108': 'price_1RB4vGQxwF5vz9ajcZRhQ6Q6',
+    '2109': 'price_1RB4vbQxwF5vz9ajcKR8P88n',
+    '2110': 'price_1RB4vvQxwF5vz9aj1va7Q1HW',
+
+    // 2111-2120
+    '2111': 'price_1RB4wQQxwF5vz9ajkmyyKHXT',
+    '2112': 'price_1RB4wmQxwF5vz9aj7XE4PFyX',
+    '2113': 'price_1RB4x9QxwF5vz9ajzLHv9Qsu',
+    '2114': 'price_1RB4xeQxwF5vz9ajwxSahnOE',
+    '2115': 'price_1RB50dQxwF5vz9ajJYHozV9d',
+    '2116': 'price_1RB511QxwF5vz9ajTgHiFY4s',
+    '2117': 'price_1RB51UQxwF5vz9aj7VrKvtrN',
+    '2118': 'price_1RB51rQxwF5vz9ajsNgb9Bfc',
+    '2119': 'price_1RB52QQxwF5vz9aj74NIMp0Y',
+    '2120': 'price_1RB52qQxwF5vz9ajgzRGcSXz',
+
+    // 2121-2130
+    '2121': 'price_1RB53EQxwF5vz9ajtZFFAqqV',
+    '2122': 'price_1RB5F3QxwF5vz9aj85FFcGdd',
+    '2123': 'price_1RB5FJQxwF5vz9ajF64QyPVL',
+    '2124': 'price_1RB5GEQxwF5vz9ajye4U9qAX',
+    '2125': 'price_1RB5GbQxwF5vz9ajOAfVt4Bz',
+    '2126': 'price_1RB5H5QxwF5vz9ajau2lQdgn',
+    '2127': 'price_1RB5HXQxwF5vz9ajhNE8CHIg',
+    '2128': 'price_1RB5HtQxwF5vz9ajOqVFZsw5',
+    '2129': 'price_1RB5IFQxwF5vz9aj8fWAnoOA',
+    '2130': 'price_1RB5IaQxwF5vz9ajsRHyxMeA',
+
+    // 2131-2140
+    '2131': 'price_1RB5IzQxwF5vz9aj2SPYBOG8',
+    '2132': 'price_1RB5JNQxwF5vz9aj5hcr8UH4',
+    '2133': 'price_1RB5JtQxwF5vz9ajMPZ3LPZK',
+    '2134': 'price_1RB5KHQxwF5vz9ajldtLaLPv',
+    '2135': 'price_1RB5KhQxwF5vz9ajIffUZcAE',
+    '2136': 'price_1RB5L6QxwF5vz9aj6EAugvWb',
+    '2137': 'price_1RB5LVQxwF5vz9ajuwojlkHb',
+    '2138': 'price_1RB5LrQxwF5vz9ajqCV4xvVd',
+    '2139': 'price_1RB5MCQxwF5vz9ajj9olAZfM',
+    '2140': 'price_1RB5MVQxwF5vz9ajaAYk6H6w',
+
+    // 2141-2151
+    '2141': 'price_1RB5MtQxwF5vz9ajSGTql4mj',
+    '2142': 'price_1RB5NIQxwF5vz9ajbHW6rZv4',
+    '2143': 'price_1RB5NdQxwF5vz9ajDGraY9Id',
+    '2144': 'price_1RB5NxQxwF5vz9ajCr7UlLyQ',
+    '2145': 'price_1RB5ONQxwF5vz9ajsg3ceYlp',
+    '2146': 'price_1RB5OnQxwF5vz9ajKauTLO7S',
+    '2149': 'price_1RB5QqQxwF5vz9aj2TfgO98V',
+    '2150': 'price_1RB5REQxwF5vz9aj1oOhRJOG',
+    '2151': 'price_1RB5RfQxwF5vz9ajy1viWz9s',
   };
   
   const priceId = priceIdMap[productId] || '';
-  console.log('Stripe価格ID: ', priceId);
   return priceId;
 };
 
