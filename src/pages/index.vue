@@ -10,6 +10,7 @@ import Story07 from '@/assets/img/Story07.png'
 import Story08 from '@/assets/img/Story08.png'
 import Story09 from '@/assets/img/Story09.png'
 import Story10 from '@/assets/img/Story10.png'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const Chrismas01Src = Chrismas01
 const Chrismas02Src = Chrismas02
@@ -28,6 +29,31 @@ const { start } = useScrollAnimation([
   { className: '.js-mvLogo04' },
   { className: '.js-mvLogo05' },
 ])
+
+const activeIndex = ref(0)
+
+// 自動スライドの設定
+let slideInterval: NodeJS.Timeout | null = null
+
+const startAutoSlide = () => {
+  slideInterval = setInterval(() => {
+    activeIndex.value = (activeIndex.value + 1) % 3
+  }, 5000)
+}
+
+const stopAutoSlide = () => {
+  if (slideInterval) {
+    clearInterval(slideInterval)
+  }
+}
+
+onMounted(() => {
+  startAutoSlide()
+})
+
+onUnmounted(() => {
+  stopAutoSlide()
+})
 
 useHead({
   title: 'ホーム',
@@ -49,14 +75,37 @@ useHead({
 <template>
   <div class="js-mvTrigger elegant-container" v-if="start">
     <!-- ヘッダー画像セクション -->
-    <div class="header-images">
-      <NImage
-        v-for="(src, index) in [Chrismas01Src, Chrismas02Src, Chrismas03Src]"
-        :key="index"
-        class="js-mvLogo header-image"
-        :src="src"
-        :alt="`header-${index + 1}`"
-      />
+    <div class="header-showcase">
+      <div class="header-showcase__container">
+        <div 
+          v-for="(src, index) in [Chrismas01Src, Chrismas02Src, Chrismas03Src]"
+          :key="index"
+          class="header-showcase__item"
+          :class="{ 'header-showcase__item--active': index === activeIndex }"
+          @mouseenter="activeIndex = index"
+        >
+          <NImage
+            class="header-showcase__image js-mvLogo"
+            :src="src"
+            :alt="`header-${index + 1}`"
+            preview-disabled
+          />
+          <div class="header-showcase__overlay">
+            <div class="header-showcase__content">
+              <span class="header-showcase__number">{{ String(index + 1).padStart(2, '0') }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-showcase__navigation">
+        <button 
+          v-for="(_, index) in [Chrismas01Src, Chrismas02Src, Chrismas03Src]"
+          :key="index"
+          class="header-showcase__dot"
+          :class="{ 'header-showcase__dot--active': index === activeIndex }"
+          @click="activeIndex = index"
+        />
+      </div>
     </div>
 
     <!-- タイトルセクション -->
@@ -197,46 +246,150 @@ useHead({
   background-color: #fdfbf9;
 }
 
-.header-images {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 4rem;
-  overflow-x: auto;
-  padding: 1rem 0;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  
-  &::-webkit-scrollbar {
-    height: 4px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 2px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 2px;
+.header-showcase {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  max-height: 900px;
+  margin: 0 auto 1rem;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #fdfbf9, #f8f6f3);
+
+  @media (min-width: 769px) {
+    height: 60vh;
+    min-height: 500px;
+    max-height: 600px;
+    padding: 2rem 0;
   }
 
-  .header-image {
-    min-width: 280px;
-    width: 85vw;
-    max-width: 400px;
-    height: auto;
-    border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.6s ease;
-    scroll-snap-align: center;
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    @media (min-width: 769px) {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
 
-    @media (min-width: 768px) {
-      min-width: auto;
-      width: calc((100% - 4rem) / 3);
+  &__item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+
+    @media (min-width: 769px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 2;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.95);
+    transition: all 0.8s ease;
+
+    @media (min-width: 769px) {
+      width: auto;
+      height: 100%;
+      max-width: 90%;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.2)
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  &__item:hover &__overlay {
+    opacity: 1;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  &__number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    opacity: 0.8;
+  }
+
+  &__navigation {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 3;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.4s ease;
+
+    &--active {
+      background: #fff;
+      transform: scale(1.2);
     }
 
     &:hover {
-      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: 60vh;
+    min-height: 400px;
+
+    &__number {
+      font-size: 3rem;
+    }
+
+    &__navigation {
+      bottom: 1rem;
     }
   }
 }
@@ -347,10 +500,9 @@ useHead({
     padding: 1rem;
   }
 
-  .header-images {
-    gap: 1rem;
-    margin: 0 -1rem 2rem;
-    padding: 1rem;
+  .header-showcase {
+    height: 60vh;
+    min-height: 400px;
   }
 }
 
@@ -358,11 +510,6 @@ useHead({
 @media (min-width: 769px) and (max-width: 1024px) {
   .elegant-container {
     padding: 1.5rem;
-  }
-
-  .header-images {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
   }
 }
 
