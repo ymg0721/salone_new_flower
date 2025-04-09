@@ -1,20 +1,19 @@
 <script setup lang="ts">
 import { useScrollAnimation } from '@/composables/useScrollAnimation'
 import { NImage } from "naive-ui";
-import Chrismas01 from '@/assets/img/chrismas01.png'
-import Chrismas02 from '@/assets/img/chrismas02.png'
-import Chrismas03 from '@/assets/img/chrismas03.png'
+import Title01 from '@/assets/img/title/title-01.jpg'
+import Title02 from '@/assets/img/title/title-02.jpg'
+import Title03 from '@/assets/img/title/title-03.jpg'
 import Story01 from '@/assets/img/Story01.png'
 import Story06 from '@/assets/img/Story06.png'
 import Story07 from '@/assets/img/Story07.png'
 import Story08 from '@/assets/img/Story08.png'
 import Story09 from '@/assets/img/Story09.png'
 import Story10 from '@/assets/img/Story10.png'
-import { ref, onMounted, onUnmounted } from 'vue'
 
-const Chrismas01Src = Chrismas01
-const Chrismas02Src = Chrismas02
-const Chrismas03Src = Chrismas03
+const Title01Src = Title01
+const Title02Src = Title02
+const Title03Src = Title03
 const Story01Src = Story01
 const Story06Src = Story06
 const Story07Src = Story07
@@ -78,7 +77,7 @@ useHead({
     <div class="header-showcase">
       <div class="header-showcase__container">
         <div 
-          v-for="(src, index) in [Chrismas01Src, Chrismas02Src, Chrismas03Src]"
+          v-for="(src, index) in [Title01Src, Title02Src, Title03Src]"
           :key="index"
           class="header-showcase__item"
           :class="{ 'header-showcase__item--active': index === activeIndex }"
@@ -99,7 +98,7 @@ useHead({
       </div>
       <div class="header-showcase__navigation">
         <button 
-          v-for="(_, index) in [Chrismas01Src, Chrismas02Src, Chrismas03Src]"
+          v-for="(_, index) in [Title01Src, Title02Src, Title03Src]"
           :key="index"
           class="header-showcase__dot"
           :class="{ 'header-showcase__dot--active': index === activeIndex }"
@@ -125,7 +124,7 @@ useHead({
     >
       <NuxtLink to="/circlebox" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo02 h-[200px] w-full object-cover object-center md:h-340px"
+          class="col02 js-mvLogo02 h-[180px] w-full object-cover object-center md:h-340px"
           :src="Story01Src"
           alt="heder-01"
         />
@@ -134,7 +133,7 @@ useHead({
 
       <NuxtLink to="/square" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo02 h-[200px] w-full object-cover object-center md:h-340px"
+          class="col02 js-mvLogo02 h-[180px] w-full object-cover object-center md:h-340px"
           :src="Story06Src"
           alt="heder-01"
         />
@@ -143,7 +142,7 @@ useHead({
 
       <NuxtLink to="/ceremony" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo02 h-[200px] w-full object-cover object-center md:h-340px"
+          class="col02 js-mvLogo02 h-[180px] w-full object-cover object-center md:h-340px"
           :src="Story07Src"
           alt="heder-01"
         />
@@ -152,7 +151,7 @@ useHead({
 
       <NuxtLink to="/glass" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo03 h-[200px] w-full object-cover object-center md:h-340px"
+          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
           :src="Story08Src"
           alt="heder-01"
         />
@@ -161,7 +160,7 @@ useHead({
 
       <NuxtLink to="/funeral" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo03 h-[200px] w-full object-cover object-center md:h-340px"
+          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
           :src="Story09Src"
           alt="heder-01"
         />
@@ -170,7 +169,7 @@ useHead({
 
       <NuxtLink to="/chrismas" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo03 h-[200px] w-full object-cover object-center md:h-340px"
+          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
           :src="Story10Src"
           alt="heder-01"
         />
@@ -228,7 +227,7 @@ useHead({
       </NuxtLink>
       <NuxtLink to="/contact" class="col-span-2 md:col-span-1 text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline flex flex-col items-center">
         <img
-          class="col02 js-mvLogo05 h-[200px] w-full max-w-[500px] object-cover object-center md:h-340px"
+          class="col02 js-mvLogo05 h-[200px] w-full max-w-[500px] object-cover object-center md:h-340px mt-[20px] md:mt-[0px]"
           src="@/assets/img/test01.png"
           alt="contact-image"
         />
@@ -420,7 +419,7 @@ useHead({
   }
 
   @media (max-width: 768px) {
-    height: 60vh;
+    height: 65vh;
     min-height: 400px;
 
     &__number {
@@ -540,7 +539,7 @@ useHead({
   }
 
   .header-showcase {
-    height: 60vh;
+    height: 65vh;
     min-height: 400px;
   }
 }

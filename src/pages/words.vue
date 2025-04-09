@@ -54,8 +54,8 @@
     <section class="gift-suggestion">
       <h3>大切な方への贈り物に</h3>
       <p>
-        記念日や特別な日に、変わらない美しさを込めて。<br>
-        お母様やお義母様、親しい方への贈り物として、<br>
+        記念日や特別な日に、<br class="md:hidden">変わらない美しさを込めて。<br>
+        お母様やお義母様、<br class="md:hidden">親しい方への贈り物として、<br>
         心からの感謝の気持ちをお伝えください。
       </p>
     </section>
@@ -169,7 +169,7 @@
 .gift-suggestion {
   text-align: center;
   margin: 4rem 0;
-  padding: 3rem;
+  padding: 2rem;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid #eee;
 }
