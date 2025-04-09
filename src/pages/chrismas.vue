@@ -82,22 +82,35 @@ useHead({
   align-items: center;
   gap: 2rem;
   margin-bottom: 4rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    padding: 0 1rem;
+  }
 }
 
 .product-item {
   flex: 0 0 auto;
   width: 400px;
 
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .image-wrapper {
-    aspect-ratio: 3/4;
     height: 500px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
     
     @media (max-width: 768px) {
-      height: 300px;
+      height: auto;
+      margin-bottom: 1rem;
     }
   }
 
@@ -110,6 +123,11 @@ useHead({
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: transform 0.6s ease;
 
+    @media (max-width: 768px) {
+      border-radius: 4px;
+      height: auto;
+    }
+
     &:hover {
       transform: translateY(-8px);
     }
@@ -119,7 +137,7 @@ useHead({
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 1rem;
     border-radius: 4px;
     font-family: 'Noto Serif JP', serif;
@@ -130,6 +148,18 @@ useHead({
     white-space: pre-wrap;
     word-break: break-all;
     word-wrap: break-word;
+    max-width: calc(100% - 2rem);
+
+    @media (max-width: 768px) {
+      position: static;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 0.5rem;
+      background: #fff;
+      border: 1px solid #eee;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      order: 2;
+    }
   }
 }
 
@@ -166,29 +196,28 @@ useHead({
 
   .product-grid {
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
   }
 
   .product-item {
     width: 100%;
-    max-width: 300px;
+    max-width: 100%;
 
     .image-wrapper {
-      display: flex;
-      flex-direction: column;
       height: auto;
+      margin-bottom: 1rem;
     }
 
     .product-info {
       position: static;
       width: 100%;
-      margin-top: 1rem;
+      max-width: 100%;
+      margin-top: 0.5rem;
+      background: #fff;
+      border: 1px solid #eee;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       font-size: 0.85rem;
       padding: 1rem;
-      background: rgba(255, 255, 255, 0.95);
-      white-space: normal;
-      overflow-wrap: break-word;
-      word-break: break-word;
     }
   }
 

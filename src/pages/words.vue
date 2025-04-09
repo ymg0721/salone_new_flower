@@ -80,7 +80,7 @@
 }
 
 .japanese-title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 3rem;
   color: #666;
 }
