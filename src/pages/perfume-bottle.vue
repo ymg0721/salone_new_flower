@@ -126,4 +126,48 @@ useHead({
   right: 2rem;
   bottom: 2rem;
 }
+
+@media (max-width: 768px) {
+  .product-container {
+    padding: 1rem;
+  }
+
+  .main-product {
+    margin-bottom: 2rem;
+
+    .main-image {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+  }
+
+  .product-title {
+    position: static;
+    margin: 1rem 0;
+    padding: 1rem;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    .en {
+      font-size: 1.5rem;
+    }
+
+    .jp {
+      font-size: 0.9rem;
+    }
+  }
+
+  .product-price {
+    position: static;
+    margin: 1rem 0;
+    padding: 1rem;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 0.85rem;
+  }
+}
 </style> 
