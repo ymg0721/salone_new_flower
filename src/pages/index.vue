@@ -131,7 +131,7 @@ useHead({
     >
       <NuxtLink to="/circlebox" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
-          class="col02 js-mvLogo02 h-[180px] w-full object-cover object-center md:h-340px"
+          class="col02 js-mvLogo02 h-[180px] w-full object-cover object-center md:h-340px md:mx-auto"
           :src="Story01Src"
           alt="heder-01"
         />
@@ -245,6 +245,11 @@ useHead({
 </template>
 
 <style scoped lang="scss">
+::v-deep(.n-image img) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .elegant-container {
   max-width: 1440px;
   margin: 0 auto;
