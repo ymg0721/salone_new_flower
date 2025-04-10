@@ -4,14 +4,14 @@ import { useScrollAnimation } from '@/composables/useScrollAnimation'
 
 const { getProductText, getImagePath } = usePagesData()
 
-
 const { start } = useScrollAnimation([
   { className: '.js-mvLogo' },
   { className: '.js-mvLogo02' },
+  { className: '.js-mvLogo03' }
 ])
 
 useHead({
-  title: 'Square',
+  title: 'Glass Dome',
   meta: [
     {
       name: 'description',
@@ -30,20 +30,27 @@ useHead({
 <template>
   <div class="product-container js-mvTrigger" v-if="start">
     <!-- メイン商品セクション -->
-    <NuxtLink to="/work/2107" class="main-product">
+    <NuxtLink to="/work/2120" class="main-product">
       <div class="relative overflow-hidden">
         <img
           class="js-mvLogo main-image"
-          :src="getImagePath('2107')"
+          :src="getImagePath('2120')"
           alt="header-01"
         />
 
-        <div class="product-title js-mvLogo">
-          <span class="en">Square</span>
-          <span class="jp">スクエア</span>
+        <div class="product-title js-mvLogo ">
+          <span class="en">Glass Dome</span>
+          <span class="jp">グラスドーム</span>
         </div>
 
-        <div class="product-price js-mvLogo" v-html="getProductText('2107')" />
+        <div class="product-description js-mvLogo hidden md:block">
+          ガラスの器に<br />
+          閉じ込められた<br />
+          永遠の美しさ<br />
+          特別な空間を演出
+        </div>
+
+        <div class="product-price js-mvLogo" v-html="getProductText('2120')" />
       </div>
     </NuxtLink>
 
@@ -55,7 +62,7 @@ useHead({
 
     <!-- 商品グリッド -->
     <div class="product-grid">
-      <div class="product-item" v-for="id in ['2108', '2109', '2110']" :key="id">
+      <div class="product-item" v-for="id in ['2121', '2122', '2123', '2124', '2125']" :key="id">
         <NuxtLink :to="`/work/${id}`">
           <div class="relative overflow-hidden image-wrapper">
             <img
@@ -237,93 +244,6 @@ useHead({
     background: rgba(255, 255, 255, 0.95);
     padding: 1rem;
     border-radius: 4px;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 0.9rem;
-    color: #2c2c2c;
-    line-height: 1.6;
-    white-space: pre-wrap;
-    word-break: break-all;
-    word-wrap: break-word;
-    max-width: calc(100% - 2rem);
-
-    @media (max-width: 768px) {
-      position: static;
-      width: 100%;
-      max-width: 100%;
-      margin-top: 0.5rem;
-      background: #fff;
-      border: 1px solid #eee;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      order: 2;
-    }
   }
 }
-
-@media (max-width: 768px) {
-  .product-container {
-    padding: 1rem;
-  }
-
-  .main-product {
-    margin-bottom: 2rem;
-
-    .main-image {
-      max-width: 100%;
-      border-radius: 4px;
-    }
-  }
-
-  .product-title {
-    position: static;
-    margin: 1rem 0;
-    padding: 1rem;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-
-    .en {
-      font-size: 1.5rem;
-    }
-
-    .jp {
-      font-size: 0.9rem;
-    }
-  }
-
-  .product-description {
-    position: static;
-    margin: 1rem 0;
-    padding: 1rem;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    font-size: 0.85rem;
-  }
-
-  .product-price {
-    position: static;
-    margin: 1rem 0;
-    padding: 1rem;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    font-size: 0.85rem;
-  }
-
-  .section-header {
-    margin: 3rem 0;
-    
-    .en {
-      font-size: 1.5rem;
-    }
-  }
-
-  .product-grid {
-    flex-direction: column;
-    gap: 3rem;
-  }
-}
-</style>
+</style> 

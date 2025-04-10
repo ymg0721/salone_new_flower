@@ -10,6 +10,12 @@ import Story07 from '@/assets/img/Story07.png'
 import Story08 from '@/assets/img/Story08.png'
 import Story09 from '@/assets/img/Story09.png'
 import Story10 from '@/assets/img/Story10.png'
+import Src2111 from '@/assets/img/2111.png'
+import Src2113 from '@/assets/img/2113.png'
+import Src2120 from '@/assets/img/2120.png'
+import Src2151 from '@/assets/img/2151.png'
+
+
 import { useOgp } from '@/composables/useOgp'
 
 const Title01Src = Title01
@@ -21,6 +27,10 @@ const Story07Src = Story07
 const Story08Src = Story08
 const Story09Src = Story09
 const Story10Src = Story10
+const Src2111Src = Src2111
+const Src2113Src = Src2113
+const Src2120Src = Src2120
+const Src2151Src = Src2151
 
 const { start } = useScrollAnimation([
   { className: '.js-mvLogo' },
@@ -174,13 +184,49 @@ useHead({
         <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Funeral</p>
       </NuxtLink>
 
-      <NuxtLink to="/chrismas" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
+      <NuxtLink to="/event" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
           class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
           :src="Story10Src"
           alt="heder-01"
         />
-        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Chrismas</p>
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Event</p>
+      </NuxtLink>
+
+      <NuxtLink to="/gift" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
+        <NImage
+          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
+          :src="Src2111Src"
+          alt="heder-01"
+        />
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Gift</p>
+      </NuxtLink>
+
+      <NuxtLink to="/clock" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
+        <NImage
+          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
+          :src="Src2113Src"
+          alt="heder-01"
+        />
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Clock</p>
+      </NuxtLink>
+
+      <NuxtLink to="/glass-dome" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
+        <NImage
+          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
+          :src="Src2120Src"
+          alt="heder-01"
+        />
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Glass Dome</p>
+      </NuxtLink>
+
+      <NuxtLink to="/perfume-bottle" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
+        <NImage
+          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
+          :src="Src2151Src"
+          alt="heder-01"
+        />
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Perfume Bottle</p>
       </NuxtLink>
     </div>
     <!-- Preservedページ ここまで↑ -->
