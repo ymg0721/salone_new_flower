@@ -10,6 +10,7 @@ import Story07 from '@/assets/img/Story07.png'
 import Story08 from '@/assets/img/Story08.png'
 import Story09 from '@/assets/img/Story09.png'
 import Story10 from '@/assets/img/Story10.png'
+import { useOgp } from '@/composables/useOgp'
 
 const Title01Src = Title01
 const Title02Src = Title02
@@ -28,6 +29,12 @@ const { start } = useScrollAnimation([
   { className: '.js-mvLogo04' },
   { className: '.js-mvLogo05' },
 ])
+
+useOgp({
+  title: 'Venere Emi Flower Salone | プリザーブドフラワーアトリエ',
+  description: 'プリザーブドフラワーのアトリエ。オリジナルの作品制作からレッスンまで、花のある暮らしをご提案します。',
+  image: '/img/ogp.jpg',
+});
 
 const activeIndex = ref(0)
 
