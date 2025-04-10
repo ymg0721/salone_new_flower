@@ -43,12 +43,7 @@ useHead({
           <span class="jp">パフュームボトル</span>
         </div>
 
-        <div class="product-description js-mvLogo hidden md:block">
-          香りと花の<br />
-          調べが奏でる<br />
-          優雅な空間<br />
-          心を癒す
-        </div>
+
 
         <div class="product-price js-mvLogo" v-html="getProductText('2151')" />
       </div>

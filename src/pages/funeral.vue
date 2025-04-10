@@ -30,7 +30,7 @@ useHead({
   <div class="product-container js-mvTrigger" v-if="start">
     <!-- 上部の商品グリッド（配置はそのまま） -->
     <div class="product-grid">
-      <div class="product-item" v-for="id in ['2120', '2121']" :key="id">
+      <div class="product-item" v-for="id in ['2126', '2127']" :key="id">
         <NuxtLink :to="`/work/${id}`">
           <div class="relative overflow-hidden image-wrapper">
             <img
@@ -52,7 +52,7 @@ useHead({
 
     <!-- 下部の商品グリッド（配置はそのまま） -->
     <div class="product-grid">
-      <div class="product-item" v-for="id in ['2122', '2123']" :key="id">
+      <div class="product-item" v-for="id in ['2128', '2129','2130']" :key="id">
         <NuxtLink :to="`/work/${id}`">
           <div class="relative overflow-hidden image-wrapper">
             <img
@@ -77,23 +77,24 @@ useHead({
 }
 
 .product-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
-  
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
   @media (max-width: 768px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 3rem;
-    align-items: center;
     padding: 0 1rem;
   }
 }
 
 .product-item {
-  flex: 0 0 auto;
-  width: 400px;
+  width: 100%;
+  max-width: 100%;
 
   @media (max-width: 768px) {
     width: 100%;

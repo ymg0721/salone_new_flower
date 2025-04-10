@@ -31,11 +31,11 @@ useHead({
 <template>
   <div class="product-container js-mvTrigger" v-if="start">
     <!-- メイン商品セクション -->
-    <NuxtLink to="/work/2113" class="main-product">
+    <NuxtLink to="/work/2115" class="main-product">
       <div class="relative overflow-hidden">
         <img
           class="js-mvLogo main-image"
-          :src="getImagePath('2113')"
+          :src="getImagePath('2115')"
           alt="header-01"
         />
 
@@ -44,7 +44,7 @@ useHead({
           <span class="jp">セレモニー</span>
         </div>
 
-        <div class="product-price js-mvLogo" v-html="getProductText('2113')" />
+        <div class="product-price js-mvLogo" v-html="getProductText('2115')" />
       </div>
     </NuxtLink>
 
@@ -56,7 +56,7 @@ useHead({
 
     <!-- 商品グリッド -->
     <div class="product-grid">
-      <div class="product-item" v-for="id in ['2114', '2115']" :key="id">
+      <div class="product-item" v-for="id in ['2116', '2117', '2118', '2119']" :key="id">
         <NuxtLink :to="`/work/${id}`">
           <div class="relative overflow-hidden image-wrapper">
             <img
@@ -175,23 +175,24 @@ useHead({
 }
 
 .product-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 3rem;
-    align-items: center;
     padding: 0 1rem;
   }
 }
 
 .product-item {
-  flex: 0 0 auto;
-  width: 400px;
+  width: 100%;
+  max-width: 100%;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -199,7 +200,6 @@ useHead({
   }
 
   .image-wrapper {
-
     height: 500px;
     display: flex;
     flex-direction: column;

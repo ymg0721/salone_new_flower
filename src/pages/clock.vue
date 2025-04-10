@@ -182,12 +182,14 @@ useHead({
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  justify-items: center;
+  justify-content: center;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -198,6 +200,7 @@ useHead({
 
 .product-item {
   width: 100%;
+  max-width: 400px;
 
   @media (max-width: 768px) {
     width: 100%;

@@ -166,15 +166,6 @@ useHead({
         <p class="js-mvLogo02 italic text-12px mt-2 md:mt-20px text-center">Ceremony</p>
       </NuxtLink>
 
-      <NuxtLink to="/glass" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
-        <NImage
-          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
-          :src="Story08Src"
-          alt="heder-01"
-        />
-        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Glass</p>
-      </NuxtLink>
-
       <NuxtLink to="/funeral" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
           class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
