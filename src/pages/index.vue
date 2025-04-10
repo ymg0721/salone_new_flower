@@ -6,13 +6,12 @@ import Title02 from '@/assets/img/title/title-02.jpg'
 import Title03 from '@/assets/img/title/title-03.jpg'
 import Story01 from '@/assets/img/Story01.png'
 import Story06 from '@/assets/img/Story06.png'
-import Story07 from '@/assets/img/Story07.png'
-import Story08 from '@/assets/img/Story08.png'
-import Story09 from '@/assets/img/Story09.png'
 import Story10 from '@/assets/img/Story10.png'
 import Src2111 from '@/assets/img/2111.png'
 import Src2113 from '@/assets/img/2113.png'
+import Src2115 from '@/assets/img/2115.png'
 import Src2120 from '@/assets/img/2120.png'
+import Src2126 from '@/assets/img/2126.png'
 import Src2151 from '@/assets/img/2151.png'
 
 
@@ -23,13 +22,12 @@ const Title02Src = Title02
 const Title03Src = Title03
 const Story01Src = Story01
 const Story06Src = Story06
-const Story07Src = Story07
-const Story08Src = Story08
-const Story09Src = Story09
 const Story10Src = Story10
 const Src2111Src = Src2111
 const Src2113Src = Src2113
+const Src2115Src = Src2115
 const Src2120Src = Src2120
+const Src2126Src = Src2126
 const Src2151Src = Src2151
 
 const { start } = useScrollAnimation([
@@ -160,7 +158,7 @@ useHead({
       <NuxtLink to="/ceremony" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
           class="col02 js-mvLogo02 h-[180px] w-full object-cover object-center md:h-340px"
-          :src="Story07Src"
+          :src="Src2115Src"
           alt="heder-01"
         />
         <p class="js-mvLogo02 italic text-12px mt-2 md:mt-20px text-center">Ceremony</p>
@@ -169,7 +167,7 @@ useHead({
       <NuxtLink to="/funeral" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
         <NImage
           class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
-          :src="Story09Src"
+          :src="Src2126Src"
           alt="heder-01"
         />
         <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Funeral</p>
