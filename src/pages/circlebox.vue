@@ -62,7 +62,7 @@ useHead({
 
     <!-- 商品グリッド -->
     <div class="product-grid">
-      <div class="product-item" v-for="id in ['2102', '2103']" :key="id">
+      <div class="product-item" v-for="id in ['2102', '2103', '2104', '2105', '2106']" :key="id">
         <NuxtLink :to="`/work/${id}`">
           <div class="relative overflow-hidden image-wrapper">
             <img
@@ -183,23 +183,23 @@ useHead({
 }
 
 .product-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 3rem;
-    align-items: center;
     padding: 0 1rem;
   }
 }
 
 .product-item {
-  flex: 0 0 auto;
-  width: 400px;
+  width: 100%;
 
   @media (max-width: 768px) {
     width: 100%;
