@@ -43,13 +43,6 @@ useHead({
           <span class="jp">グラスドーム</span>
         </div>
 
-        <div class="product-description js-mvLogo hidden md:block">
-          ガラスの器に<br />
-          閉じ込められた<br />
-          永遠の美しさ<br />
-          特別な空間を演出
-        </div>
-
         <div class="product-price js-mvLogo" v-html="getProductText('2120')" />
       </div>
     </NuxtLink>
@@ -84,20 +77,39 @@ useHead({
   margin: 0 auto;
   padding: 2rem;
   background-color: #fdfbf9;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 }
 
 .main-product {
   margin-bottom: 4rem;
   display: flex;
   justify-content: center;
+  width: 100%;
   
   .main-image {
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     height: auto;
+    min-height: 600px;
+    object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     transition: transform 0.8s ease;
+
+    @media (max-width: 1024px) {
+      min-height: 500px;
+    }
+
+    @media (max-width: 768px) {
+      min-height: 400px;
+    }
+
+    @media (max-width: 480px) {
+      min-height: 300px;
+    }
 
     &:hover {
       transform: scale(1.02);
@@ -113,10 +125,16 @@ useHead({
   padding: 1.5rem 2rem;
   border-radius: 4px;
 
+  @media (max-width: 768px) {
+    top: 1rem;
+    left: 1rem;
+    padding: 1rem 1.5rem;
+  }
+
   .en {
     display: block;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 300;
     letter-spacing: 0.2em;
     color: #2c2c2c;
@@ -125,7 +143,7 @@ useHead({
   .jp {
     display: block;
     font-family: 'Noto Serif JP', serif;
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 2vw, 1rem);
     font-weight: 200;
     letter-spacing: 0.1em;
     color: #666;
