@@ -158,7 +158,7 @@ const cancelDate = () => {
                     <option v-for="product in lessonProducts" 
                             :key="product.id" 
                             :value="product.id">
-                        {{ product.name }} ({{ product.type }})
+                        {{ product.name }} {{ product.type ? `（${product.type}）` : '' }}
                     </option>
                 </select>
             </div>
