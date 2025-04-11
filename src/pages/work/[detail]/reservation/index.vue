@@ -15,7 +15,7 @@ const tempDate = ref('');
 const route = useRoute()
 const router = useRouter() // ルーターをインポート
 const productId = route.params.detail as string
-const { products, getProductText } = usePagesData()
+const { products, getImagePath } = usePagesData()
 const successMessage = ref('');
 const errorMessage = ref('');
 
@@ -165,6 +165,9 @@ const cancelDate = () => {
 
             <div v-if="selectedProduct" class="selected-product">
                 <h3>{{ selectedProduct.name }}</h3>
+                <div class="product-image">
+                    <img :src="getImagePath(selectedProduct.id)" :alt="selectedProduct.name" />
+                </div>
                 <div class="product-details">
                     <p class="type">{{ selectedProduct.type }}</p>
                     <p class="price">¥{{ selectedProduct.price.toLocaleString() }}</p>
@@ -502,5 +505,19 @@ h1 {
         width: 95%;
         margin: 20px;
     }
+}
+
+.product-image {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.product-image img {
+    max-width: 100%;
+    max-height: 300px;
+    margin: 0 auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 </style>
