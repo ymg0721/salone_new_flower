@@ -380,7 +380,7 @@ export const usePagesData = () => {
     const product = products.value.find(p => p.id === id)
     if (!product) return ''
     
-    return `■ No.${product.id}<br>${product.name} （${product.type}）<br>税込 ${product.price.toLocaleString()}円<br>${product.size}`
+    return `■ No.${product.id}<br>${product.name} ${product.type ? `（${product.type}）` : '' }<br>税込 ${product.price.toLocaleString()}円<br>${product.size}`
   }
 
   const imagePaths = {
