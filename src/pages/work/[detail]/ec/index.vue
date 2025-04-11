@@ -281,7 +281,7 @@ const cancel = () => {
           <p>住所: {{ city }} {{ address }}</p>
         </div>
         <div class="button-group">
-          <button @click="submitPurchase" class="button">Stripeで決済する</button>
+          <button @click="submitPurchase" class="button">決済画面へ</button>
           <button @click="showConfirmation = false" class="button-cancel">戻る</button>
         </div>
         <div v-if="successMessage" class="success-message">{{ successMessage }}</div>
