@@ -384,7 +384,7 @@ export const usePagesData = () => {
   }
 
   const imagePaths = {
-    '2101': new URL('../assets/img/circle-title.png', import.meta.url).href,
+    '2101': new URL('../assets/img/Story01.png', import.meta.url).href,
     '2102': new URL('../assets/img/circle-body-1.png', import.meta.url).href,
     '2103': new URL('../assets/img/circle-body-2.png', import.meta.url).href,
     '2104': new URL('../assets/img/2104.png', import.meta.url).href,
