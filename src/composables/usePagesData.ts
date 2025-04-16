@@ -14,7 +14,7 @@ export const usePagesData = () => {
       id: '2101',
       name: 'グロリアス M',
       type: 'アクアブルー',
-      price: 100000,
+      price: 58000,
       size: 'W20 x D15.5 x H20.5cm'
     },
     {
@@ -228,13 +228,6 @@ export const usePagesData = () => {
       size: 'W15 x D13 x H15cm'
     },
     {
-      id: '2131',
-      name: 'パンプキンランプ',
-      type: 'ブロンズ',
-      price: 9000,
-      size: 'W15 x D13 x H15cm'
-    },
-    {
       id: '2132',
       name: 'ハロウィンボックス',
       type: '',
@@ -374,6 +367,34 @@ export const usePagesData = () => {
       price: 5000,
       size: 'W4.5 x D5 x H15cm'
     },
+    {
+      id: '3001',
+      name: 'アネモネとバラのブーケ',
+      type: 'エレガントブーケ',
+      price: 15000,
+      size: 'W25 x D25 x H35cm'
+    },
+    {
+      id: '3002',
+      name: 'ミモザブーケ',
+      type: '春のブーケ',
+      price: 12000,
+      size: 'W30 x D20 x H40cm'
+    },
+    {
+      id: '3003',
+      name: 'ホワイト＆ピンクブーケ',
+      type: 'ナチュラルブーケ',
+      price: 13000,
+      size: 'W25 x D25 x H35cm'
+    },
+    {
+      id: '3004',
+      name: 'ピュアホワイトローズブーケ',
+      type: 'クラシカルブーケ',
+      price: 16000,
+      size: 'W25 x D20 x H35cm'
+    },
   ])
 
   const getProductText = (id: string) => {
@@ -435,6 +456,10 @@ export const usePagesData = () => {
     '2149': new URL('../assets/img/2149.png', import.meta.url).href,
     '2150': new URL('../assets/img/2150.png', import.meta.url).href,
     '2151': new URL('../assets/img/2151.png', import.meta.url).href,
+    '3001': new URL('../assets/img/bouqet/01.jpg', import.meta.url).href,
+    '3002': new URL('../assets/img/bouqet/02.jpg', import.meta.url).href,
+    '3003': new URL('../assets/img/bouqet/03.jpg', import.meta.url).href,
+    '3004': new URL('../assets/img/bouqet/04.jpg', import.meta.url).href,
   }
 
   const getImagePath = (id: string) => {

@@ -1,25 +1,27 @@
 <script setup lang="ts">
 import { useScrollAnimation } from '@/composables/useScrollAnimation'
 import { NImage } from "naive-ui";
-import Title01 from '@/assets/img/title/title-01.jpg'
-import Title02 from '@/assets/img/title/title-02.jpg'
-import Title03 from '@/assets/img/title/title-03.jpg'
+import Title01 from '@/assets/img/title/title-00.jpg'
+import Title02 from '@/assets/img/title/title-01.jpg'
+import Title03 from '@/assets/img/title/title-02.jpg'
+import Title04 from '@/assets/img/title/title-04.jpg'
 import Story01 from '@/assets/img/Story01.png'
 import Story06 from '@/assets/img/Story06.png'
-import Story10 from '@/assets/img/Story10.png'
+import Story10 from '@/assets/img/event.jpg'
 import Src2111 from '@/assets/img/2111.png'
 import Src2113 from '@/assets/img/2113.png'
 import Src2115 from '@/assets/img/2115.png'
 import Src2120 from '@/assets/img/2120.png'
 import Src2126 from '@/assets/img/2126.png'
 import Src2151 from '@/assets/img/2151.png'
-
+import Bouquet from '@/assets/img/bouqet.jpg'
 
 import { useOgp } from '@/composables/useOgp'
 
 const Title01Src = Title01
 const Title02Src = Title02
 const Title03Src = Title03
+const Title04Src = Title04
 const Story01Src = Story01
 const Story06Src = Story06
 const Story10Src = Story10
@@ -29,6 +31,7 @@ const Src2115Src = Src2115
 const Src2120Src = Src2120
 const Src2126Src = Src2126
 const Src2151Src = Src2151
+const BouquetSrc = Bouquet
 
 const { start } = useScrollAnimation([
   { className: '.js-mvLogo' },
@@ -51,7 +54,7 @@ let slideInterval: NodeJS.Timeout | null = null
 
 const startAutoSlide = () => {
   slideInterval = setInterval(() => {
-    activeIndex.value = (activeIndex.value + 1) % 3
+    activeIndex.value = (activeIndex.value + 1) % 4
   }, 5000)
 }
 
@@ -92,7 +95,7 @@ useHead({
     <div class="header-showcase">
       <div class="header-showcase__container">
         <div 
-          v-for="(src, index) in [Title01Src, Title02Src, Title03Src]"
+          v-for="(src, index) in [Title01Src, Title02Src, Title03Src, Title04Src]"
           :key="index"
           class="header-showcase__item"
           :class="{ 'header-showcase__item--active': index === activeIndex }"
@@ -113,7 +116,7 @@ useHead({
       </div>
       <div class="header-showcase__navigation">
         <button 
-          v-for="(_, index) in [Title01Src, Title02Src, Title03Src]"
+          v-for="(_, index) in [Title01Src, Title02Src, Title03Src, Title04Src]"
           :key="index"
           class="header-showcase__dot"
           :class="{ 'header-showcase__dot--active': index === activeIndex }"
@@ -217,6 +220,15 @@ useHead({
         />
         <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Perfume Bottle</p>
       </NuxtLink>
+
+      <NuxtLink to="/bouquet" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline">
+        <NImage
+          class="col02 js-mvLogo03 h-[180px] w-full object-cover object-center md:h-340px"
+          :src="BouquetSrc"
+          alt="bouquet-image"
+        />
+        <p class="js-mvLogo03 italic text-12px mt-2 md:mt-20px text-center">Bouquet</p>
+      </NuxtLink>
     </div>
     <!-- Preservedページ ここまで↑ -->
 
@@ -262,7 +274,7 @@ useHead({
       <NuxtLink to="/words" class="text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline flex flex-col items-center">
         <img
           class="col02 js-mvLogo05 h-[200px] w-full object-cover object-center md:h-340px"
-          src="@/assets/img/test02.png"
+          src="@/assets/img/words.jpg"
           alt="words-image"
         />
         <p class="js-mvLogo05 italic text-[14px] md:text-[16px] mt-4 md:mt-6 text-center">お花の用語</p>
@@ -270,7 +282,7 @@ useHead({
       <NuxtLink to="/contact" class="col-span-2 md:col-span-1 text-[#302e2e] no-underline hover:underline md:text-[#302e2e] md:no-underline md:hover:underline flex flex-col items-center">
         <img
           class="col02 js-mvLogo05 h-[200px] w-full max-w-[500px] object-cover object-center md:h-340px mt-[20px] md:mt-[0px]"
-          src="@/assets/img/test01.png"
+          src="@/assets/img/contact.jpg"
           alt="contact-image"
         />
         <p class="js-mvLogo05 italic text-[14px] md:text-[16px] mt-4 md:mt-6 text-center">お問い合わせ</p>
