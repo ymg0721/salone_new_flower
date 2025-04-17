@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex justify-between items-center p-4 bg-white relative z-10 md:p-6 lg:p-8"
+    class="flex justify-between items-center pt-4 pb-2 pr-4  md:p-4 bg-white relative z-10 md:p-6 lg:p-8"
   >
     <NuxtLink to="/" class="flex-shrink-0">
       <img
