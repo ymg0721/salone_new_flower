@@ -21,7 +21,7 @@ const { start } = useScrollAnimation([
 ])
 
 useHead({
-  title: 'Order | Venere Emi Flower Salone',
+  title: 'Bouquet',
   meta: [
     {
       name: 'description',
@@ -34,14 +34,14 @@ useHead({
 <template>
   <div class="js-mvTrigger order-container" v-if="start">
     <div class="title-section">
-      <h1 class="main-title js-mvLogo">Order</h1>
-      <p class="subtitle js-mvLogo">オーダー（注文販売）</p>
+      <h1 class="main-title js-mvLogo">Bouquet</h1>
+      <p class="subtitle js-mvLogo">ブーケ</p>
     </div>
 
     <div class="content-section">
-      <div class="introduction js-mvLogo02">
+      <div class="introduction js-mvLogo02   md:text-center">
         <p>
-          フラワーアレンジやブーケのオーダー（注文販売）を承っております。<br>
+          フラワーアレンジやブーケのオーダー<br class="md:hidden">（注文販売）を承っております。<br>
           ご自宅用やギフト用にどうぞご利用ください。
         </p>
         <p>
@@ -126,7 +126,6 @@ useHead({
 }
 
 .introduction {
-  text-align: center;
   margin-bottom: 4rem;
   
   p {
@@ -143,11 +142,20 @@ useHead({
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
 
   .gallery-item {
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease;
+    aspect-ratio: 3/4;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 
     &:hover {
       transform: translateY(-5px);
@@ -155,22 +163,35 @@ useHead({
 
     .product-image {
       width: 100%;
-      height: 350px;
+      height: 100%;
       object-fit: cover;
-      border-radius: 4px;
-      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
     .image-caption {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.75rem;
+      border-radius: 8px 8px 0 0;
       font-family: 'Noto Serif JP', serif;
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #333;
-      margin-bottom: 0.5rem;
     }
 
     .price {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.75rem;
+      border-radius: 0 0 8px 8px;
       font-family: 'Noto Serif JP', serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #666;
     }
   }
@@ -226,16 +247,51 @@ useHead({
 
 @media (max-width: 768px) {
   .order-container {
-    padding: 2rem 1rem;
+    padding: 1rem;
   }
 
   .gallery {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    padding: 0 1rem;
+
+    .gallery-item {
+      aspect-ratio: 4/5;
+      max-width: 320px;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .introduction {
+    padding: 0 1rem;
+    
+    p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
   }
 
   .order-info {
+    margin: 2rem 1rem;
     padding: 1.5rem;
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-section {
+      margin-bottom: 1.5rem;
+
+      h3 {
+        font-size: 0.9rem;
+      }
+
+      p, ul {
+        font-size: 0.8rem;
+      }
+    }
   }
 }
 </style> 
