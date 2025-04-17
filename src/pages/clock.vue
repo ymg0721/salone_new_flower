@@ -62,7 +62,7 @@ useHead({
 
     <!-- 商品グリッド -->
     <div class="product-grid">
-      <div class="product-item" v-for="id in ['2114']" :key="id">
+      <div class="product-item" v-for="id in ['2114', '2152']" :key="id">
         <NuxtLink :to="`/work/${id}`">
           <div class="relative overflow-hidden image-wrapper">
             <img
@@ -182,43 +182,29 @@ useHead({
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
-  max-width: 800px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  justify-items: center;
-  justify-content: center;
+  padding: 0 1rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 3rem;
-    padding: 0 1rem;
   }
 }
 
 .product-item {
   width: 100%;
-  max-width: 400px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    max-width: 100%;
-  }
-
+  
   .image-wrapper {
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
-    
-    @media (max-width: 768px) {
-      height: auto;
-      margin-bottom: 1rem;
-    }
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
 
   .product-image {
@@ -226,17 +212,10 @@ useHead({
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 6px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: transform 0.6s ease;
 
-    @media (max-width: 768px) {
-      border-radius: 4px;
-      height: auto;
-    }
-
     &:hover {
-      transform: translateY(-8px);
+      transform: scale(1.05);
     }
   }
 
@@ -245,8 +224,19 @@ useHead({
     bottom: 1rem;
     right: 1rem;
     background: rgba(255, 255, 255, 0.95);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-radius: 4px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 220px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+      padding: 0.8rem 1.2rem;
+      max-width: 200px;
+    }
   }
 }
 

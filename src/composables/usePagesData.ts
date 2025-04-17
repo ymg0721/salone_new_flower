@@ -368,6 +368,13 @@ export const usePagesData = () => {
       size: 'W4.5 x D5 x H15cm'
     },
     {
+      id: '2152',
+      name: 'フラワークロック',
+      type: 'ピンクローズ',
+      price: 18000,
+      size: 'W20 x D5 x H20cm'
+    },
+    {
       id: '3001',
       name: 'アネモネとバラのブーケ',
       type: 'エレガントブーケ',
@@ -456,6 +463,7 @@ export const usePagesData = () => {
     '2149': new URL('../assets/img/2149.png', import.meta.url).href,
     '2150': new URL('../assets/img/2150.png', import.meta.url).href,
     '2151': new URL('../assets/img/2151.png', import.meta.url).href,
+    '2152': new URL('../assets/img/clock.jpg', import.meta.url).href,
     '3001': new URL('../assets/img/bouqet/01.jpg', import.meta.url).href,
     '3002': new URL('../assets/img/bouqet/02.jpg', import.meta.url).href,
     '3003': new URL('../assets/img/bouqet/03.jpg', import.meta.url).href,

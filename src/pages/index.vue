@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useScrollAnimation } from '@/composables/useScrollAnimation'
 import { NImage } from "naive-ui";
-import Title01 from '@/assets/img/title/title-00.jpg'
+import Title01 from '@/assets/img/title/title-00.png'
 import Title02 from '@/assets/img/title/title-01.jpg'
 import Title03 from '@/assets/img/title/title-02.jpg'
 import Title04 from '@/assets/img/title/title-04.jpg'
@@ -302,6 +302,10 @@ useHead({
   margin: 0 auto;
   padding: 2rem;
   background-color: #fdfbf9;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 }
 
 .header-showcase {
@@ -313,6 +317,20 @@ useHead({
   margin: 0 auto 1rem;
   overflow: hidden;
   background: linear-gradient(to bottom, #fdfbf9, #f8f6f3);
+
+  @media (max-width: 768px) {
+    margin: 0;
+    height: 65vh;
+    min-height: 400px;
+
+    &__number {
+      font-size: 3rem;
+    }
+
+    &__navigation {
+      bottom: 1rem;
+    }
+  }
 
   @media (min-width: 769px) {
     height: 60vh;
@@ -384,6 +402,12 @@ useHead({
     transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 
+    @media (max-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     @media (min-width: 769px) {
       display: flex;
       align-items: center;
@@ -398,11 +422,13 @@ useHead({
   }
 
   &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.95);
-    transition: all 0.8s ease;
+    @media (max-width: 768px) {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
 
     @media (min-width: 769px) {
       width: auto;
@@ -411,6 +437,8 @@ useHead({
       object-fit: contain;
       margin: 0 auto;
     }
+    filter: brightness(0.95);
+    transition: all 0.8s ease;
   }
 
   &__overlay {
@@ -474,19 +502,6 @@ useHead({
 
     &:hover {
       background: rgba(255, 255, 255, 0.8);
-    }
-  }
-
-  @media (max-width: 768px) {
-    height: 65vh;
-    min-height: 400px;
-
-    &__number {
-      font-size: 3rem;
-    }
-
-    &__navigation {
-      bottom: 1rem;
     }
   }
 }
