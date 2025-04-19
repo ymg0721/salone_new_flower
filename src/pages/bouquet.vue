@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useScrollAnimation } from '@/composables/useScrollAnimation'
 import { NImage } from "naive-ui";
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
 import { usePagesData } from '@/composables/usePagesData'
 
-const router = useRouter()
+const router = useRouter();
 const { products, getProductText, getImagePath } = usePagesData()
 
 const bouquetProducts = products.value.filter(p => p.id.startsWith('300'))

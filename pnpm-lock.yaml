@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@css-render/vue3-ssr':
+        specifier: ^0.15.14
+        version: 0.15.14(vue@3.5.5)
+      '@juggle/resize-observer':
+        specifier: ^3.4.0
+        version: 3.4.0
       '@stripe/stripe-js':
         specifier: ^7.0.0
         version: 7.0.0
@@ -17,9 +23,6 @@ importers:
       gsap:
         specifier: ^3.12.5
         version: 3.12.5
-      naive-ui:
-        specifier: ^2.40.3
-        version: 2.40.3(vue@3.5.5)
       nodemailer:
         specifier: ^6.9.15
         version: 6.9.15
@@ -32,6 +35,9 @@ importers:
       vue-router:
         specifier: latest
         version: 4.4.5(vue@3.5.5)
+      vueuc:
+        specifier: ^0.4.64
+        version: 0.4.64(vue@3.5.5)
     devDependencies:
       '@types/nodemailer':
         specifier: ^6.4.16
@@ -42,6 +48,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
+      naive-ui:
+        specifier: ^2.41.0
+        version: 2.41.0(vue@3.5.5)
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
@@ -2575,8 +2584,8 @@ packages:
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
 
-  naive-ui@2.40.3:
-    resolution: {integrity: sha512-TpgYfOg0SNlG4HHhTdFnFcPc1trZiX3r10Pn6biyEgRoi6ZC5qbsY8xgKsqQuG4nWj2PHLT8pPVEkt2pKOlxag==}
+  naive-ui@2.41.0:
+    resolution: {integrity: sha512-KnmLg+xPLwXV8QVR7ZZ69eCjvel7R5vru8+eFe4VoAJHEgqAJgVph6Zno9K2IVQRpSF3GBGea3tjavslOR4FAA==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -6690,7 +6699,7 @@ snapshots:
       object-assign: 4.1.1
       thenify-all: 1.6.0
 
-  naive-ui@2.40.3(vue@3.5.5):
+  naive-ui@2.41.0(vue@3.5.5):
     dependencies:
       '@css-render/plugin-bem': 0.15.14(css-render@0.15.14)
       '@css-render/vue3-ssr': 0.15.14(vue@3.5.5)

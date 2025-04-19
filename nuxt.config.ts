@@ -48,5 +48,15 @@ export default defineNuxtConfig({
   srcDir: "src/",
   css: ["@/assets/css/tailwind.css"],
   compatibilityDate: "2024-04-03",
-  modules: ["@unocss/nuxt"],
+  modules: [
+    "@unocss/nuxt"
+  ],
+  build: {
+    transpile: [
+      'naive-ui',
+      'vueuc',
+      '@css-render/vue3-ssr',
+      '@juggle/resize-observer'
+    ]
+  },
 });

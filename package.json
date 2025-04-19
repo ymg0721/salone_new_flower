@@ -11,19 +11,22 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@css-render/vue3-ssr": "^0.15.14",
+    "@juggle/resize-observer": "^3.4.0",
     "@stripe/stripe-js": "^7.0.0",
     "dayjs": "^1.11.13",
     "gsap": "^3.12.5",
-    "naive-ui": "^2.40.3",
     "nodemailer": "^6.9.15",
     "nuxt": "^3.13.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vueuc": "^0.4.64"
   },
   "devDependencies": {
     "@types/nodemailer": "^6.4.16",
     "@unocss/nuxt": "^0.62.4",
     "autoprefixer": "^10.4.20",
+    "naive-ui": "^2.41.0",
     "postcss": "^8.4.47",
     "prettier": "3.3.3",
     "sass": "^1.79.3",
