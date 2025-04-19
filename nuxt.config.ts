@@ -27,7 +27,8 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap' }
       ]
-    }
+    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
   postcss: {
     plugins: {
@@ -40,7 +41,7 @@ export default defineNuxtConfig({
       NUXT_PUBLIC_API_URL: process.env.NUXT_PUBLIC_API_URL,
     }
   },
-  ssr: false,
+  ssr: true,
   vite: {
     plugins: [Components({ resolvers: [NaiveUiResolver()] })],
   },
